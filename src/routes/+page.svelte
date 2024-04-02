@@ -1,2 +1,9 @@
-<h1>Welcome to SvelteKit</h1>
-<p>Visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to read the documentation</p>
+<script lang="ts">
+	import Navigation from './../lib/components/navigation.svelte';
+</script>
+
+<div class="mx-6 sm:mx-12 md:mx-18">
+  <header class="mt-4 relative"><Navigation /></header>
+  <div>asdjsadjsa qowieuqwoe uqweoiuqweoqwieuqweu</div>
+  <footer></footer>
+</div>
