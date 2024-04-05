@@ -7,10 +7,10 @@
 </script>
 
 <footer class="">
-	<div class="lg:mx-18 max-w-auto hidden flex-row items-end justify-between md:mx-12 2xl:mx-24 md:flex">
-		<img class="md:w-[200px] lg:w-[220px]" src={Buildings} alt="Buildings" />
+	<div class="lg:mx-18 max-w-auto hidden flex-row items-end justify-between md:mx-12 lg:mx-18 xl:mx-20 2xl:mx-24 md:flex">
+		<img class="md:w-[180px] xl:w-[220px]" src={Buildings} alt="Buildings" />
 		<img class="hidden lg:block lg:w-[140px]" src={Trees} alt="Trees" />
-		<img class="md:w-auto" src={House} alt="House" />
+		<img class="md:w-[340px]" src={House} alt="House" />
 	</div>
 	<div
 		class="flex h-24 md:h-16 flex-row justify-center bg-black md:-mt-[2px] gap-12"

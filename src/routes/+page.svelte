@@ -6,7 +6,7 @@
 </script>
 
 <div class="flex h-full w-full flex-col overflow-auto">
-	<header class="md:mx-18 relative mx-6 mt-4 sm:mx-12 2xl:mx-24"><Navigation /></header>
+	<header class="md:mx-18 relative mx-6 mt-4 sm:mx-12 lg:mx-18 xl:mx-20 2xl:mx-24"><Navigation /></header>
 	<div class="mx-8 mb-12 mt-8 flex-grow sm:mx-12 md:mx-12 lg:mx-14">
 		<div class="flex h-[100%] flex-row justify-center align-middle">
 			<img
