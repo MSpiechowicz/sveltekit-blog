@@ -7,7 +7,6 @@
 
   beforeNavigate(() => {
     open = false;
-    menuStore.toggle();
   });
 </script>
 
