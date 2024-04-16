@@ -14,5 +14,3 @@
 <div class="max-sm:-mr-3 sm:hidden">
   <Hamburger on:click={menuStore.toggle} bind:open />
 </div>
-
-open${menuStore.open}
