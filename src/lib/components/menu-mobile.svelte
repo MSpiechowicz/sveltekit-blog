@@ -8,7 +8,11 @@
 
 {#if menuStore.open}
 	<div
-		transition:slide={{ duration: 250 }}
+		transition:slide={{
+			delay: 0,
+			duration: 150,
+      axis: 'y'
+		}}
 		class="absolute left-0 z-10 flex w-full flex-col gap-3 bg-white p-6 shadow-lg sm:hidden"
 	>
 		{#each getMenuItems() as item}
