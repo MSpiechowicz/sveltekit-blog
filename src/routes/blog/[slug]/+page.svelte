@@ -27,7 +27,7 @@
     <div class="dynamic mt-8">
       <svelte:component this={data.content} />
     </div>
-    <Button class="mt-8 md:mt-12 mb-4 md:mb-8 h-14 max-w-fit text-2xl" on:click={() => goto('/blog')}>Go back</Button>
+    <Button class="mt-8 md:mt-12 mb-4 md:mb-8 min-h-14 max-w-fit text-xl" on:click={() => goto('/blog')}>Go back</Button>
 	</div>
 </article>
 

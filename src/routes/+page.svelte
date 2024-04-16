@@ -11,17 +11,19 @@
 		alt="Sky"
 	/>
 	<div class="flex max-w-[1200px] flex-col justify-center">
-		<h1 class="text-[36px] sm:text-[40px] md:text-[44px]">
+		<h1 class="text-4xl md:text-5xl lg:text-6xl">
 			Hi! I am <b>Maciej,</b>
 		</h1>
-		<h2 class="text-[28px] sm:text-[32px] md:text-[36px]">
+		<h2 class="mt-2 text-2xl md:mt-4 md:text-3xl lg:text-4xl">
 			Software Engineer with 15+ years of experience
 		</h2>
-		<p class="mt-6 text-[20px] sm:text-[24px] md:text-[28px]">
+		<p class="mt-6 max-w-[800px] text-xl lg:text-2xl">
 			I'm all about merging the tech world with everyday life. Whether you're a tech buff or simply
 			curious, come along with me as I dive into the latest gadgets, demystify tech jargon, and
 			share some of my own experiences along the journey!
 		</p>
-		<Button class="mt-10 h-16 max-w-fit text-2xl" on:click={() => goto('/blog')}>Recent blog posts</Button>
+		<Button class="mt-10 min-h-14 max-w-fit text-xl" on:click={() => goto('/blog')}
+			>Recent blog posts</Button
+		>
 	</div>
 </div>
