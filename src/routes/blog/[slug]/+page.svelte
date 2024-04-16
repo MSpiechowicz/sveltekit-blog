@@ -16,27 +16,30 @@
 <article class="flex justify-center">
 	<div class="mt-4 md:mt-12">
 		<div class="relative">
-			<h1 class="p-0 text-3xl font-bold sm:text-4xl md:text-5xl">{data.meta.title}</h1>
+			<h1 class="p-0 text-4xl font-bold md:text-5xl">{data.meta.title}</h1>
 			<img
 				src={Notes}
 				alt="Notes"
 				class="absolute -left-16 -top-4 hidden h-auto w-[140px] sm:block"
 			/>
 		</div>
-		<p class="mt-2 text-xl">{formatDate(data.meta.date)}</p>
-    <div class="dynamic mt-8">
-      <svelte:component this={data.content} />
-    </div>
-    <Button class="mt-8 md:mt-12 mb-4 md:mb-8 min-h-14 max-w-fit text-xl" on:click={() => goto('/blog')}>Go back</Button>
+		<p class="mt-2 text-lg">{formatDate(data.meta.date)}</p>
+		<div class="dynamic mt-8">
+			<svelte:component this={data.content} />
+		</div>
+		<Button
+			class="mb-4 mt-8 min-h-14 max-w-fit text-xl md:mb-8 md:mt-12"
+			on:click={() => goto('/blog')}>Go back</Button
+		>
 	</div>
 </article>
 
 <style>
-  .dynamic :global(h2) {
-    @apply text-4xl;
-  }
+	.dynamic :global(h2) {
+		@apply text-4xl;
+	}
 
-  .dynamic :global(p) {
-    @apply text-xl max-w-[800px];
-  }
+	.dynamic :global(p) {
+		@apply max-w-[800px] text-xl;
+	}
 </style>
