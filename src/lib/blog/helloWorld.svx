@@ -1,0 +1,23 @@
+---
+title: Hello World!
+description: Initial blog post
+date: '11-04-2024'
+slug: helloWorld
+categories:
+  - non-technical
+---
+
+I think that it was at the beginning of the 2015 when I started my first blog. I wanted to write about my technical experiences and share them with the world. During that time I was mostly working as a Backend Developer (Java 8, Python).
+<br/>
+
+I was full of the enthusiasm and I was sure that I will be able to write at least one post per week. I was so wrong. I was able to write only a few posts and then I stopped. I think that the main reason was that I was not sure what should be the actual content. Since most of the blogs (that I was also reading) were mostly dedicated to the junior/middle developers, my goal was to distinguish myself by writing about more advanced topics.
+<br/>
+
+Time was passing and I got burned out from the "hard trying". At the year 2022 I decided to shutdown most of my private projects, clean the repositories and delete the blog.
+<br/>
+
+Now we have year 2024 and my friend Szymon motivated me to start writing again. By looking at how does he share his knowledge freely with the world, I decided to give it a try again.
+Maybe I was too focused on the quality during the previous time.
+<br/>
+
+So the plan is rather simple. Write some small posts. Keep doing it without pressure. Have fun in the first place. And maybe, just maybe, someone will find it useful ;).
