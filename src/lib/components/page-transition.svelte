@@ -7,7 +7,7 @@
 {#key url}
 	<div class="h-[100%]" in:fade={{
     delay: 0,
-    duration: 500,
+    duration: 300,
   }}>
 		<slot />
 	</div>
