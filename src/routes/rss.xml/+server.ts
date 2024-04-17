@@ -8,7 +8,11 @@ export async function GET({ fetch }) {
 	const headers = { 'Content-Type': 'application/xml' };
 
 	const xml = `
-  <rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0">
+  <rss
+    xmlns:atom="http://www.w3.org/2005/Atom"
+    xmlns:dc="http://purl.org/dc/elements/1.1/"
+    xmlns:content="http://purl.org/rss/1.0/modules/content/"
+    version="2.0">
     <channel>
       <title>${config.title}</title>
       <description>${config.description}</description>
