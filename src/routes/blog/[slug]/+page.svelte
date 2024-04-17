@@ -34,7 +34,7 @@
 	</div>
 </article>
 
-<style>
+<style lang="postcss">
 	.dynamic :global(h2) {
 		@apply text-4xl;
 	}
