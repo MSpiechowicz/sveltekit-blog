@@ -1,7 +1,5 @@
 <script lang="ts">
-	import { goto } from '$app/navigation';
 	import Notes from '$lib/assets/notes.svg';
-	import { Button } from '$lib/components/ui/button/index';
 	import { formatDate } from '$lib/utils';
 
 	export let data;
@@ -16,7 +14,7 @@
 		{#each data.posts as post}
 			<li>
 				<div class="relative">
-					<h2 class="p-0 text-4xl md:text-5xl font-bold">{post.title}</h2>
+					<h2 class="p-0 text-4xl font-bold md:text-5xl">{post.title}</h2>
 					<img
 						src={Notes}
 						alt="Notes"
@@ -24,12 +22,12 @@
 					/>
 				</div>
 				<p class="mt-2 text-xl lg:text-2xl">{post.description}</p>
-				<div class="mt-5 flex flex-row items-center gap-2">
+				<div class="mt-5 flex flex-row items-center gap-3">
 					<p class="text-lg">{formatDate(post.date)}</p>
-					<Button
-						class="text-lg h-[26px] p-[0.5rem] font-bold underline"
-						variant="link"
-						on:click={() => goto(`blog/${post.slug}`)}>Read full article</Button
+					<a
+						class="text-lg font-bold underline"
+						aria-label={post.slug}
+						href={`blog/${post.slug}`}>Read full article</a
 					>
 				</div>
 			</li>
