@@ -53,7 +53,7 @@ I was playing with the animation of the sun, clouds, birds, earthquake but at th
 
 ## The Conclusion
 
-This whole technical stack is very simple and just works. There is no need for extra logic. Just some basic fixes here and there (until SvelteKit will be properly update). And regarding the length of this article - wow. I tried to make it minimal 😅. If you stayed with me for this long, congratulations! I will soon release this project as a Open Source, in case someone would like to use it.
+This whole technical stack is very simple and just works. There is no need for extra logic. Just some basic fixes here and there (until SvelteKit will be properly update). And regarding the length of this article - wow. I tried to make it minimal 😅. If you stayed with me for this long, congratulations! I will soon publish this project as open source, in case anyone wants to use it.
 <br/>
 
 Greetings,
