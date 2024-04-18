@@ -2,6 +2,7 @@
 	import { goto } from '$app/navigation';
 	import Notes from '$lib/assets/notes.svg';
 	import Button from '$lib/components/ui/button/button.svelte';
+	import translation from '$lib/translations/en-GB.json';
 	import { formatDate } from '$lib/utils';
 
 	export let data;
@@ -29,7 +30,7 @@
 		</div>
 		<Button
 			class="mb-4 mt-8 min-h-14 max-w-fit text-xl md:mb-8 md:mt-12"
-			on:click={() => goto('/blog')}>Go back</Button
+			on:click={() => goto('/blog')}>{translation['button.go.back']}</Button
 		>
 	</div>
 </article>
@@ -42,4 +43,20 @@
 	.dynamic :global(p) {
 		@apply max-w-[800px] text-xl;
 	}
+
+  .dynamic :global(ul) {
+    @apply my-4;
+  }
+
+  .dynamic :global(h2) {
+    @apply text-3xl mt-8 mb-4 font-bold;
+  }
+
+  .dynamic :global(li) {
+    @apply mt-1 text-xl;
+  }
+
+  .dynamic :global(a) {
+    @apply font-bold underline;
+  }
 </style>

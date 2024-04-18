@@ -1,13 +1,23 @@
 .DS_Store
+
+# Node.js
 node_modules
+
+# Build
 /build
+/dist
+
+# SvelteKit
 /.svelte-kit
 /package
+
+# Env
 .env
 .env.*
 !.env.example
 
-# Ignore files for PNPM, NPM and YARN
+# Ignore files for PNPM, NPM, YARN, BUN
 pnpm-lock.yaml
 package-lock.json
 yarn.lock
+bun.lockb

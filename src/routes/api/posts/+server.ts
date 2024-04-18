@@ -2,13 +2,6 @@ import type { Post } from '$lib/types';
 import { json } from '@sveltejs/kit';
 import { render } from 'svelte/server';
 
-function getSlug(path: string) {
-	return path
-		.split('/')
-		.at(-1)
-		?.replace(/\.svx$/, '');
-}
-
 function getSanitizedHtml(html: string) {
 	return (
 		html
@@ -27,15 +20,13 @@ async function getPosts() {
 	for (const path in paths) {
 		const file = paths[path];
 
-		const slug = getSlug(path);
-
-		if (file && typeof file === 'object' && 'metadata' in file && 'default' in file && slug) {
-			const metadata = file.metadata as Omit<Post, 'slug'>;
+		if (file && typeof file === 'object' && 'metadata' in file && 'default' in file) {
+			const metadata = file.metadata as Omit<Post, 'content'>;
 
 			// @ts-expect-error SvelteKit doesn't support the `render` function
 			const { html } = render(file.default, { props: {} });
 
-			const post = { ...metadata, content: getSanitizedHtml(html), slug } satisfies Post;
+			const post = { ...metadata, content: getSanitizedHtml(html) } satisfies Post;
 
 			posts.push(post);
 		}

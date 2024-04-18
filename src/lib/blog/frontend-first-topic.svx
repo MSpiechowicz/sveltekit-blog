@@ -1,0 +1,61 @@
+---
+title: Frontend First Topic
+description: 'What is the first topic that every Frontend Developer is writing about? Of course, it is the technical stack of the blog itself. So here it is.'
+date: '04-18-2024'
+slug: frontend-first-topic
+categories:
+  - technical
+---
+
+This is quite comical to me. The first topic that every Frontend Developer is writing about is the technical stack of the blog itself. It is hard to say why. Maybe this is due to the fact, that it is some kind "muscle flexing" to show off your own skills.
+<br/>
+
+For me personally this is mainly about the fun, experimenting with new technologies and learning new things. As I wrote in my previous post, I decided to give my blog the second chance. Previous version was hosted at one of the online services, dedicated to the bloggers.
+
+## The Stack
+
+During the normal day of work I am mostly using <b>the React</b> and <b>the Node.js</b>, but since a long time I am following <b>the Svelte</b> overall progress. I am really impressed by the performance and simplicity of this framework. So I decided to give it a try and use it for my blog.
+<br/>
+
+I ended up with the following stack:
+- ☞ <b>SvelteKit</b> - as a main framework
+- ☞ <b>MDsveX</b> - for the markdown support
+- ☞ <b>Shadcn UI</b> - for the UI components
+- ☞ <b>Tailwind</b> - for the styling
+- ☞ <b>Vercel</b> - for the hosting
+- ☞ <b>TypeScript</b> - for the type safety
+- ☞ <b>Figma</b> - for the design
+
+You can ask why I did use <b>Tailwind</b> and <b>Shadcn UI</b>? I wanted to test those libraries and how are they working together. It is not that you can't do it alone, manually creating all the components and writing all styles. But as John Lennon once said <i>"Living is easy with eyes closed, misunderstanding all you see"</i>, so I decided to give them a try.
+
+## The Experience
+
+Overall I can sum it up as effortless. I was able to create this blog within 2 days, working on it from the off. Most of this time was spent on actual design, both the mobile and desktop versions.
+<br/>
+
+But not everything was smooth sailing. Automatic SvelteKit initial configuration required additional effort (some file type mismatching, missing dependencies or random errors, mainly due to the non-production version). Svelte 5 introduced some breaking changes (like render function no longer being part of the component itself), which required to make code adjustment. Also Runes replaced the default stores implementation. If you are following the internet discussion, the Svelte world is divided into two camps. Some people are happy that the part of the Svelte is now more explicit and require more code on the developer side, but others wanted to keep the simplicity of the previous version with some magic under the hood.
+<br/>
+
+Tailwind and Shadcn was integrated without a single problem. That was actually a surprise for me, because some time ago when I was playing with it, it caused much more issues (💔 config files). I like the idea of subscription to the specific component, instead of the whole library. What I actually did not liked is for example the Button component handling in case of using property <b>variant="Link"</b>. I would expect it to be present as a proper HTML hyperlink, but it stayed as a HTML button tag, which caused issues with scripts walking threw the blog pages, to index the content itself.
+
+## The Design
+
+I am always fighting internal battle, whether to start with the mobile first approach or the desktop first approach. By the end of the day it is easier for me to think in the bigger scope, than focus on the limitation of the mobile view. Figma is a tool, which I can honestly recommend to everyone. I am using it even to draw some simple graphics and export it. It is really easy to use and has a lot of features, which can help you to create the design of your dreams.
+<br/>
+
+I used the free SVG from [the SVG Repo](https://www.svgrepo.com/) to build my footer, and [the Adobe Logo Maker](https://www.adobe.com/express/create/logo) to generate my logo.
+<br/>
+
+Idea for the entire page would be to create simple, yet modern design. Black and white as the main color theme, with the background story of city under the earthquake. I wanted to create the feeling of the chaos, but also the hope.
+<br/>
+
+I was playing with the animation of the sun, clouds, birds, earthquake but at the end of the day I have found it to be only distracting. The focus should be and the content itself, not the background. Most of the YouTube Designers this days will recommend you to add as many animation as you can, in order to make the page more attractive. But this is against accessibility and usability. If your page is behaving like a god damn rocket, everything is spinning around, you need to hover on the specific element to see the content, you are doing it wrong. But you are free to disagree. This is only my perspective. The funny thing is that within the developer world we have [the KISS principle](https://en.wikipedia.org/wiki/KISS_principle), but when it comes to the design, we are throwing it out of the window.
+
+## The Conclusion
+
+Wow. I tried to make it minimal 😅. If you stayed with me for this long, congratulations! I wanted to make it rather short story. Without going into the details so much. I will soon release this project as a Open Source, in case someone would like to use it.
+<br/>
+
+Greetings,
+
+Maciej

@@ -2,7 +2,7 @@
 	import { goto } from '$app/navigation';
 	import Sky from '$lib/assets/sky.svg';
 	import { Button } from '$lib/components/ui/button/index';
-	import config from '$lib/config';
+	import translation from '$lib/translations/en-GB.json';
 </script>
 
 <div class="flex h-[100%] flex-row justify-center align-middle">
@@ -16,13 +16,13 @@
 			Hi! I am <b>Maciej,</b>
 		</h1>
 		<h2 class="mt-2 text-2xl md:mt-4 md:text-3xl lg:text-4xl">
-			{config.subTitle}
+			{translation.subTitle}
 		</h2>
 		<p class="mt-6 max-w-[800px] text-xl lg:text-2xl">
-			{config.description}
+			{translation.description}
 		</p>
 		<Button class="mt-10 min-h-14 max-w-fit text-xl" on:click={() => goto('/blog')}
-			>Recent blog posts</Button
+			>{translation['button.recent.blog.posts']}</Button
 		>
 	</div>
 </div>

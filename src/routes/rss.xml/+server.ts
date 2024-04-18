@@ -1,4 +1,4 @@
-import config from '$lib/config';
+import translation from '$lib/translations/en-GB.json';
 import type { Post } from '$lib/types';
 
 export async function GET({ fetch }) {
@@ -14,10 +14,10 @@ export async function GET({ fetch }) {
     xmlns:content="http://purl.org/rss/1.0/modules/content/"
     version="2.0">
     <channel>
-      <title>${config.title}</title>
-      <description>${config.description}</description>
-      <link>${config.url}</link>
-      <atom:link href="${config.url}/rss.xml" rel="self" type="application/rss+xml"/>
+      <title>${translation.title}</title>
+      <description>${translation.description}</description>
+      <link>${translation.url}</link>
+      <atom:link href="${translation.url}/rss.xml" rel="self" type="application/rss+xml"/>
       ${posts
 				.map(
 					(post) => `
@@ -25,8 +25,8 @@ export async function GET({ fetch }) {
             <title><![CDATA[${post.title}]]></title>
             <description><![CDATA[${post.description}]]></description>
             <content:encoded><![CDATA[${post.content}]]></content:encoded>
-            <link>${config.url}/blog/${post.slug}</link>
-            <guid isPermaLink="true">${config.url}/blog/${post.slug}</guid>
+            <link>${translation.url}/blog/${post.slug}</link>
+            <guid isPermaLink="true">${translation.url}/blog/${post.slug}</guid>
             <pubDate>${new Date(post.date).toUTCString()}</pubDate>
           </item>
         `

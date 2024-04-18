@@ -2,7 +2,7 @@
 title: Hello World!
 description: 'Journey begins once again. This time with a different approach.'
 date: '04-14-2024'
-slug: helloWorld
+slug: hello-world
 categories:
   - non-technical
 ---
@@ -20,3 +20,8 @@ Now we have year 2024 and my friend Szymon motivated me to start writing again. 
 <br/>
 
 So the plan is rather simple. Write some small posts. Keep doing it without pressure. Have fun in the first place. And maybe, just maybe, someone will find it useful ;).
+<br/>
+
+Greetings,
+
+Maciej
