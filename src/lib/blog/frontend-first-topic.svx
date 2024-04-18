@@ -25,6 +25,7 @@ I ended up with the following stack:
 - ☞ <b>Vercel</b> - for the hosting
 - ☞ <b>TypeScript</b> - for the type safety
 - ☞ <b>Figma</b> - for the design
+- ☞ <b>Bun</b> - for the JavaScript runtime & toolkit
 
 You can ask why I did use <b>Tailwind</b> and <b>Shadcn UI</b>? I wanted to test those libraries and how are they working together. It is not that you can't do it alone, manually creating all the components and writing all styles. But as John Lennon once said <i>"Living is easy with eyes closed, misunderstanding all you see"</i>, so I decided to give them a try.
 
@@ -37,6 +38,12 @@ But not everything was smooth sailing. Automatic SvelteKit initial configuration
 <br/>
 
 Tailwind and Shadcn was integrated without a single problem. That was actually a surprise for me, because some time ago when I was playing with it, it caused much more issues (💔 config files). I like the idea of subscription to the specific component, instead of the whole library. What I actually did not liked is for example the Button component handling in case of using property <b>variant="Link"</b>. I would expect it to be present as a proper HTML hyperlink, but it stayed as a HTML button tag, which caused issues with scripts walking threw the blog pages, to index the content itself.
+<br/>
+
+For the actual first time I used Bun. I was really impressed by the speed of the build process. It is really, really fast. I was able to build the whole blog under 4 seconds. TypeScript is running by default, so you don't need to do any <i>"mambo, jambo"</i> typical Node.js dancing with the configuration files.
+<br/>
+
+Vercel on the other side, is supposed to work with SvelteKit and Bun out of the box. But unfortunatelly, it is not. I had multiple issues with some random build erros, which were not present locally. By manually updating the commands I was able to resolve some of them, but at the end of the day, I had to downgrade some of the dependencies to fit the Vercel requirements.
 
 ## The Design
 
