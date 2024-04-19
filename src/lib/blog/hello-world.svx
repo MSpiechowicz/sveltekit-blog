@@ -7,16 +7,16 @@ categories:
   - non-technical
 ---
 
-I think that it was at the beginning of the 2015 when I started my first blog. I wanted to write about my technical experiences and share them with the world. During that time I was mostly working as a Backend Developer (Java 8, Python).
+I think that it was at the beginning of 2015 when I started my first blog. I wanted to write about my technical experiences and share them with the world. During that time I was mostly working as a Backend Developer (Java 8, Python).
 <br/>
 
-I was full of the enthusiasm and I was sure that I will be able to write at least one post per week. I was so wrong. I was able to write only a few posts and then I stopped. I think that the main reason was that I was not sure what should be the actual content. Since most of the blogs (that I was also reading) were mostly dedicated to the junior/middle developers, my goal was to distinguish myself by writing about more advanced topics.
+I was full of enthusiasm and I was sure that I would be able to write at least one post per week. I was so wrong. I was able to write only a few posts and then I stopped. I think that the main reason was that I was not sure what should be the actual content. Since most of the blogs (that I was also reading) were mostly dedicated to junior/middle developers, my goal was to distinguish myself by writing about more advanced topics.
 <br/>
 
-Time was passing and I got burned out from the "hard trying". At the year 2022 I decided to shutdown most of my private projects, clean the repositories and delete the blog.
+Time was passing and I got burned out from the "hard trying". In the year 2022, I decided to shut down most of my private projects, clean the repositories, and delete the blog.
 <br/>
 
-Now we have year 2024 and my friend Szymon motivated me to start writing again. By looking at how he shares his knowledge (pretty much about everything), freely with the world, I decided to give it a try again. Maybe the last time I was too much of perfectionist.
+Now we have the year 2024 and my friend Szymon motivated me to start writing again. By looking at how he shares his knowledge (pretty much about everything), freely with the world, I decided to give it a try again. Maybe the last time I was too much of a perfectionist.
 <br/>
 
 So the plan is rather simple. Write some small posts. Keep doing it without pressure. Have fun in the first place. And maybe, just maybe, someone will find it useful ;).

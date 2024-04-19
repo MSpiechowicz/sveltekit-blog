@@ -7,14 +7,14 @@ categories:
   - technical
 ---
 
-This is quite comical to me. The first topic that every Frontend Developer is writing about is the technical stack of the blog itself. It is hard to say why. Maybe this is due to the fact, that it is some kind "muscle flexing" to show off your own skills.
+This is quite comical to me. The first topic that every Frontend Developer is writing about is the technical stack of the blog itself. It is hard to say why. Maybe this is due to the fact, that it is some kind of "muscle-flexing" to show off your skills.
 <br/>
 
-For me personally this is mainly about the fun, experimenting with new technologies and learning new things. As I wrote in my previous post, I decided to give my blog the second chance. Previous version was hosted at one of the online services, dedicated to the bloggers.
+For me, this is mainly about the fun, experimenting with new technologies, and learning new things. As I wrote in my previous post, I decided to give my blog a second chance. The previous version was hosted at one of the online services, dedicated to the bloggers.
 
 ## The Stack
 
-During the normal day of work I am mostly using <b>the React</b> and <b>the Node.js</b>, but since a long time I am following <b>the Svelte</b> overall progress. I am really impressed by the performance and simplicity of this framework. So I decided to give it a try and use it for my blog.
+During a normal day of work, I am mostly using <b>the React</b> and <b>the Node.js</b>, but for a long time, I have been following <b>the Svelte</b> overall progress. I am impressed by the performance and simplicity of this framework. So I decided to give it a try and use it for my blog.
 <br/>
 
 I ended up with the following stack:
@@ -27,40 +27,40 @@ I ended up with the following stack:
 - ☞ <b>Figma</b> - for the design
 - ☞ <b>Bun</b> - for the JavaScript runtime & toolkit
 
-You can ask why I did use <b>Tailwind</b> and <b>Shadcn UI</b>? I wanted to test those libraries and how are they working together. It is not that you can't do it alone, manually creating all the components and writing all styles. But as John Lennon once said <i>"Living is easy with eyes closed, misunderstanding all you see"</i>, so I decided to give them a try.
+You can ask why I did use <b>Tailwind</b> and <b>Shadcn UI</b>. I wanted to test those libraries and how are they working together. It is not that you can't do it alone, manually creating all the components and writing all styles. But as John Lennon once said <i>"Living is easy with eyes closed, misunderstanding all you see"</i>, so I decided to give them a try.
 
 ## The Experience
 
 Overall I can sum it up as effortless. I was able to create this blog within 2 days, working on it from the off. Most of this time was spent on actual design, both the mobile and desktop versions.
 <br/>
 
-But not everything was smooth sailing. Automatic SvelteKit initial configuration required additional effort (some file type mismatching, missing dependencies or random errors, mainly due to the non-production version). Svelte 5 introduced some breaking changes (like render function no longer being part of the component itself), which required to make code adjustment. Also Runes replaced the default stores implementation. If you are following the internet discussion, the Svelte world is divided into two camps. Some people are happy that the part of the Svelte is now more explicit and require more code on the developer side, but others wanted to keep the simplicity of the previous version with some magic under the hood.
+But not everything was smooth sailing. Automatic SvelteKit initial configuration required additional effort (some file type mismatching, missing dependencies, or random errors, mainly due to the non-production version). Svelte 5 introduced some breaking changes (like the render function no longer being part of the component itself), which required to make code adjustments. Also, Runes replaced the default stores implementation. If you are following the internet discussion, the Svelte world is divided into two camps. Some people are happy that the part of the Svelte is now more explicit and requires more code on the developer side, but others wanted to keep the simplicity of the previous version with some magic under the hood.
 <br/>
 
-Tailwind and Shadcn was integrated without a single problem. That was actually a surprise for me, because some time ago when I was playing with it, it caused much more issues (💔 config files). I like the idea of subscription to the specific component, instead of the whole library. What I actually did not liked is for example the Button component handling in case of using property <b>variant="Link"</b>. I would expect it to be present as a proper HTML hyperlink, but it stayed as a HTML button tag, which caused issues with scripts walking threw the blog pages, to index the content itself.
+Tailwind and Shadcn were integrated without a single problem. That was a surprise for me, because some time ago when I was playing with it, it caused much more issues (💔 config files). I like the idea of subscription to the specific component, instead of the whole library. What I did not like is for example the Button component handling in case of using property <b>variant="Link"</b>. I would expect it to be present as a proper HTML hyperlink, but it stayed as an HTML button tag, which caused issues with scripts walking threw the blog pages, to index the content itself.
 <br/>
 
-For the actual first time I used Bun. I was really impressed by the speed of the build process. It is really, really fast. I was able to build the whole blog under 4 seconds. TypeScript is running by default, so you don't need to do any <i>"mambo, jambo"</i> typical Node.js dancing with the configuration files.
+For the first time, I used Bun. I was impressed by the speed of the build process. It is fast. I was able to build the whole blog in under 4 seconds. TypeScript is running by default, so you don't need to do any <i>"mambo, jambo"</i> typical Node.js dancing with the configuration files.
 <br/>
 
-Vercel on the other side, is supposed to work with SvelteKit and Bun out of the box. But unfortunatelly, it is not. I had multiple issues with some random build erros, which were not present locally. By manually updating the commands I was able to resolve some of them, but at the end of the day, I had to downgrade some of the dependencies to fit the Vercel requirements.
+Vercel on the other side, is supposed to work with SvelteKit and Bun out of the box. But unfortunately, it is not. I had multiple issues with some random build errors, which were not present locally. By manually updating the commands I was able to resolve some of them, but at the end of the day, I had to downgrade some of the dependencies to fit the Vercel requirements.
 
 ## The Design
 
-I am always fighting internal battle, whether to start with the mobile first approach or the desktop first approach. By the end of the day it is easier for me to think in the bigger scope, than focus on the limitation of the mobile view. Figma is a tool, which I can honestly recommend to everyone. I am using it even to draw some simple graphics and export it. It is really easy to use and has a lot of features, which can help you to create the design of your dreams.
+I am always fighting an internal battle, whether to start with the mobile-first approach or the desktop-first approach. By the end of the day, it is easier for me to think in the bigger scope, than focus on the limitation of the mobile view. Figma is a tool, which I can honestly recommend to everyone. I am using it even to draw some simple graphics and export it. It is really easy to use and has a lot of features, which can help you to create the design of your dreams.
 <br/>
 
 I used the free SVG from [the SVG Repo](https://www.svgrepo.com/) to build my footer, and [the Adobe Logo Maker](https://www.adobe.com/express/create/logo) to generate my logo.
 <br/>
 
-Idea for the entire page would be to create simple, yet modern design. Black and white as the main color theme, with the background story of city under the earthquake. I wanted to create the feeling of the chaos, but also the hope.
+The idea for the entire page would be to create a simple, yet modern design. Black and white is the main color theme, with the background story of the city under the earthquake. I wanted to create the feeling of the chaos, but also the hope.
 <br/>
 
-I was playing with the animation of the sun, clouds, birds, earthquake but at the end of the day I have found it to be only distracting. The focus should be and the content itself, not the background. Most of the YouTube Designers this days will recommend you to add as many animation as you can, in order to make the page more attractive. But this is against accessibility and usability. If your page is behaving like a god damn rocket, everything is spinning around, you need to hover on the specific element to see the content, you are doing it wrong. But you are free to disagree. This is only my perspective. The funny thing is that within the developer world we have [the KISS principle](https://en.wikipedia.org/wiki/KISS_principle), but when it comes to the design, we are throwing it out of the window.
+I was playing with the animation of the sun, clouds, birds, and earthquakes but at the end of the day, I found it to be only distracting. The focus should be and the content itself, not the background. Most of the YouTube Designers these days will recommend you to add as much animation as you can, to make the page more attractive. But this is against accessibility and usability. If your page is behaving like a goddamn rocket, everything is spinning around, you need to hover on the specific element to see the content, you are doing it wrong. But you are free to disagree. This is only my perspective. The funny thing is that within the developer world, we have [the KISS principle](https://en.wikipedia.org/wiki/KISS_principle), but when it comes to the design, we are throwing it out of the window.
 
 ## The Conclusion
 
-This whole technical stack is very simple and just works. There is no need for extra logic. Just some basic fixes here and there (until SvelteKit will be properly updated). And regarding the length of this article - wow. I tried to make it minimal 😅. If you stayed with me for this long, congratulations! I will soon publish this project as open source, in case anyone wants to use it.
+This whole technical stack is very simple and just works. There is no need for extra logic. Just some basic fixes here and there (until SvelteKit is properly updated). And regarding the length of this article - wow. I tried to make it minimal 😅. If you stayed with me for this long, congratulations! I will soon publish this project as open source, in case anyone wants to use it.
 <br/>
 
 Greetings,
