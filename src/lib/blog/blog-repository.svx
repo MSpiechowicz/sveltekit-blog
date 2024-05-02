@@ -1,0 +1,32 @@
+---
+title: Blog repository
+description: 'Public repository of my blog is now available on GitHub.'
+date: '05-02-2024'
+slug: blog-repository
+categories:
+  - technical
+---
+
+Hello everyone!
+<br/>
+
+I'm happy to announce that the public repository of my blog is now available on GitHub.
+<br/>
+
+👉 You can find it [here](https://github.com/MSpiechowicz/sveltekit-blog).
+
+## Feedback
+
+Feel free to check it out, fork it, and let me know if you have any questions or suggestions. I'm always open to feedback. I hope you'll find it useful.
+
+## Ideas
+
+I still have a lot of ideas for improvements and new features, so stay tuned for more updates. For example, I want to move some of the business logic into the JSON/env file, so that it is easier to replace the graphic, move the website skeleton, etc. without the necessity to touch the code itself.
+<br/>
+
+There is also some more cleaning up to do, so please be patient with me.
+<br/>
+
+Greetings,
+
+Maciej
