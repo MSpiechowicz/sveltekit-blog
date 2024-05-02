@@ -1,38 +1,44 @@
-# create-svelte
+# Personal Blog
 
-Everything you need to build a Svelte project, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/main/packages/create-svelte).
+Hi! This is my personal blog. In case you want to fork it, please make sure to change the content to fit your needs.
 
-## Creating a project
+## Dependencies
 
-If you're seeing this, you've probably already done this step. Congrats!
+Below you can find list of the dependencies that are used to build this blog:
 
-```bash
-# create a new project in the current directory
-npm create svelte@latest
+| Name        | URL                     |
+|-------------|-------------------------|
+| Bun         | https://bun.sh          |
+| SvelteKit   | https://kit.svelte.dev  |
+| TailwindCSS | https://tailwindcss.com |
+| Shadcn/ui   | https://ui.shadcn.com   |
+| Vite        | https://vitejs.dev      |
+| mdsvex      | https://mdsvex.com      |
 
-# create a new project in my-app
-npm create svelte@latest my-app
-```
+## Installation
 
-## Developing
-
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
-
-```bash
-npm run dev
-
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
-```
-
-## Building
-
-To create a production version of your app:
+To start using this blog, you need to install the dependencies first. You can do that by running the following command:
 
 ```bash
-npm run build
+bun install
 ```
 
-You can preview the production build with `npm run preview`.
+Then you can start the development server by running the following command:
 
-> To deploy your app, you may need to install an [adapter](https://kit.svelte.dev/docs/adapters) for your target environment.
+```bash
+bun dev
+```
+
+## Content
+
+The content of this blog is stored in the `src/lib/blog` directory. You can add new blog posts by creating a new `.svx` file in that directory.
+
+## License
+
+This blog is licensed under the MIT License. You can find more information in the `LICENSE` file.
+
+## Additional useful links
+
+- graphics were taken from [the Svg Repo](https://www.svgrepo.com/) website
+- favicon was created at [the Favicon](https://favicon.io/) website
+- personal logo was created at [the Logo Maker](https://www.adobe.com/express/create/logo) website.
