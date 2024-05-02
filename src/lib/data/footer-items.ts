@@ -1,4 +1,6 @@
-const FOOTER_ITEMS = [
+import type { FooterItem } from "$lib/types";
+
+const FOOTER_ITEMS: Array<FooterItem> = [
 	{
 		href: 'https://www.linkedin.com/in/mspiechowicz/',
 		letter: 'l'

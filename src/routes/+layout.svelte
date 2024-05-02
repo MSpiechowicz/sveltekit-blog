@@ -2,6 +2,7 @@
 	import Footer from '$lib/components/footer.svelte';
 	import Navigation from '$lib/components/navigation.svelte';
 	import PageTransition from '$lib/components/page-transition.svelte';
+
 	import '../app.pcss';
 
 	export let data;

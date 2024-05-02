@@ -9,8 +9,7 @@
 	<img
 		class="xl:top-42 absolute hidden w-[340px] sm:w-[620px] md:top-48 md:block md:w-[780px] lg:top-32 lg:w-[980px] lg:px-14 xl:w-[1280px] 2xl:top-64 2xl:w-[1360px] 2xl:px-6"
 		src={Sky}
-		alt="Sky"
-	/>
+		alt="Sky" />
 	<div class="flex max-w-[1200px] flex-col justify-center">
 		<h1 class="text-4xl md:text-5xl lg:text-6xl">
 			Hi! I am <b>Maciej,</b>
@@ -21,8 +20,8 @@
 		<p class="mt-6 max-w-[800px] text-xl lg:text-2xl">
 			{translation.description}
 		</p>
-		<Button class="mt-10 min-h-14 max-w-fit text-xl" on:click={() => goto('/blog')}
-			>{translation['button.recent.blog.posts']}</Button
-		>
+		<Button
+			class="mt-10 min-h-14 max-w-fit text-xl"
+			on:click={() => goto('/blog')}>{translation['button.recent.blog.posts']}</Button>
 	</div>
 </div>

@@ -1,7 +1,8 @@
 <script lang="ts">
+	import { slide } from 'svelte/transition';
+  
 	import getMenuItems from '$lib/data/menu-items';
 	import menuStore from '$lib/stores/menu-store.svelte';
-	import { slide } from 'svelte/transition';
 </script>
 
 {#if menuStore.open}

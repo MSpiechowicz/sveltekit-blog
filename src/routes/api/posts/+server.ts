@@ -2,7 +2,7 @@ import type { Post } from '$lib/types';
 import { json } from '@sveltejs/kit';
 import { render } from 'svelte/server';
 
-function getSanitizedHtml(html: string) {
+function getSanitizedHtml(html: string): string {
 	return (
 		html
 			.replace(/<!--\[-->/g, '')
@@ -12,7 +12,7 @@ function getSanitizedHtml(html: string) {
 	);
 }
 
-async function getPosts() {
+async function getPosts(): Promise<Post[]> {
 	let posts: Post[] = [];
 
 	const paths = import.meta.glob('/src/lib/blog/*.svx', { eager: true });
@@ -33,7 +33,9 @@ async function getPosts() {
 	}
 
 	posts = posts.sort(
-		(first, second) => new Date(second.date).getTime() - new Date(first.date).getTime()
+		(first, second) =>
+			new Date(second?.date || Date.now()).getTime() -
+			new Date(first?.date || Date.now()).getTime(),
 	);
 
 	return posts;

@@ -22,14 +22,14 @@ export async function GET({ fetch }) {
 				.map(
 					(post) => `
           <item>
-            <title><![CDATA[${post.title}]]></title>
-            <description><![CDATA[${post.description}]]></description>
-            <content:encoded><![CDATA[${post.content}]]></content:encoded>
-            <link>${translation.url}/blog/${post.slug}</link>
-            <guid isPermaLink="true">${translation.url}/blog/${post.slug}</guid>
-            <pubDate>${new Date(post.date).toUTCString()}</pubDate>
+            <title><![CDATA[${post?.title}]]></title>
+            <description><![CDATA[${post?.description}]]></description>
+            <content:encoded><![CDATA[${post?.content}]]></content:encoded>
+            <link>${translation.url}/blog/${post?.slug}</link>
+            <guid isPermaLink="true">${translation.url}/blog/${post?.slug}</guid>
+            <pubDate>${new Date(post?.date || Date.now()).toUTCString()}</pubDate>
           </item>
-        `
+        `,
 				)
 				.join('')}
     </channel>

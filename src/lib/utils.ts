@@ -1,7 +1,7 @@
-import { type ClassValue, clsx } from 'clsx';
-import { twMerge } from 'tailwind-merge';
+import { clsx, type ClassValue } from 'clsx';
 import { cubicOut } from 'svelte/easing';
 import type { TransitionConfig } from 'svelte/transition';
+import { twMerge } from 'tailwind-merge';
 
 export function cn(...inputs: ClassValue[]) {
 	return twMerge(clsx(inputs));
@@ -16,7 +16,7 @@ type FlyAndScaleParams = {
 
 export const flyAndScale = (
 	node: Element,
-	params: FlyAndScaleParams = { y: -8, x: 0, start: 0.95, duration: 150 }
+	params: FlyAndScaleParams = { y: -8, x: 0, start: 0.95, duration: 150 },
 ): TransitionConfig => {
 	const style = getComputedStyle(node);
 	const transform = style.transform === 'none' ? '' : style.transform;
@@ -48,17 +48,24 @@ export const flyAndScale = (
 
 			return styleToString({
 				transform: `${transform} translate3d(${x}px, ${y}px, 0) scale(${scale})`,
-				opacity: t
+				opacity: t,
 			});
 		},
-		easing: cubicOut
+		easing: cubicOut,
 	};
 };
 
 type DateStyle = Intl.DateTimeFormatOptions['dateStyle'];
 
-export function formatDate(date: string, dateStyle: DateStyle = 'medium', locales = 'en') {
+export function formatDate(
+	date: string | undefined,
+	dateStyle: DateStyle = 'medium',
+	locales = 'en',
+) {
+	if (!date) return date;
+
 	const dateToFormat = new Date(date.replaceAll('-', '/'));
 	const dateFormatter = new Intl.DateTimeFormat(locales, { dateStyle });
+
 	return dateFormatter.format(dateToFormat);
 }

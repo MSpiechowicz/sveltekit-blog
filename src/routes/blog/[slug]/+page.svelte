@@ -1,62 +1,35 @@
 <script lang="ts">
 	import { goto } from '$app/navigation';
-	import Notes from '$lib/assets/notes.svg';
+
+	import BlogSlugContent from '$lib/components/blog-slug-content.svelte';
+	import BlogSlugDate from '$lib/components/blog-slug-date.svelte';
+	import BlogSlugHeader from '$lib/components/blog-slug-header.svelte';
 	import Button from '$lib/components/ui/button/button.svelte';
+
 	import translation from '$lib/translations/en-GB.json';
-	import { formatDate } from '$lib/utils';
 
 	export let data;
 </script>
 
 <svelte:head>
 	<title>{data.meta.title}</title>
-	<meta property="og:type" content="article" />
-	<meta property="og:title" content={data.meta.title} />
+	<meta
+		property="og:type"
+		content="article" />
+	<meta
+		property="og:title"
+		content={data.meta.title} />
 </svelte:head>
 
 <article class="flex justify-center">
 	<div class="mt-4 md:mt-12">
-		<div class="relative">
-			<h1 class="p-0 text-4xl font-bold md:text-5xl">{data.meta.title}</h1>
-			<img
-				src={Notes}
-				alt="Notes"
-				class="absolute -left-16 -top-4 hidden h-auto w-[140px] sm:block"
-			/>
-		</div>
-		<p class="mt-2 text-lg">{formatDate(data.meta.date)}</p>
-		<div class="dynamic mt-8">
-			<svelte:component this={data.content} />
-		</div>
+		<BlogSlugHeader {data} />
+		<BlogSlugDate
+			{data}
+			additionalMargin />
+		<BlogSlugContent {data} />
 		<Button
 			class="mb-4 mt-8 min-h-14 max-w-fit text-xl md:mb-8 md:mt-12"
-			on:click={() => goto('/blog')}>{translation['button.go.back']}</Button
-		>
+			on:click={() => goto('/blog')}>{translation['button.go.back']}</Button>
 	</div>
 </article>
-
-<style lang="postcss">
-	.dynamic :global(h2) {
-		@apply text-4xl;
-	}
-
-	.dynamic :global(p) {
-		@apply max-w-[800px] text-xl;
-	}
-
-  .dynamic :global(ul) {
-    @apply my-4;
-  }
-
-  .dynamic :global(h2) {
-    @apply text-3xl mt-8 mb-4 font-bold;
-  }
-
-  .dynamic :global(li) {
-    @apply mt-1 text-xl;
-  }
-
-  .dynamic :global(a) {
-    @apply font-bold underline;
-  }
-</style>
