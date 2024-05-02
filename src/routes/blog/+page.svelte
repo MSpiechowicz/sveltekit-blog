@@ -1,10 +1,13 @@
 <script lang="ts">
+	import type { PostsData } from '$lib/types';
+
 	import BlogSlugDate from '$lib/components/blog-slug-date.svelte';
 	import BlogSlugDescription from '$lib/components/blog-slug-description.svelte';
 	import BlogSlugHeader from '$lib/components/blog-slug-header.svelte';
+
 	import translation from '$lib/translations/en-GB.json';
 
-	export let data;
+	export let data: PostsData;
 </script>
 
 <svelte:head>

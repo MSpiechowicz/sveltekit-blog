@@ -1,9 +1,11 @@
 <script lang="ts">
-  export let data;
+	import type { Data } from "$lib/types";
+
+  export let data: Data = undefined;
 </script>
 
 <div class="dynamic mt-8">
-  <svelte:component this={data.content} />
+  <svelte:component this={data?.content} />
 </div>
 
 <style lang="postcss">

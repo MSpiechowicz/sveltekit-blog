@@ -1,3 +1,5 @@
+import type { Bindable } from "svelte";
+
 export type Categories = 'non-technical' | 'technical';
 
 export type Post =
@@ -13,12 +15,21 @@ export type Post =
 
 export type Data =
 	| {
+      content?: ConstructorOfATypedSvelteComponent;
 			meta: {
 				title?: string;
 				date?: string;
 			} | undefined;
 	  }
 	| undefined;
+
+export type PostsData = {
+  posts: Post[];
+};
+
+export type UrlData = {
+  url: Bindable<string>;
+}
 
 export type MenuItem = {
 	name: string;

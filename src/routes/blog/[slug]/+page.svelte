@@ -1,4 +1,6 @@
 <script lang="ts">
+	import type { Data } from '$lib/types';
+  
 	import { goto } from '$app/navigation';
 
 	import BlogSlugContent from '$lib/components/blog-slug-content.svelte';
@@ -8,17 +10,17 @@
 
 	import translation from '$lib/translations/en-GB.json';
 
-	export let data;
+	export let data: Data = undefined;
 </script>
 
 <svelte:head>
-	<title>{data.meta.title}</title>
+	<title>{data?.meta?.title}</title>
 	<meta
 		property="og:type"
 		content="article" />
 	<meta
 		property="og:title"
-		content={data.meta.title} />
+		content={data?.meta?.title} />
 </svelte:head>
 
 <article class="flex justify-center">

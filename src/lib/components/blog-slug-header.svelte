@@ -1,6 +1,7 @@
 <script lang="ts">
-	import Notes from '$lib/assets/notes.svg';
 	import type { Data, Post } from '$lib/types';
+  
+	import Notes from '$lib/assets/notes.svg';
 
 	export let data: Data = undefined;
 	export let post: Post = undefined;

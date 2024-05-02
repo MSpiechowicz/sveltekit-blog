@@ -1,5 +1,6 @@
 <script lang="ts">
 	import type { Data, Post } from '$lib/types';
+  
 	import { formatDate } from '$lib/utils';
 
 	export let data: Data = undefined;
