@@ -22,7 +22,7 @@
 						class="absolute -left-16 -top-4 hidden h-auto w-[140px] sm:block"
 					/>
 				</div>
-				<p class="mt-2 text-xl lg:text-2xl max-w-[800px]">{post.description}</p>
+				<p class="mt-2 max-w-[800px] text-xl lg:text-2xl">{post.description}</p>
 				<div class="mt-5 flex flex-row items-center gap-3">
 					<p class="text-lg">{formatDate(post.date)}</p>
 					<a class="text-lg font-bold underline" aria-label={post.slug} href={`blog/${post.slug}`}
