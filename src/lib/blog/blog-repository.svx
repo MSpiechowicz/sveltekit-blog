@@ -1,5 +1,5 @@
 ---
-title: Blog repository
+title: Blog Repository
 description: 'Public repository of my blog is now available on GitHub.'
 date: '05-02-2024'
 slug: blog-repository

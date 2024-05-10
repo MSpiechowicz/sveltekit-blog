@@ -34,7 +34,6 @@ The Visual Studio Code is also much more customizable. You can install the exten
 <br/>
 
 As usual, nothing is without the downsides. If you overload the Visual Studio Code with the extensions, it can become slow as well. The IntelliJ IDEA has a lot of built-in features, but you will have to install the extensions in the Visual Studio Code.
-<br/>
 
 ## Zed
 
@@ -42,7 +41,6 @@ There is an alternative at the market called [Zed](https://zedapp.org/). It is a
 <br/>
 
 The difference in the performance is huge (in comparison to the IntelliJ IDEA and Visual Studio Code). But the biggest advantage for Zed is the ability to render the content of the file or rather allow developers to work with the outstanding 90 - 120 FPS. If you do not believe me, you can check how much difference it makes for the fluidity of the editor.
-<br/>
 
 ## Conclusion
 
