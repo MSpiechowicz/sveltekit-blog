@@ -1,0 +1,54 @@
+---
+title: Favorite Code Editor
+description: The code editor can change a lot in a programmer's life. For good or for bad.
+date: '05-10-2024'
+slug: favorite-code-editor
+categories:
+  - technical
+---
+
+It is almost 16 years since I started my programming journey. During that time I used many IDEs and code editors. I started with Notepad++, then I moved to Eclipse, then to IntelliJ IDEA, and then to Visual Studio Code. I also tried Sublime Text, Atom, and many others.
+
+## To VIM or not to VIM
+
+This is a rather good question 😂. I think that I tried to use VIM at least three to four times. By "trying" I mean coding something with it. Unfortunately, I always found it too complex with the shortcuts, and just could not force myself to learn it properly. Although I have to say that watching the popular YouTubers how are they rapidly coding with it, is somehow addicting.
+<br/>
+
+The sheer amount of plugins and customization options can be overwhelming (especially for someone new). This is a great tool for people who are working with the terminal a lot and are not afraid of the steep learning curve. My brother is using it for the CUDA programming, and he is very happy with it. Not having to spin up the graphic interface is a big plus for him.
+<br/>
+
+Recently I discovered the [Lunar VIM](https://lunarvim.org/), which is a distribution of VIM with a lot of preinstalled plugins and configurations. I did try it, and I must say that it is very nice. It is a great starting point for someone who does not want to bother with the config but just install and start working.
+<br/>
+
+If you are using the Visual Studio Code and you want to try VIM, you can install the [VIM extension](https://marketplace.visualstudio.com/items?itemName=vscodevim.vim) for it. It is not the same as the real VIM, but it is a good starting point. Additionally, you can install the [Learn VIM](https://marketplace.visualstudio.com/items?itemName=vintharas.learn-vim) extension, which will help you learn the VIM shortcuts.
+
+## IntelliJ IDEA vs Visual Studio Code
+
+For most of my professional career, I was using the IntelliJ IDEA. I had some ups and downs with it, but the overall experience was very good. This includes code completion, refactoring tools, default shortcuts, and UX.
+<br/>
+
+One of the huge pains (which forced me to switch to Visual Studio Code) was the performance. The IntelliJ IDEA is a very heavy IDE (needs a lot of memory to be efficient), and it is noticeable on older machines. The Visual Studio Code is much lighter and faster when working with big projects. Indexation of the projects that are kicking very often in the IntelliJ IDEA is not a problem in the Visual Studio Code.
+<br/>
+
+The Visual Studio Code is also much more customizable. You can install the extensions that will help you with the specific tasks, and you can customize the shortcuts and the look of the editor. The IntelliJ IDEA is also customizable, but it is not as easy as in the Visual Studio Code.
+<br/>
+
+As usual, nothing is without the downsides. If you overload the Visual Studio Code with the extensions, it can become slow as well. The IntelliJ IDEA has a lot of built-in features, but you will have to install the extensions in the Visual Studio Code.
+<br/>
+
+## Zed
+
+There is an alternative at the market called [Zed](https://zedapp.org/). It is a very interesting project, that is trying to combine the best of the VIM and the modern code editors. It is a very young project, and it is not as feature-rich as the Visual Studio Code or IntelliJ IDEA, but it is worth monitoring the progress.
+<br/>
+
+The difference in the performance is huge (in comparison to the IntelliJ IDEA and Visual Studio Code). But the biggest advantage for Zed is the ability to render the content of the file or rather allow developers to work with the outstanding 90 - 120 FPS. If you do not believe me, you can check how much difference it makes for the fluidity of the editor.
+<br/>
+
+## Conclusion
+
+For me, the Visual Studio Code is still the best code editor. Reliable, fast, and customizable. I can do everything with it, in any language that I want. But I am constantly looking for something new, and I am not afraid to try new things. I am very curious about the Zed, and I will definitely keep my eye on it.
+<br/>
+
+Greetings,
+
+Maciej
