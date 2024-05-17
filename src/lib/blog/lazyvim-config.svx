@@ -1,0 +1,47 @@
+---
+title: LazyVim Configuration
+description: 'Sometimes you just want things to work, instead of spending hours on configuring your editor. This is why I created a simple configuration for NeoVim, which is easy to install and use.'
+date: '05-17-2024'
+slug: lazyvim-config
+categories:
+  - technical
+---
+
+Yet another day when I have something for you 🥳.
+<br/>
+
+I decided to do push myself into the NeoVim world yet again. Since two days I am playing with the
+configuration to set up everything according to my needs. Most of the time this means copy/paste
+some of the useful libraries/settings from the Visual Studio Code, which I was using almost every
+single day.
+<br/>
+
+👉 You can find it [here](https://github.com/MSpiechowicz/lazyvim-config).
+
+## What you can find there?
+
+- ☞  pretty and readable colorscheme
+- ☞  performance fix and improvements
+- ☞  some useful keybindings
+- ☞  Copilot integration
+- ☞  Copilot Chat integration
+- ☞  frontend development support
+- ☞  code formatting support
+- ☞  eslint support
+- ☞  git support
+- ☞  and many more!
+
+## How to install it?
+
+You can check the installation guide in the Readme file in the repository. It is rather
+straightforward.
+
+## Updates?
+
+I will try to keep it up to date with the latest plugins and settings. If you have any suggestions
+or ideas, feel free to create an issue or PR. I am open to any feedback.
+<br/>
+
+Greetings,
+
+Maciej
