@@ -1,0 +1,41 @@
+
+---
+title: Useful Snippets
+description: 'A collection of useful snippets that I use in my daily work.'
+date: '12-09-2024'
+slug: useful-snippets
+categories:
+  - technical
+---
+
+Hello there! 👋
+
+<br/>
+
+Today I would like to share with you some of the useful snippets that I use in my daily work.
+The snippets are divided into categories, so you can easily find what you are looking for. For now
+it does contain only bash scripts, but I have a plan to later add more content.
+
+<br/>
+
+👉 You can find it [here](https://github.com/MSpiechowicz/useful-).
+
+## What you can find there?
+
+- ☞  function to count the words inside the JSON file
+- ☞  function to count the words inside all the JSON files at the provided directory
+- ☞  function to count the words inside the PDF file
+- ☞  function to count the words inside all the PDF files at the provided directory
+- ☞  function to kill the process based on the TCP port
+- ☞  function to clear all of the local branches with the exception of the main, master, prod or dev
+  branches
+
+## How to install it?
+
+Just copy the sh files to your project and use them as you wish. You can also add them to your
+`.bashrc` or `.zshrc` file to have them available globally.
+<br/>
+
+Greetings,
+
+Maciej
