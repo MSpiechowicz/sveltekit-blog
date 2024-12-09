@@ -18,7 +18,7 @@ it does contain only bash scripts, but I have a plan to later add more content.
 
 <br/>
 
-👉 You can find it [here](https://github.com/MSpiechowicz/useful-).
+👉 You can find it [here](https://github.com/MSpiechowicz/useful-snippets).
 
 ## What you can find there?
 
