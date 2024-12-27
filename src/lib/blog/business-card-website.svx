@@ -1,0 +1,41 @@
+
+---
+title: Business Card Website
+description: 'A simple business card website built with React.'
+date: '12-27-2024'
+slug: business-card-website
+categories:
+  - technical
+---
+
+Hello there! 👋
+
+<br/>
+
+It is almost the end of the year, so I decided to create a simple business card website built with React. I wanted to update my wife's website and decided to go with something simple, yet elegant. I hope you'll like it.
+
+<br/>
+
+👉 You can find it [here](https://github.com/MSpiechowicz/business-card-style-website).
+
+<br/>
+
+The goal was to provide the possibility for the non-technical user to easily update the content of the website. This part was achieved by moving the configuration part into the **env** file. On top of that I added the possibility to change the version of the business card by changing one of the variables.
+
+<br/>
+
+Although it is not a big feature, it is a nice touch. For now, only one version is supported but I want to add at least two more in the upcoming month.
+
+## How to install it?
+
+You can clone the repository, install the dependencies, modify the **env** file and run the project. Everything is documented inside the **README** file. It can be hosted via Vercel, Netlify, AWS, or other hosting services (depending on your preferences).
+
+<br/>
+
+I wish you all Happy New Year and a lot of success in the upcoming year. Stay healthy and keep coding!
+
+<br/>
+
+Greetings,
+
+Maciej
