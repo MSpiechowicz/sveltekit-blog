@@ -1,0 +1,29 @@
+
+---
+title: New Business Cards are here!
+description: 'Update for the Business Card Website project.'
+date: '12-31-2024'
+slug: new-business-cards
+categories:
+  - technical
+---
+
+Hello there! 👋
+
+<br/>
+
+It's the final countdown to the New Year! 🎉 I wanted to finish this 2024 with additional commits to the Business Card project. I was able to add two new versions that you can use. The inspiration came from browsing the internet and articles related to the topic 😊.
+
+<br/>
+
+👉 You can find it [here](https://github.com/MSpiechowicz/business-card-style-website).
+
+<br/>
+
+Once again, I wish you all Happy New Year and a lot of success in the upcoming year. Stay healthy and keep coding!
+
+<br/>
+
+Greetings,
+
+Maciej
