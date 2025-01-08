@@ -1,0 +1,59 @@
+
+---
+title: CI/CD with LLM
+description: 'CI/CD with LLM that can be used to deploy your website.'
+date: '01-08-2025'
+slug: ci-cd-llm
+categories:
+  - technical
+---
+
+Hello there! 👋
+
+<br/>
+
+Happy New Year! 🎉. As I mentioned in the [previous post](/blog/new-business-cards), I've been working on a new version of the [Business Card project](https://github.com/MSpiechowicz/business-card-style-website). Since then I've added 4 new versions that you can use. I threated this project as a way to check the new Vercel settings and GitHub Actions since I've been using Vercel for a while now.
+
+<br/>
+
+First of all, I have to say that switching from the Github Copilot to the Claude 3.5 Sonnet was a great experience. I've been using Copilot for a long time and I had mixed feelings about it. Sometimes it was helpful, sometimes it was not. After browsing the internet and articles related to the topic, I decided to try the hot cake alternative.
+
+<br/>
+
+The difference is huge. Github Copilot is a useful tool, but it's not perfect. It's not able to understand the context of the code and it's not able to generate the code that is not related to the codebase. On the other hand, Claude 3.5 Sonnet is a more mature tool and it's able to do what Github Copilot failed to resolve.
+
+<br/>
+
+In case you want to try it out, there is free trial of Cursor IDE that you can use to test the tool. Via its extension you can use the LLM to generate the code for your project. On top of that, it does have special agents that can help you with the deployment process and work on the entire context level.
+
+<br/>
+
+So no more copy pasting the context and pointing to the specific files. You can just use the LLM to generate the code for your project and it will automatically search for the references and update the codebase. Although, it's not working 100% of the time, it'a like a night and day difference in comparison to the Copilot.
+
+There are other alternatives like Windsurf, that is working even better than Cursor with the context level. I did not check it out yet, but it's my plan to do it in the future.
+
+<br/>
+
+Regarding the CI/CD process, I've decided to use once again Vercel but this time I also invested time in pushing the envs to the Vercel environment variables. It was not as easy as I thought it would be, mainly due to the fact that I had to manually reference the variables that I wanted to use. Otherwise they would not be available after the deployment to the production environment. Vite was just throwing an error.
+
+<br/>
+
+👉 You can find the implementation [here](https://github.com/MSpiechowicz/business-card-style-website/blob/main/vite.config.js).
+
+<br/>
+
+After resolving the issue with the Vercel environment variables, I've created a new GitHub Action that is responsible for the deployment process. It's a simple workflow that is triggered by the push to the main branch after it will detect PR merge. I connected it with the semantic release to automatically version the project and maintain the changelog.
+
+<br/>
+
+👉 You can find the workflow [here](https://github.com/MSpiechowicz/business-card-style-website/blob/main/.github/workflows/release.yml).
+
+<br/>
+
+It was very fun and small mini project. That is it for now. Stay healthy and keep coding!
+
+<br/>
+
+Greetings,
+
+Maciej
