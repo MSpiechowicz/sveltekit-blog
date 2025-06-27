@@ -1,0 +1,33 @@
+
+---
+title: The Flow of Time
+description: 'Each moment is unique and unrepeatable. Do not waste it.'
+date: '06-27-2025'
+slug: flow-of-time
+categories:
+  - technical
+---
+
+Hello there! 👋
+
+<br/>
+
+Guess what? I have a new project for you! It's called **The Flow of Time** and it allows you to check how much time you have left in your life. It is a simple web application that calculates the remaining time based on your life expectancy and the current date. The project is built with Vite, Svelte 5, and TypeScript.
+
+<br/>
+
+If someone is bothering you with the meetings or other time-consuming activities, you can use this tool to show them how much time you are wasting. It is a simple and effective way to visualize the flow of time and how precious it is.
+
+<br/>
+
+👉 Check it out [here](https://mspiechowicz.github.io/flowoftime)!
+
+<br/>
+
+That is it for now. Stay healthy and keep coding!
+
+<br/>
+
+Greetings,
+
+Maciej

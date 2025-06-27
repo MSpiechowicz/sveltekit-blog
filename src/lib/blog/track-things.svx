@@ -1,0 +1,33 @@
+
+---
+title: Track Things
+description: 'Track Things with easy to understand reports.'
+date: '06-25-2025'
+slug: track-things
+categories:
+  - technical
+---
+
+Hello there! 👋
+
+<br/>
+
+How are you doing? I hope you are doing great! I wanted to share with you my latest project that I've been working on. It's a project that allows you to track things in an easy and understandable way.
+
+<br/>
+
+If you are interested in tracking your expenses, time, or any other things, this project is for you. The goal was to add possibility to generate auto reports with the LLM so that you don't have to worry about the data presentation. The project is built with Vite, Sveltekit 2.0, and TypeScript. Under the hood it does use Supabase as a database and the Gemini LLM that is processing the data.
+
+<br/>
+
+👉 Check it out [here](https://track-things.com/)!
+
+<br/>
+
+That is it for now. Stay healthy and keep coding!
+
+<br/>
+
+Greetings,
+
+Maciej
