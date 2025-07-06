@@ -1,0 +1,33 @@
+
+---
+title: Estimate Electric Car Range
+description: 'Estimate the range of your electric car based on the battery capacity and the driving conditions.'
+date: '07-06-2025'
+slug: estimate-electric-car-range
+categories:
+  - technical
+---
+
+Hello there! 👋
+
+<br/>
+
+Another day, another project, another blog post. This time I want to share with you my small app that allows you to estimate the range of your electric car based on the battery capacity and the driving conditions. It is a simple web application that is built with Vite, Svelte 5, and TypeScript.
+
+<br/>
+
+I have got frustrated with the other websites that provide this information. They are either too complicated or too simple. Most of the time they also got advertisements and other distractions that make the experience not so pleasant. Maybe you will find it useful during the next trip or if you are planning to buy an electric car.
+
+<br/>
+
+👉 Check it out [here](https://mspiechowicz.github.io/estimate-electric-car-range)!
+
+<br/>
+
+That is it for now. Stay healthy and keep coding!
+
+<br/>
+
+Greetings,
+
+Maciej
