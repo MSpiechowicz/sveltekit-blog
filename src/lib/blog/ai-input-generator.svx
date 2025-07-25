@@ -1,0 +1,33 @@
+
+---
+title: AI Input Generator
+description: 'A simple web application that allows you to generate input for AI models.'
+date: '07-25-2025'
+slug: ai-input-generator
+categories:
+  - technical
+---
+
+Hello there! 👋
+
+<br/>
+
+Vacation is over, and I'm back to work. This time I want to share with you my another small app that allows you to generate input for AI models. I tried to use existing solutions, but they were not satisfying for me. I wanted to have a simple tool that would help me to generate better input for AI models.
+
+<br/>
+
+What does it do? You pick a topic, add your own input (who do you want to achieve, what is your goal, etc.), and the app will generate a professional prompt for you. This is it 😁.
+
+<br/>
+
+👉 Check it out [here](https://mspiechowicz.github.io/ai-input-generator)!
+
+<br/>
+
+That is all for now. Stay healthy and keep coding!
+
+<br/>
+
+Greetings,
+
+Maciej
