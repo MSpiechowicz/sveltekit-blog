@@ -1,0 +1,33 @@
+
+---
+title: Svelte CV
+description: 'Generate your CV with Svelte.'
+date: '08-08-2025'
+slug: svelte-cv
+categories:
+  - technical
+---
+
+Hello there! 👋
+
+<br/>
+
+New day, new project. This time I want to share with you my another small app that allows you to generate your CV. I tried to use existing solutions, but they were not satisfying for me. Some of the them went into the paid version, and I wanted to have something tailored to my needs.
+
+<br/>
+
+All the configuration for the basic view are done via the `cv.json` file. It is a simple JSON file that contains the configuration for the CV. Order matters, so make sure to follow the order of the sections. You can customize also more of the view like colors, icons or the possition of the images.
+
+<br/>
+
+👉 Check it out [here](https://mspiechowicz.github.io/svelte-cv)!
+
+<br/>
+
+That is all for now. Stay healthy and keep coding!
+
+<br/>
+
+Greetings,
+
+Maciej
