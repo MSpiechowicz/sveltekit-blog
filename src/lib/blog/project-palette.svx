@@ -1,0 +1,33 @@
+
+---
+title: Project Palette
+description: 'A modern, interactive color palette generator that creates beautiful color schemes and generates ready-to-use configuration code for popular CSS frameworks.'
+date: '09-16-2025'
+slug: project-palette
+categories:
+  - technical
+---
+
+Hello there! 👋
+
+<br/>
+
+I had some spare time and decided to create a new project. It is a modern, interactive color palette generator that creates beautiful color schemes and generates ready-to-use configuration code for popular CSS frameworks.
+
+<br/>
+
+What I made it? I wanted to create something simple as I found myself typing over and over again the same questions to the LLM. "Generate a color palette for the project" or "Generate similar colors" or "Validate the color against the WCAG standards". Now I don't have to do that or use different tools to get what I need. Hopefully you will find it useful as well.
+
+<br/>
+
+👉 Check it out [here](https://mspiechowicz.github.io/project-palette)!
+
+<br/>
+
+That is all for now. Stay healthy and keep coding!
+
+<br/>
+
+Greetings,
+
+Maciej
