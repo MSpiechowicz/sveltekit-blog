@@ -16,11 +16,15 @@ Some time ago I wrote about [Track Things](https://track-things.com/), my little
 
 <br/>
 
-Let me start with the outside. The new landing page opens with a single idea: "Track what matters. Shape how." You create flexible records for moments, costs, observations and plans, and you decide which fields each of them needs. That is the whole product in two sentences, and now it is the first thing you read instead of something buried three paragraphs down. Below it I split the flow into three simple steps - define what matters, add the moment, and see the story - and added a short silent tour with real app views, a set of ideas to start with, and an FAQ for the questions I kept getting over and over.
+Let me start with the outside. The new landing page opens with a single idea: "Track what matters. Shape how." You create flexible records for moments, costs, observations and plans, and you decide which fields each of them needs. That is the whole product in two sentences, and now it is the first thing you read instead of something buried three paragraphs down. Below it I split the flow into three simple steps - define what matters, add the moment, and see the story - together with a set of ideas to start with and an FAQ for the questions I kept getting over and over.
 
 <br/>
 
 The app behind the sign-in got the same treatment. The layout, the navigation and the forms were all reworked to follow one consistent design instead of the pile of decisions that had grown there over time. Creating a tracker, adding a record and browsing your history now look and behave like parts of the same product, which sounds obvious, but was not true before.
+
+<br/>
+
+And if you want to see that for yourself without creating an account - you can. There is a video right on the main page, in the "See what you can do" section. It is an 84-second silent walkthrough recorded from the real app on sample car records, showing everyday records, AI reports, connected APIs and alerts, with translated subtitles if you need them. No sign-up, no email, just watch it and decide if it is for you.
 
 <br/>
 
