@@ -1,7 +1,7 @@
 
 ---
 title: Track Things Redesign
-description: 'A fresh look for Track Things, with a clearer story about what you can actually track.'
+description: 'Track Things got a full redesign - a new landing page, a refreshed app, and a much clearer story.'
 date: '09-04-2026'
 slug: track-things-redesign
 categories:
@@ -12,19 +12,19 @@ Hello there! 👋
 
 <br/>
 
-Some time ago I wrote about [Track Things](https://track-things.com/), my little app for keeping records of the things worth noticing. Since then I kept using it, and the more I used it, the more the landing page felt wrong. It explained the technology, but it never explained the app. So I sat down and redesigned it.
+Some time ago I wrote about [Track Things](https://track-things.com/), my little app for keeping records of the things worth noticing. Since then I kept using it, and the more I used it, the more things started to bother me. So I did not patch it here and there - I redesigned the whole thing, from the landing page all the way through the app.
 
 <br/>
 
-The new page starts with a single idea: "Track what matters. Shape how." You create flexible records for moments, costs, observations and plans, and you decide which fields each of them needs. That is the whole product in two sentences, and now it is the first thing you read instead of something hidden three paragraphs down.
+Let me start with the outside. The new landing page opens with a single idea: "Track what matters. Shape how." You create flexible records for moments, costs, observations and plans, and you decide which fields each of them needs. That is the whole product in two sentences, and now it is the first thing you read instead of something buried three paragraphs down. Below it I split the flow into three simple steps - define what matters, add the moment, and see the story - and added a short silent tour with real app views, a set of ideas to start with, and an FAQ for the questions I kept getting over and over.
 
 <br/>
 
-Below that I split the flow into three simple steps - define what matters, add the moment, and see the story. There is also a short silent tour with real app views, a set of ideas to start with (wellbeing, home care, learning and hobbies), and an FAQ section for the questions I kept getting over and over. Subjects, so you can keep records organized around people, pets, places, projects or vehicles, finally got the explanation they deserved.
+The app behind the sign-in got the same treatment. The layout, the navigation and the forms were all reworked to follow one consistent design instead of the pile of decisions that had grown there over time. Creating a tracker, adding a record and browsing your history now look and behave like parts of the same product, which sounds obvious, but was not true before.
 
 <br/>
 
-Visually it is calmer as well. Lighter background, more whitespace, one accent color, illustrations instead of screenshots on the hero, and a dark mode toggle. It is still a responsive web app that you can install as a PWA, and the AI reports are still there - they are just no longer the only thing the page talks about.
+The whole thing shares one visual language now. Lighter background, more whitespace, a single accent color, illustrations instead of screenshots on the hero, and a proper dark mode across every screen. It is still a responsive web app you can install as a PWA, and the AI reports are still there - they are just no longer the only thing worth talking about.
 
 <br/>
 
