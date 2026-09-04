@@ -1,0 +1,41 @@
+
+---
+title: Track Things Redesign
+description: 'A fresh look for Track Things, with a clearer story about what you can actually track.'
+date: '09-04-2026'
+slug: track-things-redesign
+categories:
+  - technical
+---
+
+Hello there! 👋
+
+<br/>
+
+Some time ago I wrote about [Track Things](https://track-things.com/), my little app for keeping records of the things worth noticing. Since then I kept using it, and the more I used it, the more the landing page felt wrong. It explained the technology, but it never explained the app. So I sat down and redesigned it.
+
+<br/>
+
+The new page starts with a single idea: "Track what matters. Shape how." You create flexible records for moments, costs, observations and plans, and you decide which fields each of them needs. That is the whole product in two sentences, and now it is the first thing you read instead of something hidden three paragraphs down.
+
+<br/>
+
+Below that I split the flow into three simple steps - define what matters, add the moment, and see the story. There is also a short silent tour with real app views, a set of ideas to start with (wellbeing, home care, learning and hobbies), and an FAQ section for the questions I kept getting over and over. Subjects, so you can keep records organized around people, pets, places, projects or vehicles, finally got the explanation they deserved.
+
+<br/>
+
+Visually it is calmer as well. Lighter background, more whitespace, one accent color, illustrations instead of screenshots on the hero, and a dark mode toggle. It is still a responsive web app that you can install as a PWA, and the AI reports are still there - they are just no longer the only thing the page talks about.
+
+<br/>
+
+👉 Check it out [here](https://track-things.com/)!
+
+<br/>
+
+That is all for now. Stay healthy and keep coding!
+
+<br/>
+
+Greetings,
+
+Maciej
