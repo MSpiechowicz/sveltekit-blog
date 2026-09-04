@@ -1,0 +1,45 @@
+
+---
+title: Track Things Redesign
+description: 'Track Things got a full redesign - a new landing page, a refreshed app, and a much clearer story.'
+date: '09-04-2026'
+slug: track-things-redesign
+categories:
+  - technical
+---
+
+Hello there! 👋
+
+<br/>
+
+Some time ago I wrote about [Track Things](https://track-things.com/), my little app for keeping records of the things worth noticing. Since then I kept using it, and the more I used it, the more things started to bother me. So I did not patch it here and there - I redesigned the whole thing, from the landing page all the way through the app.
+
+<br/>
+
+Let me start with the outside. The new landing page opens with a single idea: "Track what matters. Shape how." You create flexible records for moments, costs, observations and plans, and you decide which fields each of them needs. That is the whole product in two sentences, and now it is the first thing you read instead of something buried three paragraphs down. Below it I split the flow into three simple steps - define what matters, add the moment, and see the story - together with a set of ideas to start with and an FAQ for the questions I kept getting over and over.
+
+<br/>
+
+The app behind the sign-in got the same treatment. The layout, the navigation and the forms were all reworked to follow one consistent design instead of the pile of decisions that had grown there over time. Creating a tracker, adding a record and browsing your history now look and behave like parts of the same product, which sounds obvious, but was not true before.
+
+<br/>
+
+And if you want to see that for yourself without creating an account - you can. There is a video right on the main page, in the "See what you can do" section. It is an 84-second silent walkthrough recorded from the real app on sample car records, showing everyday records, AI reports, connected APIs and alerts, with translated subtitles if you need them. No sign-up, no email, just watch it and decide if it is for you.
+
+<br/>
+
+The whole thing shares one visual language now. Lighter background, more whitespace, a single accent color, illustrations instead of screenshots on the hero, and a proper dark mode across every screen. It is still a responsive web app you can install as a PWA, and the AI reports are still there - they are just no longer the only thing worth talking about.
+
+<br/>
+
+👉 Check it out [here](https://track-things.com/)!
+
+<br/>
+
+That is all for now. Stay healthy and keep coding!
+
+<br/>
+
+Greetings,
+
+Maciej
