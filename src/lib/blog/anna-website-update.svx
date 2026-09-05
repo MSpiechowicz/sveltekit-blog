@@ -1,0 +1,48 @@
+---
+title: A New Chapter for Anna's Website
+description: 'My wife’s website has grown from a simple business card into a personal page about her work, approach, and experience.'
+date: '09-05-2026'
+slug: anna-website-update
+categories:
+  - technical
+---
+
+Hello there! 👋
+
+<br/>
+
+Back in December 2024, I wrote about the [Business Card Website](/blog/business-card-website), a small project I used to update my wife's page. The idea was simple: give her a clean, elegant place on the web. This time, I returned to [Anna's website](https://annaspiechowicz.com/) with more of her story to tell.
+
+<br/>
+
+Anna is a Product Owner and Business Analyst with a background in software development. That combination deserves room to breathe. The updated page introduces her through the work she does: helping teams understand complicated problems and turn them into clear product decisions. For me, that makes a much more interesting starting point than a job title on its own.
+
+<br/>
+
+The design follows that idea. A light background, strong blue accents, large typography and generous spacing give the page a calm, structured feel. Beside the introduction, a decision diagram brings user needs, business value, risk and constraints together into a roadmap. It is a visual that actually has something to say about her work, and one of my favorite details on the page.
+
+<br/>
+
+Further down, the content gives concrete examples of what Anna brings to a team, from prioritizing backlogs and shaping roadmaps to making processes understandable and sharing knowledge with colleagues. Her approach gets its own section too: listen, map, decide and share. I like how that lets visitors get a sense of how she works before they ever get in touch.
+
+<br/>
+
+There is also space for her qualifications and engineering education, with direct email and LinkedIn links at the end. The page is available in both English and German, and includes a light and dark theme switch. Small details, but useful ones for a personal website that people may visit in different settings.
+
+<br/>
+
+Updating a website for someone close to you makes the content feel especially important. Every section needs to sound like the person it represents. I am happy to share this new chapter of Anna's page, and it is a nice continuation of a project that first appeared here almost two years ago.
+
+<br/>
+
+👉 Take a look at [annaspiechowicz.com](https://annaspiechowicz.com/)!
+
+<br/>
+
+That is all for now. Stay healthy and keep coding!
+
+<br/>
+
+Greetings,
+
+Maciej
