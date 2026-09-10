@@ -1,0 +1,56 @@
+---
+title: Track Things for Home Assistant
+description: 'My open-source Home Assistant integration brings Track Things records, automations, and guided Assist conversations into your home.'
+date: '09-10-2026'
+slug: track-things-home-assistant
+categories:
+  - technical
+---
+
+Hello there! 👋
+
+<br/>
+
+After the [Track Things redesign](/blog/track-things-redesign), I have another part of the project to share: [Track Things for Home Assistant](https://github.com/MSpiechowicz/track-things-home-assistant). It is an open-source custom integration that connects your Track Things workspace to Home Assistant, so your records can become part of your home automations and everyday conversations with Assist.
+
+<br/>
+
+The idea is simple. You already have trackers for the things you want to record. Bringing them into Home Assistant gives you another way to read that history and add new entries, without opening the web app every time. The integration exposes a read-only workspace calendar, lets you ask about recorded entries, and provides actions for reading daily entries, refreshing data, and creating entries from automations.
+
+<br/>
+
+The part I find especially interesting is the guided conversation. Select Track Things as your Assist conversation agent and you can start an entry, answer questions about who or what it concerns, fill in the details, review the draft, and explicitly confirm before it is saved. For example, with an existing tracker named Headache, you can start with `log Headache` and follow the questions from there. The standard agent supports English, Polish, German, and French through supported phrases and step-by-step prompts.
+
+<br/>
+
+This works with existing active manual trackers, so you first define the fields and assign subjects in the web app. The conversation then helps you fill in that structure. You do not need a Gemini key or an AI subscription for the standard guided agent.
+
+<br/>
+
+There is one important distinction with voice: the conversation flow has automated text tests, but end-to-end testing with a live voice device is still pending. Spoken use needs a configured Assist voice pipeline, speech services, and a compatible microphone and speaker device. A Google Home or Nest speaker connected to Home Assistant cannot carry the full interactive Track Things conversation. The repository includes experiments with predefined Google shortcuts, but those have a much narrower scope.
+
+<br/>
+
+To try the integration, you need Home Assistant 2026.9.0 or newer and a Track Things account. Installation currently means copying the repository's `custom_components/track_things` directory into your Home Assistant configuration and restarting. Then add Track Things through Settings → Devices & services, approve the account connection in your browser, and choose your workspace and trackers. The [installation and connection guide](https://github.com/MSpiechowicz/track-things-home-assistant#connect-track-things-to-home-assistant) covers the full process. I would start with the calendar and a text conversation in Assist before setting up voice.
+
+<br/>
+
+The integration is available under the GPL-3.0-only license. You can read the code, try it in your own setup, report an issue, or contribute an improvement. It still connects to the Track Things service to read and save entries, so it needs a working network connection even if your speech processing runs locally.
+
+<br/>
+
+There is still work ahead, especially around testing the full voice experience on real hardware. If you use Home Assistant and want to give it a try, I would love to hear how it works in your setup.
+
+<br/>
+
+👉 Check out the [repository and documentation on GitHub](https://github.com/MSpiechowicz/track-things-home-assistant)!
+
+<br/>
+
+That is all for now. Stay healthy and keep coding!
+
+<br/>
+
+Greetings,
+
+Maciej
