@@ -1,0 +1,76 @@
+---
+title: Oh My Pi Usage Dashboard
+description: 'I built a usage dashboard for the Oh My Pi coding harness: live token charts, persistent session history, and provider allowances in a tmux sidebar, without leaving the terminal.'
+date: '09-15-2026'
+slug: oh-my-pi-usage-dashboard
+categories:
+  - technical
+---
+
+Hello there!
+
+<br/>
+
+I recently created [Oh My Pi Usage Dashboard](https://github.com/MSpiechowicz/oh-my-pi-usage-dashboard), an open-source integration for the [Oh My Pi](https://github.com/can1357/oh-my-pi) coding harness. It puts live token activity, session history, and provider allowances in a tmux sidebar next to your conversation. The idea is simple: keep that information visible without leaving the terminal or interrupting the work.
+
+<br/>
+
+## What is happening in this session?
+
+The dashboard shows a token-rate chart covering the last 20 minutes, along with cumulative totals for the current and previous sessions. Session history persists across restarts, resumes, and `/new`, so starting a fresh conversation does not mean losing the previous session's usage information.
+
+<br/>
+
+Switching models does not move earlier usage to the newly selected model. Each request stays attributed to the provider and model that handled it. Compact mode gives you a provider-level overview, while Details breaks usage down by model and effective thinking level, including input, output, cache-read, and cache-write tokens.
+
+<br/>
+
+## Tokens and allowances are different things
+
+Alongside session tokens, the sidebar can show remaining account allowances, reset times, and reported API credit balances where the provider supports them. You can monitor multiple providers independently of the model used in your current conversation.
+
+<br/>
+
+There is an important distinction here: token counts are not the same as subscription allowance percentages. The dashboard can compare observed quota changes when it has comparable samples for the same account and allowance window, but those changes are not exact session billing. It does not add percentages across providers or invent a zero when a measurement is missing. Unsupported account usage is shown as unavailable.
+
+<br/>
+
+## Part of the terminal, not another hosted dashboard
+
+The integration uses Python, curses, and tmux rather than a terminal-specific plugin. You can keep your preferred terminal application, and the shell integration can start tmux or attach the sidebar inside an existing session when you run `omp`. It does not patch OMP's binary or renderer.
+
+<br/>
+
+Recorded session usage and quota observations stay in a local SQLite database, scoped by project within each OMP profile. Preferences are stored separately in local JSON files. Authentication still belongs to OMP: you log in to your providers there, without a separate dashboard login flow. Account allowance readings still depend on the information those providers expose.
+
+<br/>
+
+The sidebar can sit on either side of the conversation. There are eight built-in color palettes, custom theme tokens, and controls for hiding providers or individual allowance windows. Compact mode keeps the overview short; Details is there when you want to look more closely.
+
+<br/>
+
+## Give it a try
+
+You need OMP with `omp usage` support, Python 3.10 or newer with curses and SQLite, tmux 3.3 or newer, and Git. The terminal needs at least 96 columns to open the 34-column sidebar. Linux is verified; macOS support has not yet been verified.
+
+<br/>
+
+The [installation guide](https://github.com/MSpiechowicz/oh-my-pi-usage-dashboard#installation) covers installation through OMP's marketplace and the alternative source-checkout setup. Marketplace installations support managed updates through OMP. After installing and opening a new shell, run `omp` as usual.
+
+<br/>
+
+Fresh installations start with no providers selected. Inside OMP, open `/usage-dashboard providers` and add a provider you use. Then try `/usage-dashboard view compact` for the overview, `/usage-dashboard view details` for the breakdown, or `/usage-dashboard theme blue` to change the palette. Those preferences persist across launches.
+
+<br/>
+
+The project is available under the GPL-3.0 license. If you use Oh My Pi and want a clearer view of your usage while working, check out the [repository and documentation on GitHub](https://github.com/MSpiechowicz/oh-my-pi-usage-dashboard). Feedback, issues, and contributions are welcome.
+
+<br/>
+
+That is all for now. Stay healthy and keep coding!
+
+<br/>
+
+Greetings,
+
+Maciej
