@@ -4,6 +4,13 @@ title: CI/CD with LLM
 description: 'CI/CD with LLM that can be used to deploy your website.'
 date: '01-08-2025'
 slug: ci-cd-llm
+social:
+  mastodon: >-
+    The small website project turned into a deployment experiment: Vercel environment variables, GitHub Actions and semantic release. I also tried Claude 3.5 Sonnet in Cursor after using Copilot. Notes on what helped and where the setup needed more attention.
+  x: >-
+    Vercel env variables were the awkward part of this small CI/CD experiment. Notes on deployment with GitHub Actions, semantic release and trying Claude 3.5 Sonnet in Cursor.
+  linkedin: >-
+    Hello, I have been using the Business Card Website project to explore deployment automation and LLM-assisted development. This post shares my experience moving from Copilot to Claude 3.5 Sonnet in Cursor, including the value I found in working with broader codebase context. On the deployment side, Vercel environment variables required more attention than expected before the Vite build worked as intended. I then connected a GitHub Actions deployment workflow with semantic release for versioning and changelog maintenance. These are notes from that small project, not a claim that the coding tools work without mistakes.
 categories:
   - technical
 ---

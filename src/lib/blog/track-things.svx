@@ -4,6 +4,13 @@ title: Track Things
 description: 'Track Things with easy to understand reports.'
 date: '06-25-2025'
 slug: track-things
+social:
+  mastodon: >-
+    Recording expenses or time is one thing; turning the data into something readable is another. Track Things is my attempt to connect the two, using Gemini to generate reports from the things you track.
+  x: >-
+    Track expenses, time or other things, then generate reports from the data. A look at Track Things, built with SvelteKit, Supabase and Gemini.
+  linkedin: >-
+    Hello, Track Things is a project focused on recording information and making it easier to understand afterward. Expenses and time are examples, but the idea is to support other things you want to track as well. A central part of the project is generating reports with an LLM so that presenting the data does not become a separate manual task. The application uses SvelteKit and TypeScript, with Supabase for storage and Gemini for processing the data. This post introduces the original project and its focus on understandable reports.
 categories:
   - technical
 ---

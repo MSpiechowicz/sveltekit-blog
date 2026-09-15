@@ -3,6 +3,13 @@ title: Frontend First Topic
 description: 'What is the first topic that every Frontend Developer is writing about? Of course, it is the technical stack of the blog itself. So here it is.'
 date: '04-18-2024'
 slug: frontend-first-topic
+social:
+  mastodon: >-
+    Of course the first technical post is about the blog's own stack. I stepped outside my usual React and Node.js work to try SvelteKit, MDsveX and Bun. The design experiments also taught me which animations to leave out.
+  x: >-
+    A blog about building the blog: trying SvelteKit, MDsveX and Bun, sorting out deployment, and deciding that a reading page did not need all those animations.
+  linkedin: >-
+    Hello, the first technical article on this blog takes a look at the site itself. Rebuilding it gave me a chance to step outside my usual React and Node.js work and try SvelteKit, MDsveX, Tailwind, Shadcn UI and Bun. I cover both the parts that came together easily and the configuration and deployment issues that needed attention. The design discussion is just as important to me: after experimenting with background animations, I decided the reading experience mattered more than the effects. These are notes from building the blog, with the emphasis on learning rather than prescribing a stack.
 categories:
   - technical
 ---

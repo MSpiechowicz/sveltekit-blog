@@ -4,6 +4,13 @@ title: Business Card Website
 description: 'A simple business card website built with React.'
 date: '12-27-2024'
 slug: business-card-website
+social:
+  mastodon: >-
+    My wife's website needed a refresh, not a complicated setup. This small React business-card site keeps its content configuration in an env file, so updates do not mean digging through components.
+  x: >-
+    A small React business-card website for my wife's page, with content configured through an env file. Simple was the point.
+  linkedin: >-
+    Hello, this small website project started with a practical goal: refreshing my wife's page while keeping future content updates straightforward. The result is a React business-card site with content configuration moved into an env file, rather than spread across components. The intention is to make those updates accessible to a non-technical user. One layout is available in this initial version, with more planned. The article introduces the project and points to the repository's installation and hosting instructions.
 categories:
   - technical
 ---

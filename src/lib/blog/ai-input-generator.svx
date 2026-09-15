@@ -4,6 +4,13 @@ title: AI Input Generator
 description: 'A simple web application that allows you to generate input for AI models.'
 date: '07-25-2025'
 slug: ai-input-generator
+social:
+  mastodon: >-
+    Sometimes the awkward part is putting the request into words. AI Input Generator takes a topic and your own goals or context, then turns them into a prompt. A small tool for a task I wanted to make simpler.
+  x: >-
+    Pick a topic, add your goal and context, get a prompt. AI Input Generator is a small app for turning what you want to ask into input for an AI model.
+  linkedin: >-
+    Hello, AI Input Generator is a small application aimed at simplifying how a request to an AI model takes shape. After trying existing solutions that did not suit me, I wanted a more straightforward process. You select a topic, add your own goals and context, and the application generates a prompt from that input. The post introduces this focused workflow and links to the tool for anyone who would like to try it.
 categories:
   - technical
 ---

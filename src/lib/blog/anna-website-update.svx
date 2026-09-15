@@ -3,6 +3,13 @@ title: A New Chapter for Anna's Website
 description: 'My wife’s website has grown from a simple business card into a personal page about her work, approach, and experience.'
 date: '09-05-2026'
 slug: anna-website-update
+social:
+  mastodon: >-
+    A job title only tells part of the story. Anna's updated website makes room for how she works: listen, map, decide and share. My favorite detail is a diagram connecting user needs, business value, risk and constraints to a roadmap.
+  x: >-
+    Anna's website has grown beyond a business card. The update puts her product work, approach and experience first, with English and German versions and light and dark themes.
+  linkedin: >-
+    Hello, I am pleased to share a new chapter for Anna's personal website. What began as a simple business card now gives more space to her work as a Product Owner and Business Analyst, supported by her software development background. The page describes both what she contributes to a team and how she approaches the work: listen, map, decide and share. A decision diagram connects user needs, business value, risk and constraints to a roadmap. Writing and designing this update was about representing the person behind the title, with English and German versions available.
 categories:
   - technical
 ---

@@ -4,6 +4,13 @@ title: Useful Snippets
 description: 'A collection of useful snippets that I use in my daily work.'
 date: '12-09-2024'
 slug: useful-snippets
+social:
+  mastodon: >-
+    A few Bash helpers from my daily work: count words in JSON or PDF files, find a process by its TCP port and stop it, or clean up local Git branches while keeping the main ones. Collected in one repository so they are easier to reuse.
+  x: >-
+    Small Bash helpers I keep reaching for: word counts in JSON and PDFs, stopping a process by port, and local Git branch cleanup. Sharing the collection.
+  linkedin: >-
+    Hello, I have collected a few Bash snippets that I use in my daily work and made them available in a repository. They cover word counts in JSON and PDF files, stopping a process by its TCP port and cleaning up local Git branches while retaining the main, master, prod and dev branches. The scripts can be copied into a project or added to a shell configuration for broader use. This is a small, practical collection rather than a complete toolkit, with more content planned over time.
 categories:
   - technical
 ---

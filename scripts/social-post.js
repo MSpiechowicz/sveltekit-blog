@@ -85,9 +85,21 @@ export function parsePost(source, sourceName, { origin = readSiteOrigin() } = {}
 		throw new PublisherError(`${sourceName} has an unsafe slug.`);
 	}
 
+	let social;
+	if (metadata.social !== undefined) {
+		if (!metadata.social || typeof metadata.social !== 'object' || Array.isArray(metadata.social)) {
+			throw new PublisherError(`${sourceName} social frontmatter must be a mapping.`);
+		}
+		social = Object.fromEntries(
+			['mastodon', 'x', 'linkedin'].map((provider) => [
+				provider,
+				requireString(metadata.social, provider, `${sourceName} social`),
+			]),
+		);
+	}
 	const url = new URL(`/blog/${encodeURIComponent(slug)}`, validateHttpsUrl(origin, 'Site URL'))
 		.href;
-	return { title, description, slug, url, sourceName };
+	return { title, description, slug, url, sourceName, social };
 }
 
 function validateRevision(revision, field) {
@@ -210,21 +222,27 @@ export function composeAnnouncement(
 	);
 	const description = normalizeText(post.description);
 	const mastodon = truncateToFit(
-		description,
+		post.social?.mastodon ?? description,
 		(excerpt) => renderAnnouncement(excerpt, post.url),
 		(text) => Array.from(text).length <= maxCharacters,
 	);
 	const x = truncateToFit(
-		description,
+		post.social?.x ?? description,
 		(excerpt) => renderAnnouncement(excerpt, post.url),
 		(text) => {
 			const parsed = twitter.parseTweet(text);
 			return parsed.valid && parsed.weightedLength <= X_MAX_WEIGHTED_LENGTH;
 		},
 	);
+	const linkedin = truncateToFit(
+		post.social?.linkedin ?? description,
+		(excerpt) => renderAnnouncement(excerpt, post.url),
+		(text) => text.length <= 3000,
+	);
 	return {
 		mastodon: renderAnnouncement(mastodon, post.url),
 		x: renderAnnouncement(x, post.url),
+		linkedin: renderAnnouncement(linkedin, post.url),
 	};
 }
 
@@ -278,6 +296,16 @@ export function readProviderConfiguration(providers, environment = process.env) 
 			consumerSecret: requiredEnvironment(environment, 'X_CONSUMER_SECRET'),
 			accessToken: requiredEnvironment(environment, 'X_ACCESS_TOKEN'),
 			accessTokenSecret: requiredEnvironment(environment, 'X_ACCESS_TOKEN_SECRET'),
+		};
+	}
+	if (providers.includes('linkedin')) {
+		const author = requiredEnvironment(environment, 'LINKEDIN_AUTHOR_URN');
+		if (!/^urn:li:person:[A-Za-z0-9_-]+$/u.test(author)) {
+			throw new PublisherError('LINKEDIN_AUTHOR_URN must be a LinkedIn person URN.');
+		}
+		configuration.linkedin = {
+			author,
+			accessToken: requiredEnvironment(environment, 'LINKEDIN_ACCESS_TOKEN'),
 		};
 	}
 	return configuration;
@@ -380,6 +408,50 @@ export async function publishX(
 	return { provider: 'x', id: await parseSuccessId('X', response, ['data', 'id']) };
 }
 
+export async function publishLinkedIn(
+	post,
+	configuration,
+	{ fetchImplementation = fetch, timeoutMilliseconds = 15_000 } = {},
+) {
+	let response;
+	try {
+		response = await fetchImplementation(
+			'https://api.linkedin.com/v2/ugcPosts',
+			requestOptions({
+				method: 'POST',
+				headers: {
+					Authorization: `Bearer ${configuration.accessToken}`,
+					'Content-Type': 'application/json',
+					'X-Restli-Protocol-Version': '2.0.0',
+				},
+				body: JSON.stringify({
+					author: configuration.author,
+					lifecycleState: 'PUBLISHED',
+					specificContent: {
+						'com.linkedin.ugc.ShareContent': {
+							shareCommentary: { text: post.text },
+							shareMediaCategory: 'ARTICLE',
+							media: [{ status: 'READY', originalUrl: post.url }],
+						},
+					},
+					visibility: { 'com.linkedin.ugc.MemberNetworkVisibility': 'PUBLIC' },
+				}),
+				timeoutMilliseconds,
+			}),
+		);
+	} catch {
+		throw new PublisherError(
+			'LinkedIn request could not be completed. Its delivery state is unknown.',
+		);
+	}
+	if (!response.ok) throw requestFailure('LinkedIn', response);
+	const id = response.headers.get('x-restli-id');
+	if (!id?.trim()) {
+		throw new PublisherError('LinkedIn response did not contain a post ID.');
+	}
+	return { provider: 'linkedin', id };
+}
+
 async function wait(milliseconds) {
 	return new Promise((resolve) => setTimeout(resolve, milliseconds));
 }
@@ -421,16 +493,14 @@ export async function publishPosts(
 	for (const post of posts) {
 		for (const provider of providers) {
 			try {
-				const result =
-					provider === 'mastodon'
-						? await publishMastodon({ ...post, text: post.mastodon }, configuration.mastodon, {
-								fetchImplementation,
-								timeoutMilliseconds,
-							})
-						: await publishX({ ...post, text: post.x }, configuration.x, {
-								fetchImplementation,
-								timeoutMilliseconds,
-							});
+				const publish = { mastodon: publishMastodon, x: publishX, linkedin: publishLinkedIn }[
+					provider
+				];
+				if (!publish) throw new PublisherError('Unsupported social provider.');
+				const result = await publish({ ...post, text: post[provider] }, configuration[provider], {
+					fetchImplementation,
+					timeoutMilliseconds,
+				});
 				results.push({ ...result, slug: post.slug });
 			} catch (error) {
 				const completed = results
@@ -447,11 +517,13 @@ export async function publishPosts(
 }
 
 function parseProviders(value) {
-	const providers = value === 'all' ? ['mastodon', 'x'] : [value];
-	if (!providers.every((provider) => provider === 'mastodon' || provider === 'x')) {
-		throw new PublisherError('--provider must be all, mastodon, or x.');
+	const providers = value === 'all' ? ['mastodon', 'x', 'linkedin'] : value.split(',');
+	if (!providers.every((provider) => ['mastodon', 'x', 'linkedin'].includes(provider))) {
+		throw new PublisherError(
+			'--provider must be all or a comma-separated list of mastodon, x, linkedin.',
+		);
 	}
-	return providers;
+	return [...new Set(providers)];
 }
 
 export function parseArguments(argumentsList) {
@@ -492,7 +564,7 @@ export function parseArguments(argumentsList) {
 }
 
 function help() {
-	return `Usage:\n  node scripts/social-post.js --before <git-sha> --after <git-sha> [--dry-run|--publish] [--provider all|mastodon|x] [--wait-for-readiness]\n  node scripts/social-post.js --slug <existing-slug> [--after <git-sha>] [--dry-run|--publish] [--provider mastodon|x] [--wait-for-readiness]`;
+	return `Usage:\n  node scripts/social-post.js --before <git-sha> --after <git-sha> [--dry-run|--publish] [--provider all|mastodon|x|linkedin|mastodon,linkedin] [--wait-for-readiness]\n  node scripts/social-post.js --slug <existing-slug> [--after <git-sha>] [--dry-run|--publish] [--provider mastodon|x|linkedin] [--wait-for-readiness]`;
 }
 
 function selectPostsForOptions(options) {
@@ -517,21 +589,29 @@ function output(value) {
 	process.stdout.write(`${JSON.stringify(value, null, 2)}\n`);
 }
 
-function writeXDraftSummary(payloads, summaryPath) {
+function writeSocialSummary(payloads, summaryPath) {
 	if (!summaryPath) return;
-	const sections = [
-		'## X drafts — copy and paste',
-		'These are drafts for manual posting, not confirmation of publication or deployment. Check that each article is live before posting to X.',
-	];
-	if (payloads.length === 0) {
-		sections.push('No new blog posts selected; no X drafts to copy.');
-	}
-	for (const post of payloads) {
-		// A longer fence keeps backticks in article copy inside the literal text block.
-		const fence = '`'.repeat(
-			Math.max(3, ...Array.from(post.x.matchAll(/`+/gu), (match) => match[0].length + 1)),
+	const sections = [];
+	for (const [provider, label] of [
+		['mastodon', 'Mastodon copy'],
+		['x', 'X drafts — copy and paste'],
+		['linkedin', 'LinkedIn drafts — copy and paste'],
+	]) {
+		sections.push(`## ${label}`);
+		sections.push(
+			provider === 'mastodon'
+				? 'This is the prepared Mastodon copy, not a delivery receipt. Check the publisher results before posting manually to avoid duplicates.'
+				: 'Drafts for manual posting, not confirmation of publication or deployment. Check that each article is live before posting.',
 		);
-		sections.push(`### ${post.slug}`, `${fence}text\n${post.x}\n${fence}`);
+		if (payloads.length === 0) sections.push('No new blog posts selected; no copy to show.');
+		for (const post of payloads) {
+			const text = post[provider];
+			// Keep backticks in article copy inside the literal text block.
+			const fence = '`'.repeat(
+				Math.max(3, ...Array.from(text.matchAll(/`+/gu), (match) => match[0].length + 1)),
+			);
+			sections.push(`### ${post.slug}`, `${fence}text\n${text}\n${fence}`);
+		}
 	}
 	appendFileSync(summaryPath, `${sections.join('\n\n')}\n\n`, 'utf8');
 }
@@ -545,7 +625,7 @@ export async function runCli(argumentsList = process.argv.slice(2), environment 
 	const providers = parseProviders(options.provider);
 	const posts = selectPostsForOptions(options);
 	if (posts.length === 0) {
-		writeXDraftSummary([], environment.GITHUB_STEP_SUMMARY);
+		writeSocialSummary([], environment.GITHUB_STEP_SUMMARY);
 		output({ mode: options.publish ? 'published' : 'dry-run', providers, posts: [] });
 		return 0;
 	}
@@ -555,18 +635,19 @@ export async function runCli(argumentsList = process.argv.slice(2), environment 
 		...post,
 		...composeAnnouncement(post, { mastodonMaxCharacters: dryRunMastodonLimit }),
 	}));
-	writeXDraftSummary(payloads, environment.GITHUB_STEP_SUMMARY);
+	writeSocialSummary(payloads, environment.GITHUB_STEP_SUMMARY);
 	if (!options.publish) {
 		output({
 			mode: 'dry-run',
 			providers,
-			posts: payloads.map(({ title, description, slug, url, mastodon, x }) => ({
+			posts: payloads.map(({ title, description, slug, url, mastodon, x, linkedin }) => ({
 				title,
 				description,
 				slug,
 				url,
 				mastodon,
 				x,
+				linkedin,
 			})),
 		});
 		return 0;

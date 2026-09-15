@@ -4,6 +4,13 @@ title: Project Palette
 description: 'A modern, interactive color palette generator that creates beautiful color schemes and generates ready-to-use configuration code for popular CSS frameworks.'
 date: '09-16-2025'
 slug: project-palette
+social:
+  mastodon: >-
+    I kept asking an LLM the same color-palette questions. Project Palette grew out of that repetition: an interactive place to generate color schemes and get configuration code for CSS frameworks.
+  x: >-
+    From picking colors to CSS framework configuration: Project Palette puts palette generation and ready-to-use code in one small tool.
+  linkedin: >-
+    Hello, Project Palette grew out of a repetitive part of my development workflow. I kept asking an LLM for color palettes, similar colors and checks against WCAG standards, then moving between tools to get what I needed. That repetition prompted an interactive palette generator that produces color schemes and ready-to-use configuration code for popular CSS frameworks. This short post introduces the project and the practical motivation behind bringing those tasks together.
 categories:
   - technical
 ---

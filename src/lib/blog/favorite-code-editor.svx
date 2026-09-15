@@ -3,6 +3,13 @@ title: Favorite Code Editor
 description: The code editor can change a lot in a programmer's life. For good or for bad.
 date: '05-10-2024'
 slug: favorite-code-editor
+social:
+  mastodon: >-
+    Vim keeps tempting me, IntelliJ served me for years, and VS Code is where I still feel at home. Some personal notes on editor trade-offs, learning curves and why I am keeping an eye on Zed.
+  x: >-
+    Notepad++, Eclipse, IntelliJ, VS Code, and several attempts at Vim. After years of switching editors, here is what keeps me in VS Code and curious about Zed.
+  linkedin: >-
+    Hello, after years of working with different code editors, I wanted to reflect on the trade-offs that shape my daily choices. This article follows my experience from Notepad++ and Eclipse through IntelliJ IDEA and Visual Studio Code, alongside several attempts to learn Vim. It considers memory use, refactoring tools, extensions and the effort involved in changing familiar habits. VS Code remains my preference at the time of writing, but LunarVim and Zed have given me reasons to keep exploring. The perspective is personal rather than a universal ranking.
 categories:
   - technical
 ---

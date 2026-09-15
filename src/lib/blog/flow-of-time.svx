@@ -4,6 +4,13 @@ title: The Flow of Time
 description: 'Each moment is unique and unrepeatable. Do not waste it.'
 date: '06-27-2025'
 slug: flow-of-time
+social:
+  mastodon: >-
+    Another meeting on the calendar, another bit of time gone. The Flow of Time is a small visualization of time remaining based on life expectancy and the current date. Not a prediction, just a different way to look at a finite resource.
+  x: >-
+    What does a lifetime look like as remaining time? The Flow of Time visualizes it using life expectancy and the current date. A small Svelte project with an uncomfortable question.
+  linkedin: >-
+    Hello, The Flow of Time is a small project about something we routinely allocate but cannot replace. It visualizes remaining time using life expectancy and the current date, making an abstract number more tangible. Built with Svelte 5, Vite and TypeScript, the application is intended as a way to reflect on how we spend our time, including meetings and other commitments. It is a visualization based on an assumption, not a prediction of anyone's lifespan.
 categories:
   - technical
 ---

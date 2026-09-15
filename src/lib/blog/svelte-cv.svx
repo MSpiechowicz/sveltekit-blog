@@ -4,6 +4,13 @@ title: Svelte CV
 description: 'Generate your CV with Svelte.'
 date: '08-08-2025'
 slug: svelte-cv
+social:
+  mastodon: >-
+    Some CV tools moved behind paid plans; others just did not fit how I wanted to work. Svelte CV keeps the basic setup in cv.json, with room to adjust colors, icons and image positions. Section order follows the configuration.
+  x: >-
+    Your CV, configured in cv.json. Svelte CV lets you arrange sections and adjust colors, icons and image positions instead of fitting everything into someone else's editor.
+  linkedin: >-
+    Hello, I wanted to share a CV project built around having more control over the result. Existing tools did not quite meet my needs, and some had moved features into paid versions, so I put together Svelte CV. Its basic configuration lives in a cv.json file, where section order matters, with further options to adjust colors, icons and image positions. The article introduces that approach and links to the project for anyone who prefers working with a configurable CV rather than an existing builder.
 categories:
   - technical
 ---

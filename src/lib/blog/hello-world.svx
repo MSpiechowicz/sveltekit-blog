@@ -3,6 +3,13 @@ title: Hello World!
 description: 'Journey begins once again. This time with a different approach.'
 date: '04-14-2024'
 slug: hello-world
+social:
+  mastodon: >-
+    My first blog fizzled out while I was trying too hard to make every post special. This time the plan is smaller: write about what interests me, share it without pressure, and enjoy doing it.
+  x: >-
+    Starting a blog again, this time without the pressure to make every post impressive. Smaller posts, more enjoyment, and maybe something useful along the way.
+  linkedin: >-
+    Hello, I am returning to blogging with a different approach this time. My first attempt began with enthusiasm, but the pressure to publish distinctive, advanced technical articles gradually took the enjoyment out of it. After stepping away from the blog and several private projects, a friend's example of sharing knowledge freely encouraged me to try again. The plan now is to write smaller posts without demanding that every one be exceptional. This opening article explains that change of mindset and why enjoying the process comes first.
 categories:
   - non-technical
 ---

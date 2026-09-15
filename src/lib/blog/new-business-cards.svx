@@ -4,6 +4,13 @@ title: New Business Cards are here!
 description: 'Update for the Business Card Website project.'
 date: '12-31-2024'
 slug: new-business-cards
+social:
+  mastodon: >-
+    Two more versions made it into the Business Card Website project before the year ended. A small follow-up to the original layout, with ideas picked up while browsing other sites.
+  x: >-
+    One last update for 2024: two additional versions for the Business Card Website project. A little more choice before the new year.
+  linkedin: >-
+    Hello, a short year-end update on the Business Card Website project. Two additional versions are now available, following the original site shared a few days earlier. Browsing other websites and related articles provided the inspiration for these additions. The post links to the repository for anyone who would like to explore the new options.
 categories:
   - technical
 ---

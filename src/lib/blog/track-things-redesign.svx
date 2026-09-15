@@ -4,6 +4,13 @@ title: Track Things Redesign
 description: 'Track Things got a full redesign - a new landing page, a refreshed app, and a much clearer story.'
 date: '09-04-2026'
 slug: track-things-redesign
+social:
+  mastodon: >-
+    Using your own app is a good way to find the bits that bother you. Track Things now has a reworked landing page, navigation and forms, plus an 84-second walkthrough you can watch without signing up.
+  x: >-
+    Same Track Things, clearer story. The redesign brings the landing page and app into one visual language, with dark mode and a short walkthrough before sign-up.
+  linkedin: >-
+    Hello, I would like to walk through the thinking behind the Track Things redesign. Regular use made it clear that the landing page, navigation and forms had grown apart, so this update addresses them together rather than as isolated fixes. The product story now starts with flexible records for moments, costs, observations and plans, while the app follows one consistent visual language. There is also an 84-second walkthrough of the real app using sample records, available without signing up. The post explains what changed and why.
 categories:
   - technical
 ---

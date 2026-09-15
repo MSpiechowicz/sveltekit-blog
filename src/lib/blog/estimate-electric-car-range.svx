@@ -4,6 +4,13 @@ title: Estimate Electric Car Range
 description: 'Estimate the range of your electric car based on the battery capacity and the driving conditions.'
 date: '07-06-2025'
 slug: estimate-electric-car-range
+social:
+  mastodon: >-
+    Looking up electric-car range left me bouncing between cluttered sites and calculators that did too much or too little. My response is a small Svelte app that estimates range from battery capacity and driving conditions.
+  x: >-
+    Battery capacity is only part of the range question. This small Svelte app estimates electric-car range using driving conditions too.
+  linkedin: >-
+    Hello, I would like to introduce a small project prompted by frustration with existing electric-car range calculators. Some felt overly complicated, others too limited, and advertisements often got in the way. My alternative estimates range from battery capacity and driving conditions in a web application built with Svelte 5, Vite and TypeScript. The post introduces the app as something to explore when thinking about a trip or an electric-car purchase, while keeping the result framed as an estimate.
 categories:
   - technical
 ---

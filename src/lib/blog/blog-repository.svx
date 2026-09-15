@@ -3,6 +3,13 @@ title: Blog Repository
 description: 'Public repository of my blog is now available on GitHub.'
 date: '05-02-2024'
 slug: blog-repository
+social:
+  mastodon: >-
+    Curious about the code behind this blog? The repository is public on GitHub. There is still tidying to do, and I have ideas for making the site easier to adapt. Have a look, fork it, or tell me what you would change.
+  x: >-
+    The source behind this blog is now public on GitHub. Browse it, fork it, or send a suggestion; there is still plenty I want to improve.
+  linkedin: >-
+    Hello, the source code for this blog is now available in a public GitHub repository. You are welcome to explore it, fork it or share suggestions about what could work better. There is still cleanup ahead, and one planned improvement is moving more configuration out of the code to make the site easier to adapt. This post is a short invitation to look behind the finished pages and contribute feedback while the project continues to develop.
 categories:
   - technical
 ---

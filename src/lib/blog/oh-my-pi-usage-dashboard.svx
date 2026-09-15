@@ -5,6 +5,13 @@ date: '09-15-2026'
 slug: oh-my-pi-usage-dashboard
 image: /images/oh-my-pi-usage-dashboard.png
 imageAlt: 'Oh My Pi Usage Dashboard compact and detailed views with synthetic usage data.'
+social:
+  mastodon: >-
+    Token counts and subscription allowances are not the same thing. Oh My Pi Usage Dashboard keeps both visible in a tmux sidebar, with persistent session history and per-model breakdowns. A closer look at what it measures, and what it cannot tell you.
+  x: >-
+    How many tokens did that session use? Oh My Pi Usage Dashboard puts live charts, session history and provider allowances beside the conversation in tmux.
+  linkedin: >-
+    Hello, I would like to share a closer look at usage visibility in the Oh My Pi coding harness. My open-source dashboard puts live token charts, persistent session history and provider allowances in a tmux sidebar beside the conversation. Requests stay attributed to the model that handled them, even when you switch models during a session. The article also explains an important limit: observed allowance changes are not exact session billing. Session records stay in local SQLite storage, with no separate dashboard login.
 categories:
   - technical
 ---
