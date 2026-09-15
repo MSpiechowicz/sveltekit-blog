@@ -5,9 +5,17 @@
 </script>
 
 <div
-	class="lg:mx-18 max-w-auto lg:mx-18 hidden flex-row items-end justify-between md:mx-12 md:flex xl:mx-20 2xl:mx-24"
->
-	<img class="md:w-[180px] xl:w-[200px]" src={Buildings} alt="Buildings" />
-	<img class="hidden lg:block lg:w-[140px]" src={Trees} alt="Trees" />
-	<img class="md:w-[340px]" src={House} alt="House" />
+	class="lg:mx-18 max-w-auto lg:mx-18 hidden flex-row items-end justify-between md:mx-12 md:flex xl:mx-20 2xl:mx-24">
+	<img
+		class="md:w-[180px] xl:w-[200px]"
+		src={Buildings}
+		alt="Buildings" />
+	<img
+		class="hidden lg:block lg:w-[140px]"
+		src={Trees}
+		alt="Trees" />
+	<img
+		class="md:w-[340px]"
+		src={House}
+		alt="House" />
 </div>

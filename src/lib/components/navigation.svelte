@@ -5,9 +5,12 @@
 	import MenuMobile from '$lib/components/menu-mobile.svelte';
 </script>
 
-<nav class="flex flex-row justify-between items-center">
-	<img src={Logo} alt="Logo" class="w-36 h-auto" />
-  <MenuDesktop />
-  <MenuHamburger />
+<nav class="flex flex-row items-center justify-between">
+	<img
+		src={Logo}
+		alt="Logo"
+		class="h-auto w-36" />
+	<MenuDesktop />
+	<MenuHamburger />
 </nav>
 <MenuMobile />

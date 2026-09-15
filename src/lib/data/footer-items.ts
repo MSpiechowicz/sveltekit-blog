@@ -1,22 +1,22 @@
-import type { FooterItem } from "$lib/types";
+import type { FooterItem } from '$lib/types';
 
 const FOOTER_ITEMS: Array<FooterItem> = [
 	{
 		href: 'https://www.linkedin.com/in/mspiechowicz/',
-		letter: 'l'
+		letter: 'l',
 	},
 	{
 		href: 'https://www.facebook.com/maciej.spiechowicz',
-		letter: 'f'
+		letter: 'f',
 	},
 	{
 		href: 'https://github.com/MSpiechowicz',
-		letter: 'g'
+		letter: 'g',
 	},
 	{
 		href: 'https://mastodon.social/@mspiechowicz',
-		letter: 'm'
-	}
+		letter: 'm',
+	},
 ];
 
 export default FOOTER_ITEMS;

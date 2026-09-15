@@ -8,6 +8,5 @@
 	<img
 		class={`max-h-[64px] ${reversed ? 'scale-x-[-1] transform' : null}`}
 		src={EarthCrack}
-		alt="Earth Crack"
-	/>
+		alt="Earth Crack" />
 </div>

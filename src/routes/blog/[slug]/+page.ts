@@ -6,7 +6,7 @@ export async function load({ params }) {
 
 		return {
 			content: post.default,
-			meta: post.metadata
+			meta: post.metadata,
 		};
 	} catch (e) {
 		error(404, 'Post not found');

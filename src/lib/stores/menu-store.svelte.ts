@@ -7,7 +7,7 @@ function createMenuStore(): { open: boolean; toggle: () => void } {
 		},
 		toggle() {
 			open = !open;
-		}
+		},
 	};
 }
 

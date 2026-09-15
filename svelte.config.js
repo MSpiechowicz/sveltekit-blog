@@ -8,12 +8,12 @@ const extensions = ['.svelte', '.svx', '.md'];
 const config = {
 	// Consult https://kit.svelte.dev/docs/integrations#preprocessors
 	// for more information about preprocessors
-  extensions,
+	extensions,
 	preprocess: [
 		vitePreprocess(),
 		mdsvex({
 			extensions,
-		})
+		}),
 	],
 	kit: {
 		// adapter-auto only supports some environments, see https://kit.svelte.dev/docs/adapter-auto for a list.
@@ -21,9 +21,9 @@ const config = {
 		// See https://kit.svelte.dev/docs/adapters for more information about adapters.
 		adapter: adapter(),
 		alias: {
-			'@/*': './path/to/lib/*'
-		}
-	}
+			'@/*': './path/to/lib/*',
+		},
+	},
 };
 
 export default config;

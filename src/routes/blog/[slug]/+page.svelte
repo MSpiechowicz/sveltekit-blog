@@ -1,6 +1,6 @@
 <script lang="ts">
 	import type { Data } from '$lib/types';
-  
+
 	import { goto } from '$app/navigation';
 
 	import BlogSlugContent from '$lib/components/blog-slug-content.svelte';

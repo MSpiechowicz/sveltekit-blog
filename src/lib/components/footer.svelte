@@ -6,13 +6,13 @@
 </script>
 
 <footer>
-  <FooterGraphics />
+	<FooterGraphics />
 	<div class="flex h-24 flex-row justify-center gap-12 bg-black md:-mt-[2px] md:h-16">
-    <FooterCrack />
+		<FooterCrack />
 		<div class="flex flex-col items-center justify-center gap-2 text-white md:flex-row md:gap-8">
-      <FooterCopyright />
-      <FooterItems />
+			<FooterCopyright />
+			<FooterItems />
 		</div>
-    <FooterCrack reversed />
+		<FooterCrack reversed />
 	</div>
 </footer>

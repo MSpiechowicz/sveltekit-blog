@@ -7,7 +7,7 @@ Hi! This is my personal blog. In case you want to fork it, please make sure to c
 Below you can find list of the dependencies that are used to build this blog:
 
 | Name        | URL                     |
-|-------------|-------------------------|
+| ----------- | ----------------------- |
 | Bun         | https://bun.sh          |
 | SvelteKit   | https://kit.svelte.dev  |
 | TailwindCSS | https://tailwindcss.com |
