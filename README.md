@@ -17,6 +17,8 @@ Below you can find list of the dependencies that are used to build this blog:
 
 ## Installation
 
+Use Node.js 24 LTS for Vercel builds and Bun for dependency installation. Install the committed lockfile with `bun install --frozen-lockfile` in CI.
+
 To start using this blog, you need to install the dependencies first. You can do that by running the following command:
 
 ```bash
@@ -28,6 +30,8 @@ Then you can start the development server by running the following command:
 ```bash
 bun dev
 ```
+
+Run `bun audit` after dependency updates. The `cookie` override keeps SvelteKit's cookie parser/serializer on patched 0.7.x releases because SvelteKit still declares the vulnerable 0.6.x range; remove it when upstream requires a patched release.
 
 ## Content
 

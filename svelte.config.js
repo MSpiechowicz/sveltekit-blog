@@ -12,7 +12,7 @@ const config = {
 	preprocess: [
 		vitePreprocess(),
 		mdsvex({
-			extensions,
+			extensions: ['.svx', '.md'],
 		}),
 	],
 	kit: {
