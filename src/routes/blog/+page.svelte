@@ -49,6 +49,7 @@
 					class="h-10 w-full rounded-md border bg-background px-3 text-base outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
 					id="blog-search"
 					name="search"
+					autocomplete="off"
 					placeholder={translation['blog.search.placeholder']}
 					type="search"
 					value={query}
@@ -59,15 +60,20 @@
 				<label
 					class="text-sm font-bold"
 					for="blog-date-order">{translation['blog.date.order.label']}</label>
-				<select
-					class="h-10 rounded-md border bg-background px-3 text-base outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
-					id="blog-date-order"
-					name="date-order"
-					value={order}
-					on:change={updateOrder}>
-					<option value="DESC">{translation['blog.date.order.newest.first']}</option>
-					<option value="ASC">{translation['blog.date.order.oldest.first']}</option>
-				</select>
+				<div class="relative">
+					<select
+						class="h-10 w-full appearance-none rounded-md border bg-background pl-4 pr-10 text-base outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+						id="blog-date-order"
+						name="date-order"
+						value={order}
+						on:change={updateOrder}>
+						<option value="DESC">{translation['blog.date.order.newest.first']}</option>
+						<option value="ASC">{translation['blog.date.order.oldest.first']}</option>
+					</select>
+					<span
+						aria-hidden="true"
+						class="pointer-events-none absolute right-4 top-1/2 h-2 w-2 -translate-y-[65%] rotate-45 border-b-2 border-r-2 border-foreground"></span>
+				</div>
 			</div>
 		</div>
 
@@ -101,20 +107,20 @@
 				aria-label={translation['blog.pagination.label']}
 				class="mt-12 flex flex-wrap items-center justify-between gap-4 border-t pt-8">
 				<Button
-					variant="outline"
+					class="min-h-14 max-w-fit text-lg"
 					disabled={pagination.page === 1}
 					on:click={() => (requestedPage = pagination.page - 1)}
 					>{translation['blog.pagination.previous']}</Button>
 				<p
 					aria-live="polite"
-					class="text-sm font-bold">
+					class="text-lg font-bold">
 					{translation['blog.pagination.page']}
 					{pagination.page}
 					{translation['blog.pagination.of']}
 					{pagination.pageCount}
 				</p>
 				<Button
-					variant="outline"
+					class="min-h-14 max-w-fit text-lg"
 					disabled={pagination.page === pagination.pageCount}
 					on:click={() => (requestedPage = pagination.page + 1)}
 					>{translation['blog.pagination.next']}</Button>
