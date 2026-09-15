@@ -10,7 +10,9 @@
 	export let data: UrlData;
 </script>
 
-<div class="flex h-full w-full flex-col overflow-auto">
+<div
+	class="flex h-full w-full flex-col overflow-auto"
+	style:overflow-anchor={data?.url === '/blog' ? 'none' : undefined}>
 	<header class="md:mx-18 lg:mx-18 relative mx-6 mt-4 sm:mx-12 xl:mx-20 2xl:mx-24">
 		<Navigation />
 	</header>
