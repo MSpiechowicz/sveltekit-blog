@@ -4,6 +4,8 @@ export type Post =
 	| {
 			title?: string;
 			description?: string;
+			image?: string;
+			imageAlt?: string;
 			content?: string;
 			slug?: string;
 			date?: string;
@@ -14,12 +16,7 @@ export type Post =
 export type Data =
 	| {
 			content?: ConstructorOfATypedSvelteComponent;
-			meta:
-				| {
-						title?: string;
-						date?: string;
-				  }
-				| undefined;
+			meta: Post;
 	  }
 	| undefined;
 

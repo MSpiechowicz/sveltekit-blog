@@ -3,6 +3,8 @@ title: Oh My Pi Usage Dashboard
 description: 'I built a usage dashboard for the Oh My Pi coding harness: live token charts, persistent session history, and provider allowances in a tmux sidebar, without leaving the terminal.'
 date: '09-15-2026'
 slug: oh-my-pi-usage-dashboard
+image: /images/oh-my-pi-usage-dashboard.png
+imageAlt: 'Oh My Pi Usage Dashboard compact and detailed views with synthetic usage data.'
 categories:
   - technical
 ---

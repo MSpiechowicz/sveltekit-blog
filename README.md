@@ -37,6 +37,10 @@ Run `bun audit` after dependency updates. The `cookie` override keeps SvelteKit'
 
 The content of this blog is stored in the `src/lib/blog` directory. You can add new blog posts by creating a new `.svx` file in that directory.
 
+Article pages include server-rendered Open Graph and X card metadata using the post's `title`, `description`, and canonical URL. Add optional `image` and `imageAlt` frontmatter to choose an article-specific preview; otherwise the site logo is used. Store local preview images in `static/images/` and reference them as `/images/filename.png`. Image URLs are resolved against the configured site URL so social crawlers receive absolute URLs.
+
+The Oh My Pi Usage Dashboard preview comes from that project's `docs/assets/dashboard.png` and shows synthetic usage data, not live account readings. Social platforms cache link cards, so deploying metadata changes may not immediately refresh cards on existing posts. Updating an existing article's image or description does not trigger another automatic announcement.
+
 ## Social publishing
 
 The `Publish new blog posts` workflow announces a post only when a push to the repository's default branch introduces a previously absent `slug` in `src/lib/blog/**/*.svx`. It compares the push's `before` and `after` revisions, so an edit, removal, filename rename with the same slug, or unrelated push does not repost an entry. An initial push with an all-zero base and unavailable Git history fail closed rather than announcing the archive.
