@@ -1,18 +1,17 @@
 <script>
-	import { page } from '$app/stores';
-	import { get } from 'svelte/store';
+	import { page } from '$app/state';
 
 	import Storm from '$lib/assets/storm.svg';
 
-	const currentPageStatus = get(page).status;
-	const currentPageError = get(page).error?.message;
+	const currentPageStatus = $derived(page.status);
+	const currentPageError = $derived(page.error?.message);
 </script>
 
 <div class="flex h-[100%] flex-col items-center justify-center gap-2">
 	<div class="relative flex justify-center align-middle">
 		<h1 class="text-6xl font-bold">{currentPageStatus}</h1>
 		<img
-			class="absolute -left-16 -top-6"
+			class="absolute -top-6 -left-16"
 			src={Storm}
 			alt="Storm" />
 	</div>

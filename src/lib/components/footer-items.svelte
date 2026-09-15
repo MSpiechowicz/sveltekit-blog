@@ -3,12 +3,12 @@
 </script>
 
 <div class="align-center flex flex-row justify-center gap-2">
-	{#each FOOTER_ITEMS as item}
+	{#each FOOTER_ITEMS as item (item.href)}
 		<a
 			class="flex h-8 w-8 items-center justify-center rounded-sm border-2 text-xl"
 			href={item.href}
 			target="_blank"
-			rel="noopener noreferrer">
+			rel="external noopener noreferrer">
 			{item.letter}
 		</a>
 	{/each}

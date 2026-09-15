@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { tick } from 'svelte';
 	import { Select } from 'bits-ui';
+	import { resolve } from '$app/paths';
 	import type { PostsData } from '$lib/types';
 	import { POSTS_PER_PAGE, paginatePosts, selectPosts, type DateOrder } from '$lib/blog-listing';
 
@@ -11,21 +12,22 @@
 
 	import translation from '$lib/translations/en-GB.json';
 
-	export let data: PostsData;
+	let { data }: { data: PostsData } = $props();
 
-	let query = '';
-	let order: DateOrder = 'DESC';
-	let requestedPage = 1;
-	let paginationNav: HTMLElement;
-	let postList: HTMLUListElement;
-	let listMinHeight = 0;
+	let query = $state('');
+	let order = $state<DateOrder>('DESC');
+	let requestedPage = $state(1);
+	let paginationNav = $state<HTMLElement>(null!);
+	let postList = $state<HTMLUListElement>(null!);
+	let listMinHeight = $state(0);
 	const dateOrders: { value: DateOrder; label: string }[] = [
 		{ value: 'DESC', label: translation['blog.date.order.newest.first'] },
 		{ value: 'ASC', label: translation['blog.date.order.oldest.first'] },
 	];
 
-	$: selectedPosts = selectPosts(data.posts, query, order);
-	$: pagination = paginatePosts(selectedPosts, requestedPage);
+	const selectedPosts = $derived(selectPosts(data.posts, query, order));
+	const pagination = $derived(paginatePosts(selectedPosts, requestedPage));
+	const orderLabel = $derived(dateOrders.find((item) => item.value === order)?.label);
 
 	function updateQuery(event: Event) {
 		query = (event.currentTarget as HTMLInputElement).value;
@@ -33,9 +35,9 @@
 		listMinHeight = 0;
 	}
 
-	function updateOrder(selected: { value: DateOrder } | undefined) {
-		if (!selected) return;
-		order = selected.value;
+	function updateOrder(value: string) {
+		if (value !== 'ASC' && value !== 'DESC') return;
+		order = value;
 		requestedPage = 1;
 		listMinHeight = 0;
 	}
@@ -70,7 +72,7 @@
 	<title>Maciej Spiechowicz - Blog posts</title>
 </svelte:head>
 
-<svelte:window on:resize={() => (listMinHeight = 0)} />
+<svelte:window onresize={() => (listMinHeight = 0)} />
 
 <div class="flex h-[100%] flex-row justify-center">
 	<div class="w-full max-w-[800px]">
@@ -87,7 +89,7 @@
 					placeholder={translation['blog.search.placeholder']}
 					type="search"
 					value={query}
-					on:input={updateQuery} />
+					oninput={updateQuery} />
 			</div>
 
 			<div class="grid gap-2">
@@ -96,32 +98,36 @@
 					class="text-lg font-bold"
 					for="blog-date-order">{translation['blog.date.order.label']}</label>
 				<Select.Root
+					type="single"
+					allowDeselect={false}
 					name="date-order"
 					items={dateOrders}
-					selected={dateOrders.find((item) => item.value === order)}
-					onSelectedChange={updateOrder}>
+					value={order}
+					onValueChange={updateOrder}>
 					<Select.Trigger
 						id="blog-date-order"
 						aria-labelledby="blog-date-order-label blog-date-order-value"
 						class="flex h-14 w-full items-center justify-between gap-6 border-b border-foreground/40 bg-background text-left text-xl focus:border-foreground focus:outline focus:outline-2 focus:outline-offset-4 focus:outline-ring sm:min-w-48">
-						<span id="blog-date-order-value"><Select.Value /></span>
+						<span id="blog-date-order-value">{orderLabel}</span>
 						<span
 							aria-hidden="true"
-							class="mr-1 h-2 w-2 -translate-y-0.5 rotate-45 border-b-2 border-r-2 border-foreground"
+							class="mr-1 h-2 w-2 -translate-y-0.5 rotate-45 border-r-2 border-b-2 border-foreground"
 						></span>
 					</Select.Trigger>
-					<Select.Content
-						align="start"
-						sideOffset={16}
-						class="z-50 border border-foreground/40 bg-background p-1 text-xl text-foreground">
-						{#each dateOrders as item}
-							<Select.Item
-								value={item.value}
-								label={item.label}
-								class="flex min-h-12 cursor-pointer items-center px-3 py-2 outline-none data-[highlighted]:bg-primary data-[highlighted]:text-primary-foreground [&[data-selected]:not([data-highlighted])]:bg-muted"
-								>{item.label}</Select.Item>
-						{/each}
-					</Select.Content>
+					<Select.Portal>
+						<Select.Content
+							align="start"
+							sideOffset={16}
+							class="z-50 border border-foreground/40 bg-background p-1 text-xl text-foreground">
+							{#each dateOrders as item (item.value)}
+								<Select.Item
+									value={item.value}
+									label={item.label}
+									class="flex min-h-12 cursor-pointer items-center px-3 py-2 outline-hidden data-[highlighted]:bg-primary data-[highlighted]:text-primary-foreground [&[data-selected]:not([data-highlighted])]:bg-muted"
+									>{item.label}</Select.Item>
+							{/each}
+						</Select.Content>
+					</Select.Portal>
 				</Select.Root>
 			</div>
 		</div>
@@ -133,14 +139,14 @@
 				<p class="text-xl">{translation['blog.no.results']}</p>
 				<Button
 					variant="outline"
-					on:click={clearSearch}>{translation['blog.clear.search']}</Button>
+					onclick={clearSearch}>{translation['blog.clear.search']}</Button>
 			</section>
 		{:else}
 			<ul
 				bind:this={postList}
 				style:min-height={`${listMinHeight}px`}
 				class="flex flex-col gap-12">
-				{#each pagination.posts as post}
+				{#each pagination.posts as post (post?.slug)}
 					<li>
 						<BlogSlugHeader {post} />
 						<BlogSlugDescription {post} />
@@ -149,7 +155,8 @@
 							<a
 								class="text-lg font-bold underline"
 								aria-label={post?.slug}
-								href={`blog/${post?.slug}`}>{translation['button.read.full.article']}</a>
+								href={resolve('/blog/[slug]', { slug: post?.slug ?? '' })}
+								>{translation['button.read.full.article']}</a>
 						</div>
 					</li>
 				{/each}
@@ -162,7 +169,7 @@
 				<Button
 					class="min-h-14 max-w-fit justify-self-start px-1.5 text-xl sm:px-4"
 					disabled={pagination.page === 1}
-					on:click={() => changePage(pagination.page - 1)}
+					onclick={() => changePage(pagination.page - 1)}
 					>{translation['blog.pagination.previous']}</Button>
 				<p
 					aria-live="polite"
@@ -175,7 +182,7 @@
 				<Button
 					class="min-h-14 max-w-fit justify-self-end px-1.5 text-xl sm:px-4"
 					disabled={pagination.page === pagination.pageCount}
-					on:click={() => changePage(pagination.page + 1)}
+					onclick={() => changePage(pagination.page + 1)}
 					>{translation['blog.pagination.next']}</Button>
 			</nav>
 			<p class="sr-only">

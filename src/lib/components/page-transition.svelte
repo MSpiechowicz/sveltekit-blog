@@ -1,7 +1,8 @@
 <script lang="ts">
+	import type { Snippet } from 'svelte';
 	import { fade } from 'svelte/transition';
 
-	export let url: string;
+	let { url, children }: { url: string; children: Snippet } = $props();
 </script>
 
 {#key url}
@@ -11,6 +12,6 @@
 			delay: 0,
 			duration: 300,
 		}}>
-		<slot />
+		{@render children()}
 	</div>
 {/key}

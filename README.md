@@ -6,18 +6,18 @@ Hi! This is my personal blog. In case you want to fork it, please make sure to c
 
 Below you can find list of the dependencies that are used to build this blog:
 
-| Name        | URL                     |
-| ----------- | ----------------------- |
-| Bun         | https://bun.sh          |
-| SvelteKit   | https://kit.svelte.dev  |
-| TailwindCSS | https://tailwindcss.com |
-| Shadcn/ui   | https://ui.shadcn.com   |
-| Vite        | https://vitejs.dev      |
-| mdsvex      | https://mdsvex.com      |
+| Name          | URL                         |
+| ------------- | --------------------------- |
+| Bun           | https://bun.sh              |
+| SvelteKit     | https://svelte.dev/docs/kit |
+| TailwindCSS   | https://tailwindcss.com     |
+| shadcn-svelte | https://shadcn-svelte.com   |
+| Vite          | https://vite.dev            |
+| mdsvex        | https://mdsvex.com          |
 
 ## Installation
 
-Use Node.js 24 LTS for Vercel builds and Bun for dependency installation. Install the committed lockfile with `bun install --frozen-lockfile` in CI.
+Use Node.js 24 LTS for development, CI, and Vercel builds, with Bun 1.4.2 for dependency installation. The package manager is declared in `package.json`; `bun.lock` is the committed text lockfile. Install it with `bun install --frozen-lockfile` in CI. Vercel's adapter does not yet support building with Node.js 26.
 
 To start using this blog, you need to install the dependencies first. You can do that by running the following command:
 
@@ -32,6 +32,24 @@ bun dev
 ```
 
 Run `bun audit` after dependency updates. The `cookie` override keeps SvelteKit's cookie parser/serializer on patched 0.7.x releases because SvelteKit still declares the vulnerable 0.6.x range; remove it when upstream requires a patched release.
+
+### Current toolchain
+
+The project uses Svelte 5 runes and snippets, SvelteKit 2, Vite 8, Bits UI 2, and Tailwind CSS 4. Tailwind runs through `@tailwindcss/vite`; theme tokens and utilities live in `src/app.css`, with no separate Tailwind or PostCSS configuration. Component styles that use `@apply` reference that stylesheet.
+
+TypeScript is held at `~6.0.3`, the newest stable release supported by SvelteKit, svelte-check, and typescript-eslint. TypeScript 7 is not yet within their declared peer ranges. Other direct dependencies use the current stable releases available at migration time. Historical blog posts describe the stack at their original publication dates and are intentionally unchanged.
+
+After dependency changes, run:
+
+```bash
+bun run check
+bun run test --run
+bun run lint
+bun run build
+bun audit
+```
+
+With Node.js 24, `VERCEL=1 bun run build` also verifies the installed Vercel adapter and generates the deployment output without publishing it.
 
 ## Content
 

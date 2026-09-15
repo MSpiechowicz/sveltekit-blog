@@ -4,15 +4,13 @@
 
 	import menuStore from '$lib/stores/menu-store.svelte';
 
-	let open = menuStore.open;
-
 	beforeNavigate(() => {
-		open = false;
+		menuStore.open = false;
 	});
 </script>
 
 <div class="max-sm:-mr-3 sm:hidden">
 	<Hamburger
-		on:click={menuStore.toggle}
-		bind:open />
+		ariaControls={menuStore.open ? 'mobile-menu' : undefined}
+		bind:open={menuStore.open} />
 </div>

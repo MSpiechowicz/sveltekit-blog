@@ -1,7 +1,7 @@
 <script lang="ts">
 	import EarthCrack from '$lib/assets/earth-crack.svg';
 
-	export let reversed: boolean = false;
+	let { reversed = false }: { reversed?: boolean } = $props();
 </script>
 
 <div class="hidden items-center justify-center lg:flex">

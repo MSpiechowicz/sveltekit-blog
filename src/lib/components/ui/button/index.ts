@@ -3,7 +3,7 @@ import type { Button as ButtonPrimitive } from 'bits-ui';
 import Root from './button.svelte';
 
 const buttonVariants = tv({
-	base: 'inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50',
+	base: 'inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50',
 	variants: {
 		variant: {
 			default: 'bg-primary text-primary-foreground hover:bg-primary/90',
@@ -29,20 +29,9 @@ const buttonVariants = tv({
 type Variant = VariantProps<typeof buttonVariants>['variant'];
 type Size = VariantProps<typeof buttonVariants>['size'];
 
-type Props = ButtonPrimitive.Props & {
+type Props = ButtonPrimitive.RootProps & {
 	variant?: Variant;
 	size?: Size;
 };
 
-type Events = ButtonPrimitive.Events;
-
-export {
-	Root,
-	type Props,
-	type Events,
-	//
-	Root as Button,
-	type Props as ButtonProps,
-	type Events as ButtonEvents,
-	buttonVariants,
-};
+export { Root, type Props, Root as Button, type Props as ButtonProps, buttonVariants };

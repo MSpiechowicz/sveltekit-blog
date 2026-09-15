@@ -3,9 +3,11 @@
 
 	import { formatDate } from '$lib/utils';
 
-	export let data: Data = undefined;
-	export let post: Post = undefined;
-	export let additionalMargin: boolean = false;
+	let {
+		data,
+		post,
+		additionalMargin = false,
+	}: { data?: Data; post?: Post; additionalMargin?: boolean } = $props();
 </script>
 
 <p class={`${additionalMargin ? 'mt-2' : null} text-lg`}>

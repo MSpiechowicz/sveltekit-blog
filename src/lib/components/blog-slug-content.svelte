@@ -1,14 +1,18 @@
 <script lang="ts">
 	import type { Data } from '$lib/types';
 
-	export let data: Data = undefined;
+	let { data }: { data?: Data } = $props();
 </script>
 
 <div class="dynamic mt-8">
-	<svelte:component this={data?.content} />
+	{#if data?.content}
+		<data.content />
+	{/if}
 </div>
 
 <style lang="postcss">
+	@reference '../../app.css';
+
 	.dynamic :global(h2) {
 		@apply text-4xl;
 	}
@@ -22,7 +26,7 @@
 	}
 
 	.dynamic :global(h2) {
-		@apply mb-4 mt-8 text-3xl font-bold;
+		@apply mt-8 mb-4 text-3xl font-bold;
 	}
 
 	.dynamic :global(li) {

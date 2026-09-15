@@ -16,6 +16,9 @@ export default [
 			'build/**',
 			'dist/**',
 			'.svelte-kit/**',
+			'.vercel/**',
+			'.anvil/**',
+			'.omp/**',
 			'package/**',
 			'.env',
 			'.env.*',
@@ -23,7 +26,7 @@ export default [
 			'pnpm-lock.yaml',
 			'package-lock.json',
 			'yarn.lock',
-			'bun.lockb',
+			'bun.lock',
 		],
 	},
 	js.configs.recommended,
@@ -59,7 +62,7 @@ export default [
 	},
 	...svelte.configs['flat/recommended'],
 	{
-		files: ['**/*.svelte'],
+		files: ['**/*.svelte', '**/*.svelte.ts'],
 		languageOptions: {
 			globals: runtimeGlobals,
 			parserOptions: {

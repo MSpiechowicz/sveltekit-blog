@@ -5,7 +5,7 @@
 </script>
 
 <div
-	class="lg:mx-18 max-w-auto lg:mx-18 hidden flex-row items-end justify-between md:mx-12 md:flex xl:mx-20 2xl:mx-24">
+	class="max-w-auto hidden flex-row items-end justify-between md:mx-12 md:flex xl:mx-20 2xl:mx-24">
 	<img
 		class="md:w-[180px] xl:w-[200px]"
 		src={Buildings}

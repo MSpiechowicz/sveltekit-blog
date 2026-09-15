@@ -1,12 +1,12 @@
-function createMenuStore(): { open: boolean; toggle: () => void } {
+function createMenuStore(): { open: boolean } {
 	let open = $state(false);
 
 	return {
 		get open() {
 			return open;
 		},
-		toggle() {
-			open = !open;
+		set open(value: boolean) {
+			open = value;
 		},
 	};
 }

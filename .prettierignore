@@ -1,4 +1,9 @@
-# Ignore files for PNPM, NPM and YARN
+# Lockfiles and generated tooling output
 pnpm-lock.yaml
 package-lock.json
 yarn.lock
+bun.lock
+.svelte-kit/
+.vercel/
+.anvil/
+.omp/

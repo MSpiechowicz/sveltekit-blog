@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { goto } from '$app/navigation';
+	import { resolve } from '$app/paths';
 	import { Button } from '$lib/components/ui/button/index';
 
 	import MainPageDescription from '$lib/components/main-page-description.svelte';
@@ -18,6 +19,6 @@
 		<MainPageDescription />
 		<Button
 			class="mt-10 min-h-14 max-w-fit text-xl"
-			on:click={() => goto('/blog')}>{translation['button.recent.blog.posts']}</Button>
+			onclick={() => goto(resolve('/blog'))}>{translation['button.recent.blog.posts']}</Button>
 	</div>
 </div>

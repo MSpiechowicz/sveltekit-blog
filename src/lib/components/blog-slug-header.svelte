@@ -3,8 +3,7 @@
 
 	import Notes from '$lib/assets/notes.svg';
 
-	export let data: Data = undefined;
-	export let post: Post = undefined;
+	let { data, post }: { data?: Data; post?: Post } = $props();
 </script>
 
 <div class="relative">
@@ -12,5 +11,5 @@
 	<img
 		src={Notes}
 		alt="Notes"
-		class="absolute -left-16 -top-4 hidden h-auto w-[140px] sm:block" />
+		class="absolute -top-4 -left-16 hidden h-auto w-[140px] sm:block" />
 </div>

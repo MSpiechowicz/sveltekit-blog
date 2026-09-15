@@ -2,6 +2,7 @@
 	import type { Data } from '$lib/types';
 
 	import { goto } from '$app/navigation';
+	import { resolve } from '$app/paths';
 
 	import logo from '$lib/assets/logo.png';
 	import BlogSlugContent from '$lib/components/blog-slug-content.svelte';
@@ -11,13 +12,13 @@
 
 	import translation from '$lib/translations/en-GB.json';
 
-	export let data: Data = undefined;
+	let { data }: { data?: Data } = $props();
 
-	$: canonicalUrl = new URL(`/blog/${data?.meta?.slug}`, translation.url).href;
-	$: imageUrl = new URL(data?.meta?.image || logo, translation.url).href;
-	$: imageAlt = data?.meta?.image
-		? data.meta.imageAlt || data.meta.title
-		: 'Maciej Spiechowicz';
+	const canonicalUrl = $derived(new URL(`/blog/${data?.meta?.slug}`, translation.url).href);
+	const imageUrl = $derived(new URL(data?.meta?.image || logo, translation.url).href);
+	const imageAlt = $derived(
+		data?.meta?.image ? data.meta.imageAlt || data.meta.title : 'Maciej Spiechowicz',
+	);
 </script>
 
 <svelte:head>
@@ -71,7 +72,7 @@
 			additionalMargin />
 		<BlogSlugContent {data} />
 		<Button
-			class="mb-4 mt-8 min-h-14 max-w-fit text-xl md:mb-8 md:mt-12"
-			on:click={() => goto('/blog')}>{translation['button.go.back']}</Button>
+			class="mt-8 mb-4 min-h-14 max-w-fit text-xl md:mt-12 md:mb-8"
+			onclick={() => goto(resolve('/blog'))}>{translation['button.go.back']}</Button>
 	</div>
 </article>
