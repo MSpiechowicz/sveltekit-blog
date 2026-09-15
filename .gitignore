@@ -28,6 +28,9 @@ vite.config.ts.timestamp-*
 # VSCode
 .vscode
 
+# Vercel
+.vercel
+
 # LLM
 .omp
 .anvil
