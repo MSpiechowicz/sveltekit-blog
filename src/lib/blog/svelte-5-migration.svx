@@ -1,0 +1,113 @@
+---
+title: Bringing This Blog Up to Date with Svelte 5
+description: 'How I modernized this SvelteKit blog with Svelte 5 runes, snippets, updated UI components, and Tailwind CSS 4 while keeping its file-based publishing workflow.'
+date: '09-22-2026'
+slug: svelte-5-migration
+social:
+  mastodon: >-
+    Updating this blog was not just a dependency bump. It already used Svelte 5, but much of the component code still followed older conventions. Here is what changed in the reactivity, mobile menu, UI components and Tailwind setup, without replacing the file-based writing workflow.
+  x: >-
+    Svelte 5 in package.json is only part of the migration. This blog now uses runes, snippets and updated UI components, alongside Tailwind CSS 4. A look at the changes behind the same file-based blog.
+  linkedin: >-
+    Hello, this time I am sharing the maintenance work behind the blog itself. The project already depended on Svelte 5, but its components and surrounding tooling still needed modernization. The migration brought explicit reactive state, snippet-based composition, updated Bits UI controls and a Tailwind CSS 4 setup. The article explains those changes through the blog's search, pagination and mobile navigation, while distinguishing framework changes from separate dependency upgrades. The Markdown-based publishing workflow remains in place; this is a look at the implementation changes, not a claim of measured performance gains.
+categories:
+  - technical
+---
+
+Hello there!
+
+<br/>
+
+This time, the project is the blog you are reading. I recently updated its components and tooling to bring the implementation in line with modern Svelte 5. The articles still live in Markdown-based files, but the code responsible for displaying them has changed.
+
+<br/>
+
+There is one important detail: this was not a straight Svelte 4-to-5 upgrade. Before this migration, the project already declared Svelte `^5.57.0` and SvelteKit `^2.70.3`. Much of the component code still used older conventions, though. Having Svelte 5 in `package.json` and using its newer component model are two different things.
+
+<br/>
+
+## Making reactivity explicit
+
+The blog listing is a useful example. It has a search query, a sorting order and a requested page number. Those values now use `$state`, while the filtered posts and pagination result use `$derived`. Previously, the component relied on plain top-level variables and reactive `$:` statements.
+
+<br/>
+
+That separates what the reader can change from what the page calculates. Search and sorting remain inputs; the visible posts and page count are derived from them. There is no need to introduce an effect just to calculate a filtered list.
+
+<br/>
+
+Component inputs also moved from `export let` to `$props`. The article header, date, description and page components now declare their inputs through destructuring, with TypeScript types alongside them. Event handlers changed from directives such as `on:click` to properties such as `onclick`.
+
+<br/>
+
+Svelte 5 still supports legacy component syntax, so these changes are not a requirement for every project to make at once. The [official migration guide](https://svelte.dev/docs/svelte/v5-migration-guide) explains how the two styles can coexist. Here, the migration brought the blog's components onto the newer conventions together.
+
+<br/>
+
+## Passing content with snippets
+
+The layout and page-transition wrapper previously rendered their nested content through slots. They now accept a `children` snippet and render it explicitly. The shared button component follows the same pattern.
+
+<br/>
+
+Article rendering changed too. The component produced by mdsvex is now typed using Svelte's `Component` type and rendered directly when it is present, rather than through `svelte:component`. This changes how the article enters the page, not how I write it: the `.svx` files and their frontmatter remain the content source.
+
+<br/>
+
+## Updating the controls around the articles
+
+The dependency updates included Bits UI, which moved from the older 0.x release line to 2.x. That needed changes to the components using it, not just a different version number.
+
+<br/>
+
+The date-order selector now uses a single-selection value and an `onValueChange` callback instead of passing a selected object. Its options render through a portal, and deselection is disabled so the control keeps a sorting order. The button wrapper also moved to the newer root props and bindable reference API.
+
+<br/>
+
+The mobile menu got a smaller but useful change. Previously, the hamburger kept a local copy of the open state while the menu used shared state. Now the hamburger binds directly to the shared value. Navigation and menu-link clicks set it to closed explicitly, rather than relying on a separate toggle path.
+
+<br/>
+
+On the SvelteKit side, the error page moved from `$app/stores` to `$app/state`, with derived status and error text. Internal navigation also uses the route resolver from `$app/paths`.
+
+<br/>
+
+## Tailwind was a separate migration
+
+Alongside the Svelte work, Tailwind CSS moved from version 3 to version 4. This is a separate tooling change, not something Svelte 5 requires.
+
+<br/>
+
+The stylesheet changed from `app.pcss` to `app.css`, and Tailwind now runs through its Vite plugin. Theme settings live in CSS, including fonts, breakpoints and mappings for the existing color variables.
+
+<br/>
+
+The less obvious part is the defaults. The new stylesheet explicitly carries forward details such as placeholder colors, button cursors and the previous container width behavior. A stylesheet can compile successfully while still making a familiar page look different, so configuration deserves attention beyond replacing the Tailwind import.
+
+<br/>
+
+The wider tooling update also moved Vite from 6 to 8 and TypeScript from 5 to 6. The project now declares Bun as its package manager and Node 24 as its Node runtime range. Those are choices for this repository, not a universal checklist for using Svelte 5.
+
+<br/>
+
+## Still a file-based blog
+
+The migration did not replace the publishing workflow with a CMS or move the articles into a database. It updated the components, controls and styling setup around the existing content.
+
+<br/>
+
+For a similar migration, I would separate three questions: which framework version is installed, which component APIs the code uses, and which surrounding dependencies have their own breaking changes. Then check the actual reader flows: searching, changing the sort order, moving between pages, opening an article and navigating on mobile. A successful build is useful, but it does not answer every one of those questions.
+
+<br/>
+
+I am not attaching a speed claim to this update; there is no before-and-after benchmark here. The concrete result is a blog implementation using the newer Svelte patterns while retaining its file-based content workflow.
+
+<br/>
+
+That is all for now. Stay healthy and keep coding!
+
+<br/>
+
+Greetings,
+
+Maciej
