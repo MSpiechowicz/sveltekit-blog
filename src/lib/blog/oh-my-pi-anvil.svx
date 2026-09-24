@@ -1,0 +1,86 @@
+---
+title: 'Oh My Pi Anvil: Verification Beyond the Agent Handoff'
+description: 'A look at how my Oh My Pi Anvil extension coordinates specialist agents, persists run evidence, and ties checks and reviews to the workspace revision they evaluated.'
+date: '09-24-2026'
+slug: oh-my-pi-anvil
+social:
+  mastodon: >-
+    An agent saying “done” is not the same as checking the revision it left behind. In Oh My Pi Anvil, I put the handoffs and correction loop in a persistent workflow: checks, security and review must refer to the current workspace revision. Here is how the pieces fit, and where that evidence has limits.
+  x: >-
+    Oh My Pi Anvil ties checks and reviews to the revision being delivered. A later source edit invalidates earlier passes and sends the work through the gates again. I wrote about the workflow and its limits.
+  linkedin: >-
+    Hello, I am sharing the design behind Oh My Pi Anvil, an extension for the Oh My Pi coding harness. Its Forge workflow separates planning, implementation, deterministic checks, security review and correctness review, with findings routed back for repair. Run state and evidence are persisted locally, while each gate is tied to the workspace revision it evaluated so a later source edit cannot inherit an old pass. The article also covers getting started and the limits of that evidence: configured checks need to be meaningful, local storage does not make model requests offline, and a completed run does not commit or push code for you.
+categories:
+  - technical
+---
+
+Hello there!
+
+<br/>
+
+A coding agent can hand over a change with a confident summary. The question I keep coming back to is more specific: **which revision did the checks and reviews actually inspect?** If the code changes after a pass, that pass no longer describes the work being delivered. That is the problem I wanted [Oh My Pi Anvil](https://github.com/MSpiechowicz/oh-my-pi-anvil) to organize around.
+
+<br/>
+
+Anvil is an extension for the [Oh My Pi](https://github.com/can1357/oh-my-pi) coding harness. Its `/forge` command takes a software objective through a persistent, managed workflow; `/anvil` handles configuration, diagnostics, run management and updates. The point is not to make an agent's last message sound more certain. It is to keep the workflow's state and evidence attached to the workspace revision under review.
+
+<br/>
+
+## Who does what in the Forge?
+
+The [Forge workflow](https://github.com/MSpiechowicz/oh-my-pi-anvil#the-forge) gives distinct jobs to distinct specialists. Architect plans the change and its acceptance criteria. Smith writes or repairs the code. Warden runs configured deterministic commands; it is a check runner, not another model asked whether the code looks fine. Sentinel inspects security, and Inquisitor reviews correctness and maintainability. Optional Scout reconnaissance can inform planning, while optional Archivist retention can curate lessons after the gates pass. Neither advisory role replaces a gate.
+
+<br/>
+
+TypeScript, rather than an agent's prose, owns the transitions between stages. Architect can split safe independent Smith tasks, but overlapping or dependent work stays sequential. The gates then inspect the combined current revision, not a partial batch of edits. If Warden fails or a reviewer raises a blocking finding, the work goes back for correction and through verification again. This makes the repair path part of the workflow rather than an informal follow-up to a completed handoff.
+
+<br/>
+
+## Evidence has to match the revision
+
+The [revision and gate rules](https://github.com/MSpiechowicz/oh-my-pi-anvil/blob/main/docs/configuration.md#revision-and-gate-behavior) are the part I care about most. Anvil fingerprints the workspace using Git and untracked-file information. After a source mutation, previous gate passes are invalidated; Warden runs again before security and correctness review. The project documentation describes narrower reuse for verification-only work when the revision, policy and recorded evidence dependencies still match. That distinction matters: a passing result is evidence about a particular state, not a transferable badge for whatever happens to be on disk later.
+
+<br/>
+
+A run's state lives in local SQLite, with plans, check results, reviewer reports and other evidence in run artifacts under `.anvil/` by default. Persisting them makes the correction history inspectable and supports resuming a paused or interrupted run. It does not turn a model's claim into proof: Smith's verification report is distinguished from Warden's command results, and the usefulness of any check still depends on what that command actually covers.
+
+<br/>
+
+The [configuration guide](https://github.com/MSpiechowicz/oh-my-pi-anvil/blob/main/docs/configuration.md#warden-verification-requirements) explains another important boundary. Anvil can discover supported verification scripts from project manifests when no checks are configured. If the effective check list remains empty, it stops before model work rather than treating no checks as a pass. For a project with unusual tooling, I would configure appropriate executable checks explicitly. Browser or manual acceptance evidence is not silently converted into a Warden command.
+
+<br/>
+
+## Getting started
+
+With Oh My Pi installed and `omp` available on your `PATH`, run these commands **in your terminal**, in order:
+
+- `omp plugin marketplace add MSpiechowicz/oh-my-pi-anvil`
+- `omp plugin install oh-my-pi-anvil@omp-anvil --scope user`
+
+Open a new OMP session or restart OMP to load the extension. Run these **inside OMP**, not in your terminal:
+
+- `/anvil doctor`
+- `/anvil init`
+- `/forge "Add a focused change to this repository"`
+
+`/anvil doctor` checks the installation. `/anvil init` is optional if you want an editable `.omp/anvil.yml` project overlay; the first new session creates a global settings template when one is missing. Review the effective checks and agent settings before asking Forge to make a change. The [installation instructions](https://github.com/MSpiechowicz/oh-my-pi-anvil#installation) and [configuration reference](https://github.com/MSpiechowicz/oh-my-pi-anvil/blob/main/docs/configuration.md) give the fuller setup details.
+
+<br/>
+
+## What a sealed run does not promise
+
+Anvil's [data-storage notes](https://github.com/MSpiechowicz/oh-my-pi-anvil#data-storage-and-privacy) are worth reading before using it on sensitive work. Local SQLite and artifacts do not mean an offline run: OMP sends supplied context and tool results to the selected model provider, and configured tools or checks may use the network. Reviewer instructions restrict changes, but their general-purpose tools are not a security sandbox. A sealed run means the documented gates passed for the recorded revision and policy; it is not a guarantee that every defect or security issue was found. Anvil also does not automatically stage, commit or push your changes.
+
+<br/>
+
+I like having a concrete place to inspect what happened between a proposed change and a delivered revision. If you try Anvil, start with checks that matter for your repository and read the findings and artifacts alongside the final result. The handoff is only the end of the conversation; the evidence tells you what was actually checked.
+
+<br/>
+
+That is all for now. Stay healthy and keep coding!
+
+<br/>
+
+Greetings,
+
+Maciej

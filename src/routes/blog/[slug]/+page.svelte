@@ -65,7 +65,7 @@
 </svelte:head>
 
 <article class="flex justify-center">
-	<div class="mt-4 md:mt-12">
+	<div class="mt-4 w-full min-w-0 max-w-[800px] sm:px-4 md:mt-12 lg:px-0">
 		<BlogSlugHeader {data} />
 		<BlogSlugDate
 			{data}

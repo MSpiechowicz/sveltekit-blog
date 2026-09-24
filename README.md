@@ -55,6 +55,8 @@ With Node.js 24, `VERCEL=1 bun run build` also verifies the installed Vercel ada
 
 The content of this blog is stored in the `src/lib/blog` directory. You can add new blog posts by creating a new `.svx` file in that directory.
 
+Article detail pages keep the title and prose in the same centered column, up to 800px wide, which narrows naturally on smaller screens.
+
 Article pages include server-rendered Open Graph and X card metadata using the post's `title`, `description`, and canonical URL. Add optional `image` and `imageAlt` frontmatter to choose an article-specific preview; otherwise the site logo is used. Store local preview images in `static/images/` and reference them as `/images/filename.png`. Image URLs are resolved against the configured site URL so social crawlers receive absolute URLs.
 
 The Oh My Pi Usage Dashboard preview comes from that project's `docs/assets/dashboard.png` and shows synthetic usage data, not live account readings. Social platforms cache link cards, so deploying metadata changes may not immediately refresh cards on existing posts. Updating an existing article's image or description does not trigger another automatic announcement.
