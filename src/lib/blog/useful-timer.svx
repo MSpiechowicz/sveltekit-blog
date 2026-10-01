@@ -1,0 +1,102 @@
+---
+title: 'Useful Timer: a countdown with a little character'
+description: 'Useful Timer is my small desktop countdown app, with eight animated styles, multiple independent timers, local settings, and reduced-motion controls.'
+date: '10-01-2026'
+slug: useful-timer
+image: /images/useful-timer-styles.png
+imageAlt: 'The eight Useful Timer styles: Bomb, Hourglass, Rocket, Code Rain, Machine Core, Dragon Orb, Crescent Wand, and Clockwork Bloom.'
+social:
+  mastodon: >-
+    A countdown does not have to be just digits. Useful Timer is my small desktop app with eight animated styles, from a burning fuse to a porcelain-and-gold flower. Run several timers, move them around your screen, or turn down the motion and sound.
+  x: >-
+    Useful Timer puts animated countdowns on your desktop: a burning fuse, falling sand, a rocket launch and more. Eight styles, multiple timers, local settings and reduced motion.
+  linkedin: >-
+    Hello, here is a small desktop project where I focused on the visual details: Useful Timer. It combines independent countdowns with eight animated styles, including a burning fuse, a draining hourglass and a porcelain-and-gold flower that opens as time runs out. Timers can be named, moved and locked in place, with individual sound controls and a reduced-motion option; settings stay on your computer without an account. The article introduces the artwork and everyday controls, and explains the current platform limits: Linux desktop behavior is verified, while Windows and macOS builds still need native testing.
+categories:
+  - technical
+---
+
+Hello there! 👋
+
+<br/>
+
+I created [Useful Timer](https://github.com/MSpiechowicz/useful-timer), a small desktop app for animated countdowns. Set a timer for work, a break, cooking, or whatever needs a deadline, and keep it on your screen. The countdown is still the point, but it does not have to be just a number in a box.
+
+<br/>
+
+For this project, I focused on detailed artwork and polished animation. A burning fuse, falling sand, or a flower slowly opening gives the passing time a little character, while the remaining time stays visible.
+
+<br/>
+
+## Eight ways to watch time pass
+
+The app currently has eight styles, each with its own animation and completion sound. They are not simply different colors around the same clock:
+
+- **Bomb** burns down its fuse, then finishes with sparks and smoke.
+- **Hourglass** drains its sand and flips over when the countdown ends.
+- **Rocket** counts down to a launch and flies out of view.
+- **Code Rain** surrounds the countdown with streaming green characters.
+- **Machine Core** rotates metallic rings around a glowing red lens.
+- **Dragon Orb** gently turns a golden glass orb with four red stars.
+- **Crescent Wand** floats with falling sparkles and lights up at the crystal when time is up.
+- **Clockwork Bloom** opens its porcelain-and-gold petals as time runs out.
+
+<br/>
+
+![The eight Useful Timer artwork choices, shown in the Linux app.](/images/useful-timer-styles.png)
+
+<br/>
+
+You can switch a timer's artwork without restarting its countdown. The visual style is a choice, not a reason to lose the time already elapsed.
+
+<br/>
+
+## More than one timer, without more accounts
+
+You can run several timers at once, each with its own name and sound. Drag them around the desktop, resize them, or lock them in place. Right-click the artwork or title to start, pause, resume, reset, or remove a timer.
+
+<br/>
+
+The control panel keeps your timers together and lets you change their settings. Enter hours, minutes, and seconds, pick a duration preset, or save your preferred duration as the default for new timers. If a running or paused countdown needs a little more time, use **Adjust remaining time**. Changing its configured **Duration** instead resets it to the new full duration.
+
+<br/>
+
+![Useful Timer's Linux control panel, with a three-minute countdown and Start and Reset controls.](/images/useful-timer-workspace.png)
+
+<br/>
+
+Animation should also be optional when it becomes distracting. **Reduced motion** keeps time and progress visible with less animation, and each timer has volume and mute controls for its completion sound. The control panel offers two dark themes: the blue-accented **GitHub** theme and the warmer **Charcoal** theme.
+
+<br/>
+
+## Local settings, with a few important boundaries
+
+Useful Timer is built in Rust with egui/eframe. Timers, positions, movement locks, theme, and your preferred new-timer duration are saved on your computer. There is no account, analytics, or cloud sync, and countdowns work offline.
+
+<br/>
+
+Saved settings are not saved countdown progress, though. Reopening the app restores timers stopped at their full duration, and closing the control panel quits all timers. They do not keep running in the background. The app also checks GitHub for updates at startup, so offline countdowns do not mean the app never makes a network request.
+
+<br/>
+
+## Give it a try
+
+You can [download the latest release](https://github.com/MSpiechowicz/useful-timer/releases/latest) without installing Rust. Open the app, choose **+ New timer**, give it a name and artwork, set the duration, and select **Create timer**. Then press **Start**.
+
+<br/>
+
+Desktop behavior has been verified on Linux. Windows, Intel Mac, and Apple Silicon Mac builds are available, but their desktop behavior still needs native testing. Linux downloads require a 64-bit Intel/AMD system with glibc 2.39 or newer; desktop widgets use X11 or XWayland, not native Wayland, and their placement and always-on-top behavior depend on the window manager. Releases are unsigned, so Windows and macOS may show security warnings.
+
+<br/>
+
+The [repository and installation guide](https://github.com/MSpiechowicz/useful-timer) have the full setup details and source code under GPL-3.0-only. If you try it, feedback about the animations and desktop behavior is welcome.
+
+<br/>
+
+That is all for now. Stay healthy and keep coding!
+
+<br/>
+
+Greetings,
+
+Maciej
