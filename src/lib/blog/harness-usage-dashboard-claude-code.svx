@@ -1,0 +1,120 @@
+---
+title: 'Harness Usage Dashboard: now in Claude Code too'
+description: 'The usage dashboard I wrote for Oh My Pi has a new name and a second host: a native Claude Code plugin with a token chart, local session history, and rate-limit windows in a Pane.'
+date: '10-05-2026'
+slug: harness-usage-dashboard-claude-code
+social:
+  mastodon: >-
+    My Oh My Pi usage dashboard has a new name, Harness Usage Dashboard, and a second host. In Claude Code it is now built on the new mods: a read-only Pane with the token chart, local session history and rate-limit windows, no tmux or shell wrapper needed. Successful live accounting is still unverified, and the post explains why.
+  x: >-
+    The usage dashboard I wrote for Oh My Pi now runs in Claude Code, built on its new mods: token chart, local history and 5h/7d limits in a native Pane. Live accounting is not verified yet.
+  linkedin: >-
+    Hello, a follow-up on a terminal tool I wrote about last month. The usage dashboard for the Oh My Pi coding harness is now Harness Usage Dashboard, because it also supports Claude Code. That integration is built on Claude Code's new mods, which let a plugin register its own command, open a native Pane and receive usage reports through JavaScript hooks, replacing my earlier shell-wrapper approach. Instead of a tmux sidebar, Claude Code gets a read-only Pane with the same token-rate chart, session totals and project history, plus the 5-hour and 7-day limit windows that Claude reports during a session. Usage is recorded from the host's own completed-request reports, never estimated from transcripts, and each host keeps its own local SQLite database. The article is also clear about what is still unverified: successful live Claude accounting, Claude Desktop rendering and macOS behavior.
+categories:
+  - technical
+---
+
+Hello there!
+
+<br/>
+
+In September I wrote about a [usage dashboard for Oh My Pi](/blog/oh-my-pi-usage-dashboard): a tmux sidebar with live token charts, session history, and provider allowances. A few weeks later, the project has a new name, [Harness Usage Dashboard](https://github.com/MSpiechowicz/harness-usage-dashboard), and a second host. It now also runs inside Claude Code as a native plugin.
+
+<br/>
+
+The rename is the honest version of what changed. The dashboard is no longer tied to a single coding harness, so the name should not be either.
+
+<br/>
+
+## Two hosts, two integrations
+
+OMP still gets the same tmux sidebar. Claude Code works differently: the plugin opens a native Pane, and Claude decides where it goes. It can sit docked beside the conversation and switch to inline when the window is resized. There is no tmux, no curses, and no shell wrapper on this path. You need Claude CLI 2.1.287 or later with native mods enabled, plus Python 3.10 or newer.
+
+<br/>
+
+## Built on Claude Code mods
+
+The Claude Code side is built on mods, Claude Code's new way to extend the CLI from inside. A mod is a plugin that ships a JavaScript module with function hooks, and Claude loads it alongside the session. Through those hooks, the dashboard registers its own `/usage-dashboard` command, opens and refreshes its Pane, and receives the usage Claude reports for each completed step.
+
+<br/>
+
+That replaced my first attempt. The earlier Claude integration wrapped the `claude` command in a shell function and added a personal skill to handle the dashboard commands. It worked, but it sat outside the host and had to guess at what was happening inside it. With a mod, the dashboard runs where the events happen, and the command is answered directly instead of being passed through the model. During development, `/reload-plugins` reloads the mod's hooks without losing the recorded session. The mod passes only an allowlist of numeric counters and labels to a small local Python helper, which stores them in the SQLite history.
+
+<br/>
+
+The two integrations share the chart, formatting, and preference code, but not their data. Claude Code keeps its history in `~/.claude/usage-dashboard/`, physically separate from every OMP profile database. Neither host reads or merges the other's session tokens. This matters because OMP's `anthropic` provider view and a Claude Code session are not the same measurement, and adding them together would only produce a misleading number.
+
+<br/>
+
+## What the Claude Code Pane shows
+
+The Pane is a read-only display. It shows the familiar 20-minute token-rate chart, current and previous session totals, other sessions in the same project, and the project total. A **CLAUDE** section shows the 5-hour and 7-day limit windows when Claude reports them during the current session.
+
+<br/>
+
+Usage comes from Claude's native reports of completed steps, including subagents and compaction. Repeated reports of the same request are counted once. The plugin does not read transcripts, prompts, or responses, and it does not estimate usage from elapsed time or allowance changes. If a report is missing, coverage is shown as unknown rather than as zero. Until the first report arrives, the chart frame stays visible with **Awaiting native usage**, and the session total stays unknown.
+
+<br/>
+
+Limit windows work the same way. They come from the rate-limit readings Claude reports during the session, and the dashboard does not poll an account API to refresh them. When a reading gets old, the Pane shows how long ago it was updated. Unlike OMP, there is no account-level history of quota changes for Claude Code, because the integration has no stable account identity to attach it to.
+
+<br/>
+
+Settings live in a separate pane. Typing `/usage-dashboard` opens **Dashboard Settings** with one picker per option: view, theme, chart style, and visibility for each section. Arrow keys move, Enter picks, and Esc closes it. Every choice is saved immediately. This pane replaced an earlier popup menu that could only show a few choices at a time and needed **Next** and **Back** paging. Direct commands such as `/usage-dashboard view details` or `/usage-dashboard chart trace` still work.
+
+<br/>
+
+## Smaller changes since September
+
+A few improvements apply to both hosts. The token chart now has three styles: the original **bars**, sparse **dots**, and a connected Braille **trace** line. There is a ninth palette, `claude`, inspired by Anthropic's published brand colors, and the blue palette got brighter. You can hide the previous session, the two history sections, and the commands footer separately.
+
+<br/>
+
+On the OMP side, inline images in a tmux session now use native SIXEL when tmux and every attached client support it. The dashboard keeps tmux's raw passthrough disabled, so images stay inside their pane instead of drawing over the sidebar after a resize.
+
+<br/>
+
+## What has not been verified yet
+
+This part matters as much as the features. Offline tests and seeded local reports cover the Claude Code accounting logic, but a successful live run of main, subagent, retry, and compaction accounting has not been verified. The latest live request in my testing failed with an expired OAuth token. Claude Desktop rendering and macOS behavior are also unverified. Linux is verified for OMP and for Claude's terminal Pane.
+
+<br/>
+
+Codex CLI is not supported. The code now has a small host-adapter layer that makes another host possible, but that is a plan, not a feature.
+
+<br/>
+
+As before, these numbers are observed reports, not exact subscription billing.
+
+<br/>
+
+## Give it a try
+
+For Claude Code, register the marketplace and install the plugin:
+
+```sh
+command claude plugin marketplace add MSpiechowicz/harness-usage-dashboard
+command claude plugin install harness-usage-dashboard@harness-usage-dashboard --scope user
+```
+
+<br/>
+
+Restart Claude and check that the plugin is enabled in `/plugin`. Workspace trust, safe mode, disabled hooks, or an organization's mod policy can prevent it from loading. If you used the earlier shell-wrapper version of the Claude integration, run the migration first: `python3 claude_migrate.py` previews what it would remove, `--apply` removes it, and your recorded history and preferences are kept.
+
+<br/>
+
+OMP users who installed the dashboard under its old name need to remove the previous extension and install `harness-usage-dashboard` instead. The [installation guide](https://github.com/MSpiechowicz/harness-usage-dashboard#installation) covers both hosts, the migration, and the local checkout setup for development.
+
+<br/>
+
+The project is available under the GPL-3.0 license. If you try the Claude Code integration, I would especially like to hear whether live accounting works for your account. Issues and contributions are welcome on [GitHub](https://github.com/MSpiechowicz/harness-usage-dashboard).
+
+<br/>
+
+That is all for now. Stay healthy and keep coding!
+
+<br/>
+
+Greetings,
+
+Maciej
