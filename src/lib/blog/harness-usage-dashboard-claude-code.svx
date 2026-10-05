@@ -5,11 +5,11 @@ date: '10-05-2026'
 slug: harness-usage-dashboard-claude-code
 social:
   mastodon: >-
-    My Oh My Pi usage dashboard has a new name, Harness Usage Dashboard, and a second host. Claude Code now gets a native plugin: a read-only Pane with the token chart, local session history and rate-limit windows, no tmux needed. Successful live accounting is still unverified, and the post explains why.
+    My Oh My Pi usage dashboard has a new name, Harness Usage Dashboard, and a second host. In Claude Code it is now built on the new mods: a read-only Pane with the token chart, local session history and rate-limit windows, no tmux or shell wrapper needed. Successful live accounting is still unverified, and the post explains why.
   x: >-
-    The usage dashboard I wrote for Oh My Pi now runs in Claude Code as a native plugin: token chart, local history and 5h/7d limits in a Pane. Live accounting is not verified yet.
+    The usage dashboard I wrote for Oh My Pi now runs in Claude Code, built on its new mods: token chart, local history and 5h/7d limits in a native Pane. Live accounting is not verified yet.
   linkedin: >-
-    Hello, a follow-up on a terminal tool I wrote about last month. The usage dashboard for the Oh My Pi coding harness is now Harness Usage Dashboard, because it also supports Claude Code through a native plugin. Instead of a tmux sidebar, Claude Code gets a read-only Pane with the same token-rate chart, session totals and project history, plus the 5-hour and 7-day limit windows that Claude reports during a session. Usage is recorded from the host's own completed-request reports, never estimated from transcripts, and each host keeps its own local SQLite database. The article also describes the new chart styles and palettes, and is clear about what is still unverified: successful live Claude accounting, Claude Desktop rendering and macOS behavior.
+    Hello, a follow-up on a terminal tool I wrote about last month. The usage dashboard for the Oh My Pi coding harness is now Harness Usage Dashboard, because it also supports Claude Code. That integration is built on Claude Code's new mods, which let a plugin register its own command, open a native Pane and receive usage reports through JavaScript hooks, replacing my earlier shell-wrapper approach. Instead of a tmux sidebar, Claude Code gets a read-only Pane with the same token-rate chart, session totals and project history, plus the 5-hour and 7-day limit windows that Claude reports during a session. Usage is recorded from the host's own completed-request reports, never estimated from transcripts, and each host keeps its own local SQLite database. The article is also clear about what is still unverified: successful live Claude accounting, Claude Desktop rendering and macOS behavior.
 categories:
   - technical
 ---
@@ -29,6 +29,16 @@ The rename is the honest version of what changed. The dashboard is no longer tie
 ## Two hosts, two integrations
 
 OMP still gets the same tmux sidebar. Claude Code works differently: the plugin opens a native Pane, and Claude decides where it goes. It can sit docked beside the conversation and switch to inline when the window is resized. There is no tmux, no curses, and no shell wrapper on this path. You need Claude CLI 2.1.287 or later with native mods enabled, plus Python 3.10 or newer.
+
+<br/>
+
+## Built on Claude Code mods
+
+The Claude Code side is built on mods, Claude Code's new way to extend the CLI from inside. A mod is a plugin that ships a JavaScript module with function hooks, and Claude loads it alongside the session. Through those hooks, the dashboard registers its own `/usage-dashboard` command, opens and refreshes its Pane, and receives the usage Claude reports for each completed step.
+
+<br/>
+
+That replaced my first attempt. The earlier Claude integration wrapped the `claude` command in a shell function and added a personal skill to handle the dashboard commands. It worked, but it sat outside the host and had to guess at what was happening inside it. With a mod, the dashboard runs where the events happen, and the command is answered directly instead of being passed through the model. During development, `/reload-plugins` reloads the mod's hooks without losing the recorded session. The mod passes only an allowlist of numeric counters and labels to a small local Python helper, which stores them in the SQLite history.
 
 <br/>
 
