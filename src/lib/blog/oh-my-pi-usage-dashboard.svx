@@ -20,7 +20,7 @@ Hello there!
 
 <br/>
 
-I recently created [Harness Usage Dashboard](https://github.com/MSpiechowicz/harness-usage-dashboard), an open-source integration for the [Oh My Pi](https://github.com/can1357/oh-my-pi) coding harness. It puts live token activity, session history, and provider allowances in a tmux sidebar next to your conversation. The idea is simple: keep that information visible without leaving the terminal or interrupting the work.
+I recently created [Harness Usage Dashboard](https://github.com/MSpiechowicz/harness-useful-sidebar), an open-source integration for the [Oh My Pi](https://github.com/can1357/oh-my-pi) coding harness. It puts live token activity, session history, and provider allowances in a tmux sidebar next to your conversation. The idea is simple: keep that information visible without leaving the terminal or interrupting the work.
 
 <br/>
 
@@ -64,7 +64,7 @@ You need OMP with `omp usage` support, Python 3.10 or newer with curses and SQLi
 
 <br/>
 
-The [installation guide](https://github.com/MSpiechowicz/harness-usage-dashboard#installation) covers installation through OMP's marketplace and the alternative source-checkout setup. Marketplace installations support managed updates through OMP. After installing and opening a new shell, run `omp` as usual.
+The [installation guide](https://github.com/MSpiechowicz/harness-useful-sidebar#installation) covers installation through OMP's marketplace and the alternative source-checkout setup. Marketplace installations support managed updates through OMP. After installing and opening a new shell, run `omp` as usual.
 
 <br/>
 
@@ -72,7 +72,7 @@ Fresh installations start with no providers selected. Inside OMP, open `/usage-d
 
 <br/>
 
-The project is available under the GPL-3.0 license. If you use Oh My Pi and want a clearer view of your usage while working, check out the [repository and documentation on GitHub](https://github.com/MSpiechowicz/harness-usage-dashboard). Feedback, issues, and contributions are welcome.
+The project is available under the GPL-3.0 license. If you use Oh My Pi and want a clearer view of your usage while working, check out the [repository and documentation on GitHub](https://github.com/MSpiechowicz/harness-useful-sidebar). Feedback, issues, and contributions are welcome.
 
 <br/>
 
