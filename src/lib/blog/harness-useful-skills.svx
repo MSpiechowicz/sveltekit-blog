@@ -1,0 +1,107 @@
+---
+title: 'Harness Useful Skills: a workflow written as skills'
+description: 'Harness Useful Skills is a set of us-* skills for Oh My Pi and Claude Code that take a natural-language request through research, planning, implementation, review and project memory, without a separate workflow executor.'
+date: '10-09-2026'
+slug: harness-useful-skills
+social:
+  mastodon: >-
+    After writing a workflow engine for Oh My Pi, I tried the opposite approach. Harness Useful Skills has no executor: 17 us-* skills guide the agent through research, planning, implementation, reviews and memory. It runs in both OMP and Claude Code, with no install step beyond the marketplace.
+  x: >-
+    Harness Useful Skills: 17 us-* skills for Oh My Pi and Claude Code that guide an agent from request to review and project memory, with no workflow executor. Just ask in plain language.
+  linkedin: >-
+    Hello, this article looks at a different way to structure coding-agent work: Harness Useful Skills, a set of us-* skills for the Oh My Pi harness and Claude Code. Instead of a workflow engine, the host discovers skill descriptions and the model follows the relevant one, moving a natural-language request through research, an approved plan, classified implementation workers and fresh correctness and security reviews, or through a smaller focused-repair lane for bounded fixes. It also covers read-only audits, explicitly authorized pull request delivery, and project memory that keeps saved facts separate from a Graphify code graph. Because it needs no npm dependencies, build step or extra host configuration, adding it to an existing OMP or Claude Code setup takes two marketplace commands, and both hosts get the same stage switches and their own memory tools.
+categories:
+  - technical
+---
+
+Hello there!
+
+<br/>
+
+In September I wrote about [Oh My Pi Anvil](/blog/oh-my-pi-anvil), where TypeScript owns every transition between planning, implementation, checks and reviews. [Harness Useful Skills](https://github.com/MSpiechowicz/harness-useful-skills) takes the opposite approach. It has **no workflow executor, model router, phase database or stop-hook loop**. It is a set of owned `us-*` skills: the host discovers their descriptions, and the model follows the relevant instructions with the host's own tools and workers.
+
+<br/>
+
+The goal is the same, getting from a natural-language request to reviewed, verified work. What changes is where the process lives. Here it lives in instructions that the agent reads, not in code that drives the agent.
+
+<br/>
+
+## From a request to reviewed work
+
+You ask naturally, for example "I want to build a rocket simulator." Before choosing any stages, `us-workflow` inspects the current source, relevant callers, acceptance criteria, authorization and risk, then briefly explains which lane it picked.
+
+<br/>
+
+New or material behavior, architecture changes, uncertain scope and security-sensitive work use the **normal lane**. It runs research, has the bundled `planner` draft a plan, and asks for one approval. Implementation then goes to classified workers: `frontend`, `backend`, or a general task for work that is genuinely neither. Fresh correctness and security reviews follow. Findings return to repair within the approved scope, and three unsuccessful repair rounds stop the loop with the work kept and the blocker reported.
+
+<br/>
+
+A clear, bounded, low-risk correction can take the **focused repair** lane instead. It still requires current source inspection, an authorized scoped fix, verification of the changed path and a truthful report, but it does not restart the whole cycle. Size, urgency or "it was already delivered" alone does not qualify a change for this lane. Skipped stages are reported as skipped, never as complete.
+
+<br/>
+
+## Settings you can switch off
+
+The workflow can be disabled per repository with `/useful-skills workflow disabled`. That gives a fast lane that still inspects the code, makes the change, exercises it and reports the evidence, but skips the mandatory stages. Six profile-wide switches control the individual stages: research, plan, review, security review, and the two memory stages. For a single request, invoking `us-ignore-workflow` directly bypasses the stages without changing any saved setting. Quoted or copied text does not count as that invocation.
+
+<br/>
+
+Besides the development flow, there are focused skills for read-only security, performance and code-quality audits, architecture and test-coverage improvements, and delivery. `us-open-pr`, `us-approve-work` and `us-ship-backlog-item` deliver through a feature branch and a pull request. They need explicit authorization: plan approval does not authorize publication, and none of them pushes directly to the base branch or merges a pull request. A backlog item is marked Done only after its pull request is confirmed merged.
+
+<br/>
+
+## Two kinds of memory
+
+Memory is split on purpose. **Facts** explain decisions and lessons. A **code graph** built with [Graphify](https://github.com/Graphify-Labs/graphify) maps relationships between files and symbols. Neither replaces the other. In OMP, one `us_memory` tool covers both: facts go to OMP's native memory backend, with Mnemopi recommended for local SQLite storage, and the graph is stored per project outside the checkout.
+
+<br/>
+
+Graphify setup is lazy. Nothing is installed or built when a session starts, only on an explicit build or query. Its managed dependencies are pinned and checksum-verified, and builds run a scope guard first: a workspace that is `/`, is or contains a home directory, or contains nested mounts is refused. Fact saves that look like secrets are rejected before they are stored.
+
+<br/>
+
+## Claude Code too
+
+The same repository also works as a Claude Code marketplace, so one project covers both hosts. There, Claude gets 17 namespaced skills such as `/useful-skills:us-workflow` and seven native agents, from `planner` to `security-reviewer`. The models for those roles come from `~/.claude/useful-skills/models.yml`. On each session start, a hook generates `us-*` agents with the configured model and effort, so every role can run on the model that suits it.
+
+<br/>
+
+Memory is separate in Claude Code: a local MCP server provides `memory_status`, `memory_search`, `memory_save`, `graph_build` and `graph_query`. Its facts are stored as private project files. `/useful-skills` also opens a menu for settings, status and the doctor, which can prepare memory for the project.
+
+<br/>
+
+## Give it a try
+
+With Oh My Pi and Node.js 22 or newer, run these commands in your terminal:
+
+```sh
+omp plugin marketplace add MSpiechowicz/harness-useful-skills
+omp plugin install harness-useful-skills@harness-useful-skills --scope user
+```
+
+<br/>
+
+For Claude Code, add the same repository as a marketplace and install the plugin, whose ID stays `useful-skills@useful-skills-local`:
+
+```sh
+claude plugin marketplace add MSpiechowicz/harness-useful-skills
+claude plugin install useful-skills@useful-skills-local --scope user
+```
+
+<br/>
+
+Restart the host after installation, and that is it. I have tested it on macOS with both OMP and Claude Code. The [installation guide](https://github.com/MSpiechowicz/harness-useful-skills#installation) also covers project scope and local development.
+
+<br/>
+
+The project is available under the GPL-3.0 license, and its skills draw on reviewed prompt practices from several open-source projects credited in the repository. If you try it, I would like to hear how the workflow fits your repositories. Issues and contributions are welcome on [GitHub](https://github.com/MSpiechowicz/harness-useful-skills).
+
+<br/>
+
+That is all for now. Stay healthy and keep coding!
+
+<br/>
+
+Greetings,
+
+Maciej
