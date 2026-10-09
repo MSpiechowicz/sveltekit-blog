@@ -18,7 +18,7 @@ Hello there!
 
 <br/>
 
-In September I wrote about a [usage dashboard for Oh My Pi](/blog/oh-my-pi-usage-dashboard): a tmux sidebar with live token charts, session history, and provider allowances. A few weeks later, the project has a new name, [Harness Usage Dashboard](https://github.com/MSpiechowicz/harness-usage-dashboard), and a second host. It now also runs inside Claude Code as a native plugin.
+In September I wrote about a [usage dashboard for Oh My Pi](/blog/oh-my-pi-usage-dashboard): a tmux sidebar with live token charts, session history, and provider allowances. A few weeks later, the project has a new name, [Harness Usage Dashboard](https://github.com/MSpiechowicz/harness-useful-sidebar), and a second host. It now also runs inside Claude Code as a native plugin.
 
 <br/>
 
@@ -93,8 +93,8 @@ As before, these numbers are observed reports, not exact subscription billing.
 For Claude Code, register the marketplace and install the plugin:
 
 ```sh
-command claude plugin marketplace add MSpiechowicz/harness-usage-dashboard
-command claude plugin install harness-usage-dashboard@harness-usage-dashboard --scope user
+command claude plugin marketplace add MSpiechowicz/harness-useful-sidebar
+command claude plugin install harness-useful-sidebar@harness-useful-sidebar --scope user
 ```
 
 <br/>
@@ -103,11 +103,11 @@ Restart Claude and check that the plugin is enabled in `/plugin`. Workspace trus
 
 <br/>
 
-OMP users who installed the dashboard under its old name need to remove the previous extension and install `harness-usage-dashboard` instead. The [installation guide](https://github.com/MSpiechowicz/harness-usage-dashboard#installation) covers both hosts, the migration, and the local checkout setup for development.
+OMP users who installed the dashboard under its old name need to remove the previous extension and install `harness-useful-sidebar` instead. The [installation guide](https://github.com/MSpiechowicz/harness-useful-sidebar#installation) covers both hosts, the migration, and the local checkout setup for development.
 
 <br/>
 
-The project is available under the GPL-3.0 license. If you try the Claude Code integration, I would especially like to hear whether live accounting works for your account. Issues and contributions are welcome on [GitHub](https://github.com/MSpiechowicz/harness-usage-dashboard).
+The project is available under the GPL-3.0 license. If you try the Claude Code integration, I would especially like to hear whether live accounting works for your account. Issues and contributions are welcome on [GitHub](https://github.com/MSpiechowicz/harness-useful-sidebar).
 
 <br/>
 
