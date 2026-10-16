@@ -1,0 +1,121 @@
+---
+title: 'Harness Dashboard: token usage across every coding agent'
+description: 'Harness Dashboard is a local desktop app that reads the session logs of Claude Code, Codex, Gemini CLI, Copilot CLI, OpenCode, omp, pi, Zed, Cline, Roo Code, Kilo Code and Cursor, and charts where your tokens and money go.'
+date: '10-16-2026'
+slug: harness-dashboard
+image: /images/harness-dashboard-overview.png
+imageAlt: 'Harness Dashboard overview with cost and token KPIs, usage over time, top projects and models, using demo data.'
+social:
+  mastodon: >-
+    The tmux sidebar answers "what is this session using?". Harness Dashboard asks the wider question: across Claude Code, Codex, Gemini CLI, Copilot CLI, OpenCode, omp, Zed, Cursor and more, where do my tokens go? It collects their usage in a local SQLite database, mostly from logs they already write. There is a one-minute video tour too.
+  x: >-
+    Harness Dashboard: one local desktop app for token usage and API-equivalent cost across Claude Code, Codex, Gemini CLI, Copilot CLI, OpenCode, omp, Cursor and more. Nothing is uploaded.
+  linkedin: >-
+    Hello, when several coding agents share your day, their usage ends up spread across as many log formats and plan pages. Harness Dashboard is my attempt to put it in one place: a local desktop app that reads the session logs Claude Code, Codex, Gemini CLI, GitHub Copilot CLI, OpenCode, omp, pi, Zed and the Cline, Roo Code and Kilo Code extensions already write, plus Cursor usage, into a SQLite database on your machine. From there it breaks tokens and API-equivalent cost down by project, model, skill, agent, branch, session and individual prompt, including the subagents a prompt started. The article explains how those numbers are computed and where they stop being exact, since subscription plans do not bill at API list prices. It also covers budgets, plan limits, an MCP server for agents, and a one-minute video tour made with demo data.
+categories:
+  - technical
+---
+
+Hello there!
+
+<br/>
+
+In September I wrote about a [usage dashboard for Oh My Pi](/blog/oh-my-pi-usage-dashboard), and in October it [moved into Claude Code](/blog/harness-usage-dashboard-claude-code) as a native pane. That tool answers one question well: what is this session using right now? It does not answer the question that came after it. Across all the agents I use in a week, where do the tokens and the money actually go?
+
+<br/>
+
+[Harness Dashboard](https://github.com/MSpiechowicz/harness-useful-dashboard) is my answer to that one. It is a desktop app that reads the session logs your coding agents already write to disk, keeps them in a local SQLite database, and turns them into interactive charts. The quickest way to see it is the **one-minute video tour** in the [README](https://github.com/MSpiechowicz/harness-useful-dashboard#harness-dashboard): where the tokens go, one prompt in full, trimming an expensive skill, and the settings. It was made with demo data, and there is also a [full-quality download](https://raw.githubusercontent.com/MSpiechowicz/harness-useful-dashboard/main/docs/video/harness-dashboard-tour.mp4) (21 MB, with sound).
+
+<br/>
+
+## One app, many harnesses
+
+The dashboard reads **Claude Code, Codex, Gemini CLI, GitHub Copilot CLI, OpenCode, pi, omp, Zed**, and the **Cline, Roo Code and Kilo Code** extensions straight from the files and databases they keep. Cursor keeps its usage on its servers, so it comes either from an opt-in sync with cursor.com or from its CSV export. Agents on other machines, such as Claude Code with its own telemetry or Hermes Agent, can send their usage over OTLP to a receiving port that is off by default.
+
+<br/>
+
+Ingestion is incremental. Each scan reads only the bytes appended since the last one, so a rescan is quick, and the running app does it every 30 seconds. Support is not equally deep everywhere, and the README is specific about it. Zed keeps one running total per thread, so a thread counts as a single row. Copilot CLI's session database is undocumented, so reading it is best effort and was tested with made-up data only.
+
+<br/>
+
+## Where the tokens go
+
+The **Overview** shows tokens, API-equivalent cost, sessions, prompts and cache hit rate against the previous period. From there, every dimension is also a filter: project, user, model, provider, skill, agent, session and prompt. A flow chart follows the money from tool to model to project, and each breakdown page draws a network of what used what.
+
+<br/>
+
+The part I find most useful is the prompt level. Each human prompt starts a turn, and every model call until the next prompt is attributed to it, **including the subagents it spawned**. That makes it possible to open one request and see what it really consumed, call by call. Skills work the same way: from the moment a skill is invoked until the next prompt, the calls count toward that skill, which is how the video ends up trimming an expensive one.
+
+<br/>
+
+Work can also be measured by its result. **Branches** shows what each git branch cost, with the lines the agents' edits changed and the commits and pull requests they made, all read from the agents' own logs without running git. Edits made by hand or by shell commands are not counted, so the cost per 100 changed lines covers agent edits only.
+
+<br/>
+
+There is more than I can fit in one post: trends with a 30-day projection, chart notes to compare the days before and after a change, cache savings, compactions, what-if pricing on another model, failed and declined tool calls, and a model drift page that flags when a model got slower or more error-prone than it usually is.
+
+<br/>
+
+## How honest are the numbers?
+
+The cost is an **API-equivalent list price**: what the tokens would have cost on the provider's API. Subscription plans such as Claude Max or ChatGPT Pro do not bill that way, so it is a comparison, not your invoice. Where a tool reports its own cost, as Cursor, Cline, Roo Code and Kilo Code do, that cost is used instead. Models without a known price are marked **estimated** until you add a price in the settings.
+
+<br/>
+
+The built-in prices ship with the app, which never fetches them itself. A weekly GitHub Action checks the makers' own pricing pages first and falls back to LiteLLM and OpenRouter only where no official price exists, then opens a pull request that is reviewed before it is merged.
+
+<br/>
+
+## Limits, budgets and agents asking for themselves
+
+The **Live** view shows tokens per minute, the sessions running now, and how much of each plan limit is left: Claude's 5-hour and weekly limits, Codex, Copilot premium requests, and whatever omp, OpenCode or pi are logged in to. Logins are only read, never renewed, so an expired one is reported rather than refreshed behind your back.
+
+<br/>
+
+Daily, monthly and per-project budgets send desktop notifications at 80% and 100%, also with the window closed, because the app keeps running from the tray. For agents, `harness-dashboard mcp` is a read-only MCP server, so an agent in Claude Code, Codex, Cursor, Zed or OpenCode can check what a session or branch cost, or how much of a limit is left, before a large refactor. Claude Code also gets a one-line status line with the session cost, today's cost and the 5-hour limit.
+
+<br/>
+
+## Local by default
+
+The database stays on your machine, or in a folder you choose. A shared folder on iCloud Drive, Dropbox, OneDrive or a network share lets several machines write into one file, deduplicated so nothing is counted twice. The app only listens on `127.0.0.1`, and its API answers only through a sign-in link or a local token. Prompt text is stored truncated to 2,000 characters with secrets redacted, and you can set that length to zero to keep none at all.
+
+<br/>
+
+Outbound requests are limited to the optional update check, the plan-limit checks, and the Cursor sync once you turn it on. Optional AI session labels run your own `claude` or `codex` with your own login. Your usage itself is never uploaded.
+
+<br/>
+
+## Give it a try
+
+On macOS and Linux, run this in your terminal:
+
+```sh
+curl -fsSL https://raw.githubusercontent.com/MSpiechowicz/harness-useful-dashboard/main/install.sh | sh
+```
+
+<br/>
+
+On Windows, use PowerShell:
+
+```powershell
+powershell -ExecutionPolicy Bypass -c "irm https://raw.githubusercontent.com/MSpiechowicz/harness-useful-dashboard/main/install.ps1 | iex"
+```
+
+<br/>
+
+The installer checks every download against the release checksums. The [releases page](https://github.com/MSpiechowicz/harness-useful-dashboard/releases) also has `.deb`, `.rpm`, `.dmg` and `.msi` packages and plain command line binaries. The app is not code-signed, so macOS and Windows warn on the first start of a manual download. Once installed, it checks for updates and offers to install them from a banner in the sidebar. The UI is available in English, German, Spanish, French and Polish.
+
+<br/>
+
+The project is available under the GPL-3.0 license and sits next to [Harness Useful Skills](/blog/harness-useful-skills) and the sidebar in the same small family of local tools. If you try it, I would like to hear which harness you use and whether its numbers look right to you. Issues and contributions are welcome on [GitHub](https://github.com/MSpiechowicz/harness-useful-dashboard).
+
+<br/>
+
+That is all for now. Stay healthy and keep coding!
+
+<br/>
+
+Greetings,
+
+Maciej
