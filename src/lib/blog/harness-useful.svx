@@ -1,0 +1,112 @@
+---
+title: 'Harness Useful: a home for four open-source agent tools'
+description: 'harness-useful.com brings Harness Desktop, Harness Skills, Harness Memory and Harness Dashboard together: four local, open-source tools for Oh My Pi, PI, OpenCode, Claude Code and Codex that work alone or as one family.'
+date: '10-27-2026'
+slug: harness-useful
+image: /images/harness-useful.png
+imageAlt: 'Harness Useful social card reading "Local tools for your coding agent. Desktop, skills, memory, dashboard." with the harness-useful.com address.'
+social:
+  mastodon: >-
+    The harness tools finally have one home: harness-useful.com. Desktop is the window, Skills the workflow, Memory the shared project notes and Dashboard the cost meter. All four are GPL-licensed, run locally and work on their own, and the site follows one prompt through all of them. The site is open source too, with no analytics or cookies.
+  x: >-
+    harness-useful.com: one page for four local, open-source tools around your coding agent. Desktop, Skills, Memory and Dashboard, for Claude Code, Codex, OpenCode, PI and Oh My Pi. No telemetry.
+  linkedin: >-
+    Hello, over the past weeks the small tools I write around coding agents grew into a family, and they now share a website: harness-useful.com. It presents four open-source, local projects for Oh My Pi, PI, OpenCode, Claude Code and Codex: Harness Desktop as a native window around the CLI you already use, Harness Skills as a review-first workflow, Harness Memory as one project memory shared by every harness, and Harness Dashboard as the usage and cost meter. Each has its own repository, installer and README and works without the others, while Desktop's Recommended setup connects them through MCP servers and hooks, asking before each step. The article walks through how one prompt travels across the family, what the support levels for each harness really are, and how the statically prerendered site itself is built without analytics or cookies.
+categories:
+  - technical
+---
+
+Hello there!
+
+<br/>
+
+Over the last few weeks I have written here about [Harness Useful Skills](/blog/harness-useful-skills) and [Harness Dashboard](/blog/harness-dashboard). Meanwhile Harness Desktop and Harness Memory grew up next to them, and having four separate READMEs started to feel like explaining one idea in four places. So the family got a home: [harness-useful.com](https://harness-useful.com).
+
+<br/>
+
+Its tagline sums up the whole thing: **local tools for your coding agent**. They work with the CLI you already run, whether that is Claude Code, Codex, OpenCode, PI or Oh My Pi, and every one of them is open source.
+
+<br/>
+
+## Four tools, four jobs
+
+Each project has a single role in the family:
+
+- **[Harness Desktop](https://harness-useful.com/desktop)** is the window. It is a native desktop app that runs on top of your installed harness CLI: chat with approvals, saved sessions and their branch trees, a changes panel where you comment on any diff line and send the comments back as one prompt, plus a single place for settings, MCP servers and extensions, with secrets masked.
+- **[Harness Skills](https://harness-useful.com/skills)** is the workflow. The `us-*` skills take a request through research, a plan you approve, implementation workers and fresh reviews. Since the [first post](/blog/harness-useful-skills) it grew from Oh My Pi and Claude Code to OpenCode and Codex as well.
+- **[Harness Memory](https://harness-useful.com/memory)** is the memory. It is one local binary, a stdio MCP server, that gives every harness the same project notes: typed notes such as fixes, decisions and locations, a small entity graph and saved scripts, all in a SQLite file with full-text search.
+- **[Harness Dashboard](https://harness-useful.com/dashboard)** is the meter. It reads the session logs of 13 coding tools and shows where your tokens and API-equivalent cost go, down to a single prompt. I covered it in detail in [its own post](/blog/harness-dashboard).
+
+<br/>
+
+None of them depends on the others. Each has its own repository, installer and README, so you can take only the memory server or only the dashboard. They simply work better together.
+
+<br/>
+
+## The life of one prompt
+
+The part of the site I enjoyed building most is the walkthrough that follows a single request through the family. You type a prompt in Desktop. Before it reaches your CLI, the hooks you approved add their context: search memory first, check skills and limits, check the branch. The agent then searches Harness Memory for what earlier sessions in this repository learned, whichever harness wrote it.
+
+<br/>
+
+From there Harness Skills picks a lane, a read-only scout researches the code, and the planner drafts work packages with acceptance criteria. Nothing is edited before you approve the plan. Workers implement, fresh reviewers check correctness and security, and findings loop back for repair, so the agent does not grade its own work. Finally, Harness Dashboard prices the run from the session log, subagents included, and the cost shows up back in Desktop. The loop closes where it started.
+
+<br/>
+
+The glue is deliberately boring: **MCP servers and hooks**. Memory and Dashboard are MCP servers your harness starts, Skills is plugin files your harness reads, and Desktop registers the servers in each harness it detects. A hook an agent adds or changes never runs until you approve that exact version.
+
+<br/>
+
+## What works where
+
+I tried to keep the site honest about support, because "works with every agent" is rarely true. Harness Desktop fully supports Oh My Pi and PI. Claude Code and Codex are supported with chat as a preview, and OpenCode is partly supported, also with chat as a preview. Harness Skills supports Oh My Pi, Claude Code, OpenCode and Codex, and needs Node.js 22 or newer. Harness Memory works with any MCP client. Harness Dashboard reads 13 tools, including Gemini CLI, GitHub Copilot, Zed, Cline, Roo Code, Kilo Code and Cursor.
+
+<br/>
+
+On platforms, Desktop ships for macOS (Apple Silicon and Intel), Linux and Windows. Memory and Dashboard support macOS, Linux on x86_64 and Windows.
+
+<br/>
+
+## Local and open
+
+All four tools keep your data on your machine. Desktop has no telemetry and no accounts, and it never reads credential files. Memory opens no network connection unless you set up a shared team database. Dashboard never uploads your usage. The few outbound requests they make, such as signed update checks against GitHub, can be switched off.
+
+<br/>
+
+Everything is under the GNU GPL version 3: Desktop, Memory and Dashboard as GPL-3.0-or-later, and Skills as GPL-3.0-only. The [website itself](https://github.com/MSpiechowicz/harness-useful) is open source too. It is a fully prerendered SvelteKit 2 and Svelte 5 site that ships no analytics and sets no cookies. Because agents increasingly read documentation on our behalf, every page also has a Markdown twin, such as [/memory.md](https://harness-useful.com/memory.md), and there are `llms.txt` and `llms-full.txt` files with the full text of the site.
+
+<br/>
+
+## Give it a try
+
+The recommended start is Harness Desktop. On macOS and Linux, run this in your terminal:
+
+```sh
+curl -fsSL https://raw.githubusercontent.com/MSpiechowicz/harness-useful-desktop/main/install.sh | sh
+```
+
+<br/>
+
+On Windows, use PowerShell:
+
+```powershell
+powershell -ExecutionPolicy Bypass -c "irm https://raw.githubusercontent.com/MSpiechowicz/harness-useful-desktop/main/install.ps1 | iex"
+```
+
+<br/>
+
+Both verify the release checksum. Then open **Ecosystem** and choose **Run recommended setup**. It installs Dashboard, Memory and Skills, registers their MCP servers in every harness it finds and adds the family hooks, asking before each step. If you prefer to pick and choose, every tool page on the site has its own install command.
+
+<br/>
+
+The source of each project is on GitHub: [Desktop](https://github.com/MSpiechowicz/harness-useful-desktop), [Skills](https://github.com/MSpiechowicz/harness-useful-skills), [Memory](https://github.com/MSpiechowicz/harness-useful-memory), [Dashboard](https://github.com/MSpiechowicz/harness-useful-dashboard) and the [website](https://github.com/MSpiechowicz/harness-useful). If you try the family, I would like to hear which harness you run it with and which piece turned out to be the useful one for you. Issues and contributions are welcome in every repository.
+
+<br/>
+
+That is all for now. Stay healthy and keep coding!
+
+<br/>
+
+Greetings,
+
+Maciej
