@@ -17,7 +17,7 @@ Below you can find list of the dependencies that are used to build this blog:
 
 ## Installation
 
-Use Node.js 24 LTS for development, CI, and Vercel builds, with Bun 1.4.2 for dependency installation. The package manager is declared in `package.json`; `bun.lock` is the committed text lockfile. Install it with `bun install --frozen-lockfile` in CI. Vercel's adapter does not yet support building with Node.js 26.
+Use Node.js 26 LTS for development, CI, and Vercel builds, with Bun 1.4.2 for dependency installation. The package manager is declared in `package.json`; `bun.lock` is the committed text lockfile. Install it with `bun install --frozen-lockfile` in CI.
 
 To start using this blog, you need to install the dependencies first. You can do that by running the following command:
 
@@ -49,7 +49,7 @@ bun run build
 bun audit
 ```
 
-With Node.js 24, `VERCEL=1 bun run build` also verifies the installed Vercel adapter and generates the deployment output without publishing it.
+With Node.js 26, `VERCEL=1 bun run build` also verifies the installed Vercel adapter and generates the deployment output without publishing it.
 
 ## Content
 
