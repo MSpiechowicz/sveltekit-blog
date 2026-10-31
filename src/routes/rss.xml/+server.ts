@@ -1,5 +1,5 @@
-import translation from '$lib/translations/en-GB.json';
-import type { Post } from '$lib/types';
+import translation from '#lib/translations/en-GB.json';
+import type { Post } from '#lib/types.js';
 
 export async function GET({ fetch }) {
 	const response = await fetch('api/posts');

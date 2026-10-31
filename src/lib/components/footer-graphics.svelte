@@ -1,7 +1,7 @@
 <script lang="ts">
-	import Buildings from '$lib/assets/buildings.svg';
-	import House from '$lib/assets/house.svg';
-	import Trees from '$lib/assets/trees.svg';
+	import Buildings from '#lib/assets/buildings.svg';
+	import House from '#lib/assets/house.svg';
+	import Trees from '#lib/assets/trees.svg';
 </script>
 
 <div

@@ -1,14 +1,14 @@
 <script lang="ts">
 	import { goto } from '$app/navigation';
 	import { resolve } from '$app/paths';
-	import { Button } from '$lib/components/ui/button/index';
+	import { Button } from '#lib/components/ui/button/index.js';
 
-	import MainPageDescription from '$lib/components/main-page-description.svelte';
-	import MainPageSky from '$lib/components/main-page-sky.svelte';
-	import MainPageSubtitle from '$lib/components/main-page-subtitle.svelte';
-	import MainPageTitle from '$lib/components/main-page-title.svelte';
+	import MainPageDescription from '#lib/components/main-page-description.svelte';
+	import MainPageSky from '#lib/components/main-page-sky.svelte';
+	import MainPageSubtitle from '#lib/components/main-page-subtitle.svelte';
+	import MainPageTitle from '#lib/components/main-page-title.svelte';
 
-	import translation from '$lib/translations/en-GB.json';
+	import translation from '#lib/translations/en-GB.json';
 </script>
 
 <div class="flex h-[100%] flex-row justify-center align-middle">
@@ -19,6 +19,6 @@
 		<MainPageDescription />
 		<Button
 			class="mt-10 min-h-14 max-w-fit text-xl"
-			onclick={() => goto(resolve('/blog'))}>{translation['button.recent.blog.posts']}</Button>
+			onclick={() => goto(resolve('blog'))}>{translation['button.recent.blog.posts']}</Button>
 	</div>
 </div>

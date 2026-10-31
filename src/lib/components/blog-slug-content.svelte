@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { Data } from '$lib/types';
+	import type { Data } from '#lib/types.js';
 
 	let { data }: { data?: Data } = $props();
 </script>

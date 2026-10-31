@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { resolve } from '$app/paths';
-	import getMenuItems from '$lib/data/menu-items';
+	import getMenuItems from '#lib/data/menu-items.js';
 </script>
 
 <div class="hidden flex-row gap-6 sm:flex lg:gap-8">

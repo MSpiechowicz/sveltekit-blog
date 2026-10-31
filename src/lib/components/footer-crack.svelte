@@ -1,5 +1,5 @@
 <script lang="ts">
-	import EarthCrack from '$lib/assets/earth-crack.svg';
+	import EarthCrack from '#lib/assets/earth-crack.svg';
 
 	let { reversed = false }: { reversed?: boolean } = $props();
 </script>

@@ -1,16 +1,16 @@
 <script lang="ts">
-	import type { Data } from '$lib/types';
+	import type { Data } from '#lib/types.js';
 
 	import { goto } from '$app/navigation';
 	import { resolve } from '$app/paths';
 
-	import logo from '$lib/assets/logo.png';
-	import BlogSlugContent from '$lib/components/blog-slug-content.svelte';
-	import BlogSlugDate from '$lib/components/blog-slug-date.svelte';
-	import BlogSlugHeader from '$lib/components/blog-slug-header.svelte';
-	import Button from '$lib/components/ui/button/button.svelte';
+	import logo from '#lib/assets/logo.png';
+	import BlogSlugContent from '#lib/components/blog-slug-content.svelte';
+	import BlogSlugDate from '#lib/components/blog-slug-date.svelte';
+	import BlogSlugHeader from '#lib/components/blog-slug-header.svelte';
+	import Button from '#lib/components/ui/button/button.svelte';
 
-	import translation from '$lib/translations/en-GB.json';
+	import translation from '#lib/translations/en-GB.json';
 
 	let { data }: { data?: Data } = $props();
 
@@ -26,6 +26,7 @@
 	<meta
 		name="description"
 		content={data?.meta?.description} />
+
 	<link
 		rel="canonical"
 		href={canonicalUrl} />
@@ -35,9 +36,11 @@
 	<meta
 		property="og:title"
 		content={data?.meta?.title} />
+
 	<meta
 		property="og:description"
 		content={data?.meta?.description} />
+
 	<meta
 		property="og:url"
 		content={canonicalUrl} />
@@ -53,6 +56,7 @@
 	<meta
 		name="twitter:title"
 		content={data?.meta?.title} />
+
 	<meta
 		name="twitter:description"
 		content={data?.meta?.description} />
@@ -65,7 +69,7 @@
 </svelte:head>
 
 <article class="flex justify-center">
-	<div class="mt-4 w-full min-w-0 max-w-[800px] sm:px-4 md:mt-12 lg:px-0">
+	<div class="mt-4 w-full max-w-[800px] min-w-0 sm:px-4 md:mt-12 lg:px-0">
 		<BlogSlugHeader {data} />
 		<BlogSlugDate
 			{data}
@@ -73,6 +77,6 @@
 		<BlogSlugContent {data} />
 		<Button
 			class="mt-8 mb-4 min-h-14 max-w-fit text-xl md:mt-12 md:mb-8"
-			onclick={() => goto(resolve('/blog'))}>{translation['button.go.back']}</Button>
+			onclick={() => goto(resolve('blog'))}>{translation['button.go.back']}</Button>
 	</div>
 </article>

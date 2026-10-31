@@ -2,15 +2,15 @@
 	import { tick } from 'svelte';
 	import { Select } from 'bits-ui';
 	import { resolve } from '$app/paths';
-	import type { PostsData } from '$lib/types';
-	import { POSTS_PER_PAGE, paginatePosts, selectPosts, type DateOrder } from '$lib/blog-listing';
+	import type { PostsData } from '#lib/types.js';
+	import { POSTS_PER_PAGE, paginatePosts, selectPosts, type DateOrder } from '#lib/blog-listing.js';
 
-	import BlogSlugDate from '$lib/components/blog-slug-date.svelte';
-	import BlogSlugDescription from '$lib/components/blog-slug-description.svelte';
-	import BlogSlugHeader from '$lib/components/blog-slug-header.svelte';
-	import { Button } from '$lib/components/ui/button';
+	import BlogSlugDate from '#lib/components/blog-slug-date.svelte';
+	import BlogSlugDescription from '#lib/components/blog-slug-description.svelte';
+	import BlogSlugHeader from '#lib/components/blog-slug-header.svelte';
+	import { Button } from '#lib/components/ui/button/index.js';
 
-	import translation from '$lib/translations/en-GB.json';
+	import translation from '#lib/translations/en-GB.json';
 
 	let { data }: { data: PostsData } = $props();
 

@@ -1,5 +1,5 @@
 <script lang="ts">
-	import Sky from '$lib/assets/sky.svg';
+	import Sky from '#lib/assets/sky.svg';
 </script>
 
 <img

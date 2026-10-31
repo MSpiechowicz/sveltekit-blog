@@ -31,11 +31,11 @@ Then you can start the development server by running the following command:
 bun dev
 ```
 
-Run `bun audit` after dependency updates. The `cookie` override keeps SvelteKit's cookie parser/serializer on patched 0.7.x releases because SvelteKit still declares the vulnerable 0.6.x range; remove it when upstream requires a patched release.
+Run `bun audit` after dependency updates.
 
 ### Current toolchain
 
-The project uses Svelte 5 runes and snippets, SvelteKit 2, Vite 8, Bits UI 2, and Tailwind CSS 4. Tailwind runs through `@tailwindcss/vite`; theme tokens and utilities live in `src/app.css`, with no separate Tailwind or PostCSS configuration. Component styles that use `@apply` reference that stylesheet.
+The project uses Svelte 5 runes and snippets, SvelteKit 3, Vite 8, Bits UI 2, and Tailwind CSS 4. SvelteKit is configured through the `sveltekit(...)` plugin in `vite.config.ts` (there is no `svelte.config.js`), and `#lib` imports resolve through the `imports` field in `package.json`. Tailwind runs through `@tailwindcss/vite`; theme tokens and utilities live in `src/app.css`, with no separate Tailwind or PostCSS configuration. Component styles that use `@apply` reference that stylesheet.
 
 TypeScript is held at `~6.0.3`, the newest stable release supported by SvelteKit, svelte-check, and typescript-eslint. TypeScript 7 is not yet within their declared peer ranges. Other direct dependencies use the current stable releases available at migration time. Historical blog posts describe the stack at their original publication dates and are intentionally unchanged.
 

@@ -1,5 +1,5 @@
 <script lang="ts">
-	import FOOTER_ITEMS from '$lib/data/footer-items';
+	import FOOTER_ITEMS from '#lib/data/footer-items.js';
 </script>
 
 <div class="align-center flex flex-row justify-center gap-2">

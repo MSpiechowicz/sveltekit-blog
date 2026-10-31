@@ -2,8 +2,8 @@
 	import { resolve } from '$app/paths';
 	import { slide } from 'svelte/transition';
 
-	import getMenuItems from '$lib/data/menu-items';
-	import menuStore from '$lib/stores/menu-store.svelte';
+	import getMenuItems from '#lib/data/menu-items.js';
+	import menuStore from '#lib/stores/menu-store.svelte.js';
 </script>
 
 {#if menuStore.open}

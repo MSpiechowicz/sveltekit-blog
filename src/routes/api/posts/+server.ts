@@ -1,4 +1,4 @@
-import type { Post } from '$lib/types';
+import type { Post } from '#lib/types.js';
 import { json } from '@sveltejs/kit';
 import { render } from 'svelte/server';
 

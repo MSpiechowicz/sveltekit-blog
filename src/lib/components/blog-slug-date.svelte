@@ -1,7 +1,7 @@
 <script lang="ts">
-	import type { Data, Post } from '$lib/types';
+	import type { Data, Post } from '#lib/types.js';
 
-	import { formatDate } from '$lib/utils';
+	import { formatDate } from '#lib/utils.js';
 
 	let {
 		data,

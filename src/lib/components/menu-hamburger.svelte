@@ -2,7 +2,7 @@
 	import { beforeNavigate } from '$app/navigation';
 	import { Hamburger } from 'svelte-hamburgers';
 
-	import menuStore from '$lib/stores/menu-store.svelte';
+	import menuStore from '#lib/stores/menu-store.svelte.js';
 
 	beforeNavigate(() => {
 		menuStore.open = false;

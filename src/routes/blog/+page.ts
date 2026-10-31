@@ -1,4 +1,4 @@
-import type { Post } from '$lib/types';
+import type { Post } from '#lib/types.js';
 
 export async function load({ fetch }: { fetch: (url: string) => Promise<Response> }) {
 	const response = await fetch('/api/posts');

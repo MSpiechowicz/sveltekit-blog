@@ -1,7 +1,7 @@
 <script>
 	import { page } from '$app/state';
 
-	import Storm from '$lib/assets/storm.svg';
+	import Storm from '#lib/assets/storm.svg';
 
 	const currentPageStatus = $derived(page.status);
 	const currentPageError = $derived(page.error?.message);

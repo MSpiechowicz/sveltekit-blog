@@ -1,7 +1,7 @@
 <script lang="ts">
-	import type { Data, Post } from '$lib/types';
+	import type { Data, Post } from '#lib/types.js';
 
-	import Notes from '$lib/assets/notes.svg';
+	import Notes from '#lib/assets/notes.svg';
 
 	let { data, post }: { data?: Data; post?: Post } = $props();
 </script>

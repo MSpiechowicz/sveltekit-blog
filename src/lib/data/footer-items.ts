@@ -1,4 +1,4 @@
-import type { FooterItem } from '$lib/types';
+import type { FooterItem } from '#lib/types.js';
 
 const FOOTER_ITEMS: Array<FooterItem> = [
 	{

@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { Post } from '$lib/types';
+	import type { Post } from '#lib/types.js';
 
 	let { post }: { post?: Post } = $props();
 </script>
