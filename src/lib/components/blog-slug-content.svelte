@@ -36,4 +36,8 @@
 	.dynamic :global(a) {
 		@apply font-bold underline;
 	}
+
+	.dynamic :global(pre) {
+		@apply overflow-x-auto;
+	}
 </style>
