@@ -20,5 +20,8 @@
 	"blog.pagination.next": "Next",
 	"blog.pagination.page": "Page",
 	"blog.pagination.of": "of",
-	"blog.pagination.page.size": "Posts per page:"
+	"blog.pagination.page.size": "Posts per page:",
+	"blog.code.copy": "Copy code",
+	"blog.code.copied": "Copied",
+	"blog.code.copy.failed": "Copy failed"
 }
