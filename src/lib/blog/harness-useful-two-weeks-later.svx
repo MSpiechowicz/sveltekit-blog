@@ -7,7 +7,7 @@ image: /images/harness-useful.png
 imageAlt: 'Harness Useful social card reading "Local tools for your coding agent. Desktop, skills, memory, knowledge, code, dashboard." with the harness-useful.com address.'
 social:
   mastodon: >-
-    Two weeks ago the Harness Useful family had four tools. Now it has six: Harness Code answers where code is defined and what a change breaks, and Harness Knowledge lets agents search the docs you import, with a person approving anything they propose. Memory got two-way sync, and Skills now writes a review guide for each release.
+    Two weeks ago the Harness Useful family had four tools. Now it has six: Harness Code answers where code is defined and what a change breaks, and Harness Knowledge lets agents search the docs you import, with a person approving anything they propose. Memory got two-way sync, and Skills now writes a review guide for each pull request.
   x: >-
     Harness Useful went from four tools to six in two weeks: a local code graph, a documentation library agents cannot edit without approval, two-way Memory sync and release assessments in Skills.
   linkedin: >-
