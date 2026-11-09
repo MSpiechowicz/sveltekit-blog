@@ -1,0 +1,153 @@
+---
+title: 'Harness Useful, two weeks later: from four tools to six'
+description: 'What changed in the Harness Useful family since October: Harness Code and Harness Knowledge joined, Harness Memory gained per-project save controls and two-way sync, and Harness Skills added release assessments and Pi support.'
+date: '11-09-2026'
+slug: harness-useful-two-weeks-later
+image: /images/harness-useful.png
+imageAlt: 'Harness Useful social card reading "Local tools for your coding agent. Desktop, skills, memory, knowledge, code, dashboard." with the harness-useful.com address.'
+social:
+  mastodon: >-
+    Two weeks ago the Harness Useful family had four tools. Now it has six: Harness Code answers where code is defined and what a change breaks, and Harness Knowledge lets agents search the docs you import, with a person approving anything they propose. Memory got two-way sync, and Skills now writes a review guide for each pull request.
+  x: >-
+    Harness Useful went from four tools to six in two weeks: a local code graph, a documentation library agents cannot edit without approval, two-way Memory sync and release assessments in Skills.
+  linkedin: >-
+    Hello, a short update on the local coding-agent tools I introduced at the end of October, because the family has already grown from four projects to six. Harness Code is a tree-sitter code graph that tells agents where code is defined, who uses it and what breaks when it changes, while Harness Knowledge makes imported documentation searchable and keeps agents from adding to it without a person's approval. Harness Memory gained per-project save controls through Harness Desktop, two-way sync with a team database and a queue for changes made during an outage. Harness Skills now ends with a release assessment that tells a reviewer what to check, and it supports Pi as well. The article goes through what changed in each tool, including the limits that remain and the one project that mostly received fixes.
+categories:
+  - technical
+---
+
+Hello there!
+
+<br/>
+
+Not quite two weeks ago I wrote that [Harness Useful](/blog/harness-useful) is a home for four open-source agent tools. That number lasted five days. [harness-useful.com](https://harness-useful.com) now lists six, Harness Desktop went from version 0.43 to 0.67, and Harness Memory went through a major version because of a decision I reversed almost as soon as I had made it.
+
+<br/>
+
+A pile of version numbers does not say much on its own, and many of those releases are small fixes. So here is what actually changed.
+
+<br/>
+
+## Harness Code: the graph that moved twice
+
+Harness Skills used to lean on Graphify for its code graph. At the end of October I retired that integration and put code tools inside Harness Memory instead. Two days after that release, they moved out again into their own project, and Harness Memory 3.0 removed them.
+
+<br/>
+
+The split that came out of this is easy to remember: **Memory keeps what agents learn, Knowledge keeps what is written down, and Code knows the code.**
+
+<br/>
+
+[Harness Code](https://harness-useful.com/code) is one local binary and a stdio MCP server. It indexes a repository with tree-sitter into a SQLite file and gives an agent four tools, so it can read an answer instead of grepping and opening files:
+
+- `code_map` draws a ranked map of the key files and signatures within a token budget, and can be centred on what the task names.
+- `code_symbol` says where something is defined, what it uses and who uses it.
+- `code_impact` lists everything that depends on a symbol or a file.
+- `code_path` shows how A reaches B, hop by hop, with the call sites.
+
+<br/>
+
+It reads Rust, TypeScript and JavaScript, `.svelte`, `.vue` and `.astro` files, Go, Python, HTML and stylesheets. The stylesheet part grew the most after the first release: selectors are now linked to the components that use them, so a change to a design token can be followed through the selector to the components. There is no watcher and no commit hook. Each call compares the files with the index and reads only the ones that changed.
+
+<br/>
+
+The tool also tries to say when it is guessing. A link between files in different languages comes only from a string that names something defined elsewhere, and replies mark it `(by name)`. Class names built at run time are not read at all. A repository is treated as untrusted input and indexed in a separate process with a time limit, and on Linux also a memory limit that the kernel enforces. macOS and Windows get the time limit and the crash isolation only.
+
+<br/>
+
+## Harness Knowledge: documents agents cannot write alone
+
+[Harness Knowledge](https://harness-useful.com/knowledge) covers what is already written down. You import guides, READMEs, ADRs, OpenAPI specs, Confluence exports, PDFs with a text layer or meeting transcripts, and agents search them when they need to know how something works. Search combines BM25 keywords with vectors from the multilingual e5-small model. The model is downloaded once, about 135 MB, and without it search falls back to keywords.
+
+<br/>
+
+The rule I care about most here is that **agents do not add knowledge on their own**. `knowledge_add` only sends a proposal to a review queue, and a person has to approve it before it becomes searchable. Version 2.0 went a step further for teams using a shared MongoDB, PostgreSQL or libSQL database: with team approval on, a document starts as a draft, and someone other than its authors has to approve it, much like a pull request. The identity is the git `user.name`, so this stops honest mistakes rather than impersonation, and the README says so.
+
+<br/>
+
+## Harness Memory: asking before it saves
+
+With the code graph gone, the work on [Harness Memory](https://harness-useful.com/memory) went into a more practical question: who gets to write, and what happens when the shared database is not there.
+
+<br/>
+
+- **Saving is opt-in per project** when you use Harness Desktop, which can also ask you before a save. Reading and recall are never guarded. The guards stop agents that use the memory tools, and they are not a sandbox against an agent with a shell.
+- **Notes and scripts now sync both ways** between a team database and your computer, and you choose where new ones are saved.
+- **A dropped connection is handled better.** Notes and scripts are kept when the remote goes away, and changes to existing remote notes are queued and sent later.
+- **A save from an editor that opened an older version is refused**, so a newer note does not get overwritten by accident.
+- **Notes record who added and last updated them**, and agents now report which notes helped, which feeds per-note usefulness counters.
+
+<br/>
+
+There is also `harness-memory recall --hook`, which finds the notes matching a chat message. Desktop uses it on every message and shows the result as a regular search card in the chat, and a failed lookup never blocks the send.
+
+<br/>
+
+## Harness Skills: a review guide at the end
+
+The biggest addition to [Harness Skills](https://harness-useful.com/skills) is a new stage after the reviews: a fresh, read-only **release assessment**. It gives the change a review tier from T0 to T6 and a confidence level, and it lists the files a person should look at, also as a "Review guide" in the pull request. Anything from T4 upwards recommends a human check before merge, and an unresolved High finding makes the tier T6. While the stage is enabled, every pull request has to carry one.
+
+<br/>
+
+The review loop got stricter about when it may stop. A clean pass now ends it only if verification ran after the last edit, so a reviewer's "no findings" alone is not enough. A High finding can extend the loop to five passes at most, and if it is still open then, the agent stops and hands it to you with its evidence and the repairs it tried.
+
+<br/>
+
+Skills also supports **Pi** now, next to Oh My Pi, Claude Code, OpenCode and Codex. There, reviews and release assessments run in a fresh read-only child `pi` process that gets only the read, grep, find and ls tools. A new skill connects the workflow to Harness Knowledge, and the code graph instructions now point at Harness Code.
+
+<br/>
+
+## Harness Desktop: less guessing in the chat
+
+[Harness Desktop](https://harness-useful.com/desktop) took most of the commits. It installs and registers the two new tools from Recommended setup and has a full Knowledge view with import, a review queue and the draft approvals. The changes I notice most are in the chat itself:
+
+- The family hooks used to arrive in random order, and several of them claimed to be first, so agents cherry-picked steps. They now compose into **one numbered list in a fixed order**, and the agent's answer opens with a status for each step, shown as a Status report card.
+- A chat shows the project memory the agent used, and a panel shows the details of each subagent.
+- An agent's questions appear **in one dialog with Back and Submit**, so you can change an answer until the last one is sent.
+- Desktop looks up new versions of your harness CLIs on the npm registry and can run their own updaters. A switch in the settings turns those checks off.
+
+<br/>
+
+The support levels did not change: Oh My Pi and PI are supported, Claude Code and Codex are supported with chat as a preview, and OpenCode is partly supported with chat as a preview.
+
+<br/>
+
+## Harness Dashboard: the quiet one
+
+[Harness Dashboard](/blog/harness-dashboard) mostly got fixes. The app checks for updates on its own again, a limit at its reset shows a Resetting chip instead of nothing, and the tokens-per-minute chart stops at the last complete minute. Built-in model prices were updated, and its controls now match Harness Desktop's size. After the last two weeks in the other repositories, a quiet project was a pleasant change.
+
+<br/>
+
+## Give it a try
+
+The recommended start has not changed. On macOS and Linux:
+
+```sh
+curl -fsSL https://raw.githubusercontent.com/MSpiechowicz/harness-useful-desktop/main/install.sh | sh
+```
+
+<br/>
+
+On Windows, use PowerShell:
+
+```powershell
+powershell -ExecutionPolicy Bypass -c "irm https://raw.githubusercontent.com/MSpiechowicz/harness-useful-desktop/main/install.ps1 | iex"
+```
+
+<br/>
+
+Then open **Ecosystem** and choose **Run recommended setup**. If you only want one piece, Code and Knowledge work on their own with Claude Code, Codex, OMP, PI, OpenCode or any other MCP client, and each has its own installer. If you used the code tools from Harness Memory 2.11, they now live in `harness-code`.
+
+<br/>
+
+All the source is on GitHub, including the two new projects: [Code](https://github.com/MSpiechowicz/harness-useful-code) and [Knowledge](https://github.com/MSpiechowicz/harness-useful-knowledge). If you run them, I would like to hear which harness you use and whether the graph or the documents turned out to help your agent more. Issues and contributions are welcome in every repository.
+
+<br/>
+
+That is all for now. Stay healthy and keep coding!
+
+<br/>
+
+Greetings,
+
+Maciej
