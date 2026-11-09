@@ -4,7 +4,7 @@ description: 'harness-useful.com brings Harness Desktop, Harness Skills, Harness
 date: '10-27-2026'
 slug: harness-useful
 image: /images/harness-useful.png
-imageAlt: 'Harness Useful social card reading "Local tools for your coding agent. Desktop, skills, memory, dashboard." with the harness-useful.com address.'
+imageAlt: 'Harness Useful social card reading "Local tools for your coding agent. Desktop, skills, memory, knowledge, code, dashboard." with the harness-useful.com address.'
 social:
   mastodon: >-
     The harness tools finally have one home: harness-useful.com. Desktop is the window, Skills the workflow, Memory the shared project notes and Dashboard the cost meter. All four are GPL-licensed, run locally and work on their own, and the site follows one prompt through all of them. The site is open source too, with no analytics or cookies.
