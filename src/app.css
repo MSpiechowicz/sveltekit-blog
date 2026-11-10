@@ -594,8 +594,19 @@ button {
 		cursor: default;
 	}
 
+	/*
+	 * The stripes keep one width whatever the title, so every window's bar looks the same; the title
+	 * takes the space between them and a long one is cut with an ellipsis.
+	 */
 	.tb i {
+		flex: 0 0 44px;
 		height: 26px;
+	}
+
+	.tb span {
+		flex: 1 1 0;
+		min-width: 0;
+		text-align: center;
 	}
 
 	.tb .close,
