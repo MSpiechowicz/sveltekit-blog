@@ -1,0 +1,15 @@
+ ---
+title: A probe
+description: 'Only used by a test.'
+date: '01-01-2026'
+slug: probe
+social:
+  mastodon: >-
+    DRAFT-PROBE-MASTODON
+  x: >-
+    DRAFT-PROBE-X
+  linkedin: >-
+    DRAFT-PROBE-LINKEDIN
+---
+
+Body.

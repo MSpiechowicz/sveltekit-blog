@@ -1,157 +1,641 @@
-@import 'tailwindcss' source('./');
+/*
+ * Classic desktop styles that are shared across components: theme variables, base typography,
+ * the window chrome (also used by +error.svelte) and the small widgets later packages reuse.
+ * Component-only rules (menu bar, icons, splash, scrollbar, zoom rectangle) live next to their
+ * component. Window-specific rules (blog list, projects, terminal, article) belong to those windows.
+ */
 
-@custom-variant dark (&:where(.dark, .dark *));
-@custom-variant hover (&:hover);
+/* ---------------------------------------------------------------- themes */
 
-@theme {
-	--font-sans: Nunito;
-	--breakpoint-sm: 640px;
-	--breakpoint-md: 768px;
-	--breakpoint-lg: 1024px;
-	--breakpoint-xl: 1280px;
-	--breakpoint-2xl: 1536px;
+:root {
+	--k: #000;
+	--w: #fff;
+	--desk: #fff;
+	--pat: var(--k);
+	--sel: var(--k);
+	--selfg: var(--w);
+	--tb: var(--w);
+	--stripe: var(--k);
+	--icon: var(--w);
+	--termbg: var(--k);
+	--termfg: var(--w);
+	--f: 'Chicago', 'ChicagoFLF', 'Fira Sans', Geneva, Verdana, system-ui, sans-serif;
+	--serif: 'New York', 'Noto Serif', Georgia, serif;
+	--mono: 'JetBrains Mono', 'Fira Code', ui-monospace, Menlo, Consolas, monospace;
+	--dither: repeating-conic-gradient(var(--k) 0 25%, #0000 0 50%);
+	--deskpat: repeating-conic-gradient(var(--pat) 0 25%, #0000 0 50%);
 }
 
-@theme inline {
-	--color-border: hsl(var(--border));
-	--color-input: hsl(var(--input));
-	--color-ring: hsl(var(--ring));
-	--color-background: hsl(var(--background));
-	--color-foreground: hsl(var(--foreground));
-	--color-primary: hsl(var(--primary));
-	--color-primary-foreground: hsl(var(--primary-foreground));
-	--color-secondary: hsl(var(--secondary));
-	--color-secondary-foreground: hsl(var(--secondary-foreground));
-	--color-destructive: hsl(var(--destructive));
-	--color-destructive-foreground: hsl(var(--destructive-foreground));
-	--color-muted: hsl(var(--muted));
-	--color-muted-foreground: hsl(var(--muted-foreground));
-	--color-accent: hsl(var(--accent));
-	--color-accent-foreground: hsl(var(--accent-foreground));
-	--color-popover: hsl(var(--popover));
-	--color-popover-foreground: hsl(var(--popover-foreground));
-	--color-card: hsl(var(--card));
-	--color-card-foreground: hsl(var(--card-foreground));
-	--radius-lg: var(--radius);
-	--radius-md: calc(var(--radius) - 2px);
-	--radius-sm: calc(var(--radius) - 4px);
+:root[data-theme^='paper'] {
+	--k: #141414;
+	--w: #fbfaf5;
+	--desk: #f3ecd8;
+	--pat: #d9cba6;
+	--sel: #ffe14d;
+	--selfg: #141414;
+	--tb: #ffe14d;
 }
 
-@utility container {
-	margin-inline: auto;
-	padding-inline: 2rem;
-
-	/* The v3 container had only a 1400px breakpoint, not the default screen caps. */
-	@media (width >= theme(--breakpoint-sm)) {
-		max-width: none;
-	}
-
-	@media (width >= 1400px) {
-		max-width: 1400px;
-	}
+:root[data-theme='paper-ink'] {
+	--sel: #141414;
+	--selfg: #fbfaf5;
+	--tb: #fbfaf5;
 }
 
-@layer base {
-	:root {
-		--background: 0 0% 100%;
-		--foreground: 240 10% 3.9%;
-
-		--muted: 240 4.8% 95.9%;
-		--muted-foreground: 240 3.8% 46.1%;
-
-		--popover: 0 0% 100%;
-		--popover-foreground: 240 10% 3.9%;
-
-		--card: 0 0% 100%;
-		--card-foreground: 240 10% 3.9%;
-
-		--border: 240 5.9% 90%;
-		--input: 240 5.9% 90%;
-
-		--primary: 240 5.9% 10%;
-		--primary-foreground: 0 0% 98%;
-
-		--secondary: 240 4.8% 95.9%;
-		--secondary-foreground: 240 5.9% 10%;
-
-		--accent: 240 4.8% 95.9%;
-		--accent-foreground: 240 5.9% 10%;
-
-		--destructive: 0 72.2% 50.6%;
-		--destructive-foreground: 0 0% 98%;
-
-		--ring: 240 10% 3.9%;
-
-		--radius: 0.5rem;
-	}
-
-	.dark {
-		--background: 240 10% 3.9%;
-		--foreground: 0 0% 98%;
-
-		--muted: 240 3.7% 15.9%;
-		--muted-foreground: 240 5% 64.9%;
-
-		--popover: 240 10% 3.9%;
-		--popover-foreground: 0 0% 98%;
-
-		--card: 240 10% 3.9%;
-		--card-foreground: 0 0% 98%;
-
-		--border: 240 3.7% 15.9%;
-		--input: 240 3.7% 15.9%;
-
-		--primary: 0 0% 98%;
-		--primary-foreground: 240 5.9% 10%;
-
-		--secondary: 240 3.7% 15.9%;
-		--secondary-foreground: 0 0% 98%;
-
-		--accent: 240 3.7% 15.9%;
-		--accent-foreground: 0 0% 98%;
-
-		--destructive: 0 62.8% 30.6%;
-		--destructive-foreground: 0 0% 98%;
-
-		--ring: 240 4.9% 83.9%;
-	}
+:root[data-theme='paper-coral'] {
+	--sel: #d9523a;
+	--selfg: #fff;
+	--tb: #d9523a;
+	--tbfg: #fff;
+	--stripe: #fff;
 }
 
-@layer base {
-	/* Preserve v3 Preflight defaults; elements still use the semantic border below. */
-	::after,
-	::before,
-	::backdrop,
-	::file-selector-button {
-		border-color: #e5e7eb;
-	}
+:root[data-theme='paper-blue'] {
+	--sel: #2b59c3;
+	--selfg: #fff;
+	--tb: #2b59c3;
+	--tbfg: #fff;
+	--stripe: #fff;
+}
 
-	input::placeholder,
-	textarea::placeholder {
-		color: #9ca3af;
-	}
+:root[data-theme='stone'] {
+	--k: #141414;
+	--w: #fbfaf5;
+	--desk: #e2e2dc;
+	--pat: #c9c9c2;
+	--sel: #ffe14d;
+	--selfg: #141414;
+	--tb: #ffe14d;
+}
 
-	button:not(:disabled),
-	[role='button']:not(:disabled) {
-		cursor: pointer;
-	}
+:root[data-theme='phosphor'] {
+	--k: #4dff9a;
+	--w: #04130b;
+	--desk: #010604;
+	--pat: #0f4a2b;
+	--sel: #4dff9a;
+	--selfg: #04130b;
+	--tb: #04130b;
+	--icon: #04130b;
+	--termbg: #000;
+	--termfg: #4dff9a;
+	--wallf: invert(1) brightness(0.5) sepia(1) saturate(9) hue-rotate(72deg) brightness(1.1);
 
-	* {
-		@apply border-border;
-	}
+	text-shadow: 0 0 6px rgba(77, 255, 154, 0.4);
+}
 
-	body {
-		@apply bg-background text-foreground;
-	}
+:root[data-theme='colour'] {
+	--k: #1d1b3a;
+	--w: #fffdf7;
+	--desk: #43b3ae;
+	--pat: #2f918c;
+	--sel: #ff5d73;
+	--selfg: #fff;
+	--tb: #cdbdff;
+	--i-folder: #ffd23f;
+	--i-globe: #7dd8ff;
+	--i-trash: #dcd7c9;
+	--i-term: #b9f3c9;
+}
+
+:root[data-theme='blueprint'] {
+	--k: #eaf2ff;
+	--w: #1c4fa8;
+	--desk: #123a82;
+	--pat: #2459b8;
+	--sel: #eaf2ff;
+	--selfg: #123a82;
+	--tb: #1c4fa8;
+	--icon: #1c4fa8;
+	--termbg: #0c2a61;
+	--termfg: #eaf2ff;
+	--wallf: invert(1);
+}
+
+/* ------------------------------------------------------------------ base */
+
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+}
+
+[hidden] {
+	display: none !important;
 }
 
 html,
 body {
-	width: 100%;
 	height: 100%;
+}
+
+html {
+	background: var(--desk);
+}
+
+body {
+	margin: 0;
+	overflow: hidden;
+	color: var(--k);
+	font: 600 15px/1.45 var(--f);
+}
+
+a {
+	color: inherit;
+}
+
+button {
+	color: inherit;
+	font: inherit;
+}
+
+/* The root of the shell. Everything visible lives inside it, so Invert Screen can filter it. */
+.os {
+	position: fixed;
+	inset: 0;
+	overflow: hidden;
+	background: var(--desk) var(--deskpat) 0 0 / 4px 4px;
+	-webkit-user-select: none;
+	user-select: none;
+}
+
+.os.inv {
+	filter: invert(1);
+}
+
+:root[data-theme='phosphor'] .os::after {
+	content: '';
+	position: fixed;
+	inset: 0;
+	z-index: 998;
+	pointer-events: none;
+	background: repeating-linear-gradient(transparent 0 2px, rgba(0, 0, 0, 0.22) 2px 4px);
+}
+
+.desk {
+	position: absolute;
+	inset: 30px 0 0 0;
 	overflow: hidden;
 }
 
-.hamburger {
-	display: flex !important;
+.os.roll .desk {
+	animation: roll 1.4s cubic-bezier(0.5, 0, 0.3, 1);
+}
+
+@keyframes roll {
+	to {
+		transform: rotate(360deg);
+	}
+}
+
+@keyframes blink {
+	50% {
+		opacity: 0;
+	}
+}
+
+/* ---------------------------------------------------------- window chrome */
+
+.win {
+	position: absolute;
+	left: var(--x);
+	top: var(--y);
+	display: flex;
+	flex-direction: column;
+	width: min(var(--w0), calc(100vw - 20px));
+	height: var(--h0, auto);
+	min-width: 260px;
+	min-height: 120px;
+	max-height: calc(100% - 8px);
+	border: 2px solid var(--k);
+	background: var(--w);
+	box-shadow: 3px 3px 0 var(--k);
+}
+
+.win.pop {
+	animation: pop 0.18s steps(3) both;
+}
+
+@keyframes pop {
+	from {
+		opacity: 0;
+		transform: scale(0.9);
+	}
+}
+
+.win.shade {
+	height: auto !important;
+	min-height: 0;
+}
+
+.win.shade > :not(.tb) {
+	display: none;
+}
+
+.win.shade .tb {
+	border-bottom: 0;
+}
+
+.tb {
+	display: flex;
+	flex: none;
+	align-items: center;
+	gap: 8px;
+	height: 30px;
+	padding: 0 8px;
+	border-bottom: 2px solid var(--k);
+	background: var(--tb);
+	color: var(--tbfg, var(--k));
+	cursor: grab;
+	touch-action: none;
+}
+
+.tb:active {
+	cursor: grabbing;
+}
+
+.tb i {
+	flex: 1;
+	min-width: 8px;
+	height: 18px;
+	background: repeating-linear-gradient(var(--stripe) 0 2px, transparent 2px 4px);
+}
+
+.tb span {
+	flex: 0 1 auto;
+	padding: 0 4px;
+	overflow: hidden;
+	line-height: 18px;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+.tb button {
+	position: relative;
+	flex: none;
+	width: 18px;
+	height: 18px;
+	padding: 0;
+	border: 2px solid var(--k);
+	background: var(--w);
+	color: var(--k);
+	cursor: pointer;
+}
+
+.tb button:hover,
+.tb button:active {
+	background: var(--k);
+	color: var(--w);
+}
+
+.tb .sp {
+	flex: none;
+	width: 18px;
+}
+
+.tb .zoomb::before {
+	content: '';
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 8px;
+	height: 8px;
+	border-right: 2px solid;
+	border-bottom: 2px solid;
+}
+
+.win:not(.front) .tb {
+	background: var(--w);
+	color: var(--k);
+}
+
+.win:not(.front) .tb i,
+.win:not(.front) .tb button {
+	visibility: hidden;
+}
+
+.pane {
+	display: flex;
+	flex: 1;
+	min-height: 0;
+}
+
+.wc {
+	flex: 1;
+	min-width: 0;
+	padding: 18px 20px;
+	overflow: auto;
+	font-weight: 500;
+	scrollbar-width: none;
+	-webkit-user-select: text;
+	user-select: text;
+}
+
+.wc::-webkit-scrollbar {
+	display: none;
+}
+
+/* Body of a window that manages its own layout and scrolling (the terminal). */
+.body {
+	display: flex;
+	flex: 1;
+	flex-direction: column;
+	min-height: 0;
+}
+
+.wc.flush {
+	padding: 0;
+}
+
+.status {
+	flex: none;
+	height: calc(2.7em + 10px);
+	padding: 5px 12px;
+	overflow: hidden;
+	border-top: 2px solid var(--k);
+	font-size: 13px;
+	line-height: 1.35;
+}
+
+.grip {
+	position: absolute;
+	right: 0;
+	bottom: 0;
+	width: 18px;
+	height: 18px;
+	cursor: nwse-resize;
+	touch-action: none;
+	background:
+		linear-gradient(var(--k), var(--k)) 4px 4px / 8px 2px no-repeat,
+		linear-gradient(var(--k), var(--k)) 4px 4px / 2px 8px no-repeat,
+		linear-gradient(var(--k), var(--k)) 7px 13px / 8px 2px no-repeat,
+		linear-gradient(var(--k), var(--k)) 13px 7px / 2px 8px no-repeat,
+		linear-gradient(var(--k), var(--k)) 7px 7px / 2px 6px no-repeat,
+		linear-gradient(var(--k), var(--k)) 7px 7px / 6px 2px no-repeat;
+}
+
+/* Dialogs (alert, error): small, centred content, no scrollbar or resize grip. */
+.dlg .wc {
+	display: grid;
+	justify-items: center;
+	gap: 6px;
+	text-align: center;
+}
+
+.dlg .wc p {
+	margin: 6px 0;
+	white-space: pre-line;
+}
+
+/* ------------------------------------------------------- shared widgets */
+
+/* Drawn cross for close and clear boxes; the host must be position: relative. */
+.x::before,
+.x::after {
+	content: '';
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	width: 10px;
+	height: 2px;
+	margin: -1px 0 0 -5px;
+	background: currentColor;
+	transform: rotate(45deg);
+}
+
+.x::after {
+	transform: rotate(-45deg);
+}
+
+/* Classic push button with a double outline. */
+.btn {
+	display: inline-block;
+	margin: 6px;
+	padding: 6px 22px;
+	border: 2px solid var(--k);
+	border-radius: 9px;
+	background: var(--w);
+	box-shadow:
+		0 0 0 2px var(--w),
+		0 0 0 4px var(--k);
+	font-weight: 700;
+	text-decoration: none;
+	cursor: pointer;
+}
+
+.btn:hover,
+.btn:active {
+	background: var(--k);
+	color: var(--w);
+}
+
+/* Dithered divider. */
+.rule {
+	height: 6px;
+	margin: 12px 0;
+	background: var(--dither) 0 0 / 2px 2px;
+}
+
+/* Toolbar strip under a title bar (search field and counter). */
+.bar {
+	display: flex;
+	flex: none;
+	align-items: center;
+	gap: 10px;
+	padding: 8px 12px;
+	border-bottom: 2px solid var(--k);
+}
+
+.bar small {
+	flex: none;
+	width: 72px;
+	text-align: center;
+	white-space: nowrap;
+	font-variant-numeric: tabular-nums;
+}
+
+/* Text field in a toolbar: wrap the input and an optional .clr button in label.field. */
+.field {
+	display: flex;
+	flex: 1;
+	align-items: center;
+	gap: 6px;
+	min-width: 0;
+	padding: 0 6px 0 8px;
+	border: 2px solid var(--k);
+	background: var(--w);
+	cursor: text;
+}
+
+.field:focus-within {
+	box-shadow:
+		0 0 0 2px var(--w),
+		0 0 0 4px var(--k);
+}
+
+.field input {
+	flex: 1;
+	min-width: 0;
+	padding: 3px 0;
+	border: 0;
+	outline: 0;
+	background: none;
+	color: var(--k);
+	font: inherit;
+	font-weight: 500;
+}
+
+.field input::placeholder {
+	color: var(--k);
+	opacity: 0.55;
+}
+
+/* Small square clear button inside .field; combine with .x. */
+.clr {
+	position: relative;
+	flex: none;
+	width: 16px;
+	height: 16px;
+	padding: 0;
+	border: 2px solid var(--k);
+	background: var(--w);
+	color: var(--k);
+	cursor: pointer;
+}
+
+.clr.x::before,
+.clr.x::after {
+	width: 8px;
+	margin-left: -4px;
+}
+
+.clr:hover {
+	background: var(--k);
+	color: var(--w);
+}
+
+/* Small outlined action link (View Code, Live Demo). */
+.mini {
+	padding: 2px 12px;
+	border: 2px solid var(--k);
+	background: var(--w);
+	box-shadow: 2px 2px 0 var(--k);
+	font-size: 13px;
+	font-weight: 700;
+	text-align: center;
+	text-decoration: none;
+	white-space: nowrap;
+}
+
+.mini:hover,
+.mini:focus-visible {
+	background: var(--sel);
+	color: var(--selfg);
+	outline: 0;
+}
+
+/* Empty-state message in a list. */
+.none {
+	padding: 26px;
+	text-align: center;
+}
+
+/* "Showing N of M" row at the end of a lazy list. */
+.more {
+	display: block;
+	width: 100%;
+	padding: 9px 12px;
+	border: 0;
+	border-top: 2px dotted var(--k);
+	background: none;
+	font-size: 13px;
+	text-align: center;
+	cursor: pointer;
+}
+
+.more:hover {
+	background: var(--sel);
+	color: var(--selfg);
+}
+
+/* ----------------------------------------------------------------- phones */
+
+@media (max-width: 720px) {
+	body {
+		font-size: 16px;
+	}
+
+	.win {
+		position: fixed;
+		top: 30px !important;
+		left: 0 !important;
+		width: 100% !important;
+		height: calc(100dvh - 30px) !important;
+		max-height: none !important;
+		border-width: 0;
+		box-shadow: none;
+	}
+
+	.win.dlg {
+		top: 28% !important;
+		left: 6% !important;
+		width: 88% !important;
+		height: auto !important;
+		border-width: 2px;
+		box-shadow: 3px 3px 0 var(--k);
+	}
+
+	.win:not(.front) {
+		display: none;
+	}
+
+	.tb {
+		height: 42px;
+		cursor: default;
+	}
+
+	.tb i {
+		height: 26px;
+	}
+
+	.tb .close,
+	.tb .sp {
+		width: 26px;
+		height: 26px;
+	}
+
+	.tb .close::before,
+	.tb .close::after {
+		width: 14px;
+		margin-left: -7px;
+	}
+
+	.tb .zoomb {
+		visibility: hidden;
+		width: 26px;
+	}
+
+	.grip,
+	.status {
+		display: none;
+	}
+
+	.wc {
+		scrollbar-width: auto;
+	}
+}
+
+/* ---------------------------------------------------------- reduced motion */
+
+@media (prefers-reduced-motion: reduce) {
+	*,
+	*::before,
+	*::after {
+		animation: none !important;
+		transition: none !important;
+	}
+
+	.boot {
+		display: none;
+	}
 }

@@ -1,0 +1,188 @@
+{
+	"intro": "Examples of personal and professional projects demonstrating technical skills, problem-solving abilities, and innovative solutions. Some of them are not finished yet or are in the early stages of development.",
+	"projects": [
+		{
+			"title": "Harness Useful Family",
+			"description": "The home of the Harness Useful family: six open source, local-first tools that upgrade a coding agent with a desktop window, workflow skills, project memory, documentation search, a code graph, and a usage meter.",
+			"technologies": ["SvelteKit", "Svelte 5", "TypeScript", "Bun"],
+			"github": "https://github.com/MSpiechowicz/harness-useful",
+			"demo": "https://harness-useful.com"
+		},
+		{
+			"title": "Harness Useful Desktop",
+			"description": "A native desktop app for coding-agent CLIs such as Claude Code, Codex, OpenCode, Oh My Pi, and Pi: chat with the agent, browse its sessions and branches, review the changes it made, and manage its configuration and extensions, all locally.",
+			"technologies": ["Rust", "Tauri", "Svelte 5", "TypeScript", "Tailwind CSS"],
+			"github": "https://github.com/MSpiechowicz/harness-useful-desktop"
+		},
+		{
+			"title": "Harness Useful Skills",
+			"description": "Workflow skills for Oh My Pi, Claude Code, OpenCode, Codex, and Pi that take a natural-language request through research, planning, implementation, and review to verified work, with focused audits and pull request delivery.",
+			"technologies": ["JavaScript", "TypeScript", "Python", "Claude Code", "Oh My Pi"],
+			"github": "https://github.com/MSpiechowicz/harness-useful-skills"
+		},
+		{
+			"title": "Harness Useful Memory",
+			"description": "A local MCP server that gives AI coding agents project memory: they search it at the start of a task and save fixes, decisions, and locations for the next session, stored per repository in SQLite with full-text search.",
+			"technologies": ["Rust", "MCP", "SQLite"],
+			"github": "https://github.com/MSpiechowicz/harness-useful-memory"
+		},
+		{
+			"title": "Harness Useful Knowledge",
+			"description": "A local MCP server that makes project documentation searchable for AI coding agents, with hybrid keyword and vector search over imported guides, ADRs, OpenAPI specs, and PDFs.",
+			"technologies": ["Rust", "MCP", "SQLite"],
+			"github": "https://github.com/MSpiechowicz/harness-useful-knowledge"
+		},
+		{
+			"title": "Harness Useful Code",
+			"description": "A local MCP server that indexes a repository with tree-sitter and tells AI coding agents where code is defined, who uses it, and what breaks when it changes.",
+			"technologies": ["Rust", "MCP", "tree-sitter", "SQLite"],
+			"github": "https://github.com/MSpiechowicz/harness-useful-code"
+		},
+		{
+			"title": "Harness Useful Dashboard",
+			"description": "A local app that tracks token usage and API-equivalent cost across AI coding tools such as Claude Code, Codex, Gemini CLI, and Oh My Pi, with interactive charts, budgets, and an MCP server.",
+			"technologies": ["Svelte", "TypeScript", "SQLite"],
+			"github": "https://github.com/MSpiechowicz/harness-useful-dashboard"
+		},
+		{
+			"title": "Harness Useful Sidebar",
+			"description": "Live token charts, session history, and account allowances for Oh My Pi in a tmux sidebar and for Claude Code in a native pane, stored locally.",
+			"technologies": ["Python", "TypeScript", "Oh My Pi", "Claude Code", "tmux", "SQLite"],
+			"github": "https://github.com/MSpiechowicz/harness-useful-sidebar"
+		},
+		{
+			"title": "Harness Useful Test Portal",
+			"description": "A local desktop app with practice tests for AI and LLM engineering: timed quizzes or a practice mode by topic and difficulty, with an explanation and sources for every question.",
+			"technologies": ["Tauri", "SvelteKit", "TypeScript", "Rust"],
+			"github": "https://github.com/MSpiechowicz/harness-useful-test-portal"
+		},
+		{
+			"title": "Project Palette",
+			"description": "A project palette generator that allows you to create a palette of similar colors for your project. It is built with React and Vite.",
+			"technologies": ["React", "TypeScript", "Tailwind CSS", "Vite"],
+			"github": "https://github.com/MSpiechowicz/project-palette",
+			"demo": "https://mspiechowicz.github.io/project-palette/"
+		},
+		{
+			"title": "Track Things",
+			"description": "Simplify your tracking journey with a user-friendly platform that transforms your data into meaningful charts. No technical skills or spreadsheets required.",
+			"technologies": ["SvelteKit", "TypeScript", "Tailwind CSS", "Vite", "Supabase"],
+			"demo": "https://track-things.com"
+		},
+		{
+			"title": "Flow of Time",
+			"description": "This simple project shares only one purpose - to provide you with the the actual, real time information about the flow of time. We all have our limited time on earth as a human being, so each second matters. Make use of it. Do not waste your time.",
+			"technologies": ["Svelte 5", "TypeScript", "Tailwind CSS", "Vite"],
+			"github": "https://github.com/MSpiechowicz/flowoftime",
+			"demo": "https://mspiechowicz.github.io/flowoftime/"
+		},
+		{
+			"title": "Estimate Electric Car Range",
+			"description": "Estimate the range of your electric car based on the battery capacity and the driving style.",
+			"technologies": ["Svelte 5", "TypeScript", "Tailwind CSS", "Vite"],
+			"github": "https://github.com/MSpiechowicz/estimate-electric-car-range",
+			"demo": "https://mspiechowicz.github.io/estimate-electric-car-range/"
+		},
+		{
+			"title": "LazyVim Config",
+			"description": "My personal configuration for LazyVim, a minimalistic and efficient Neovim configuration.",
+			"technologies": ["Neovim", "LazyVim", "Lua"],
+			"github": "https://github.com/MSpiechowicz/lazyvim-config"
+		},
+		{
+			"title": "SvelteKit Blog",
+			"description": "My personal blog built with SvelteKit, a minimalistic and efficient blog framework.",
+			"technologies": ["SvelteKit", "TypeScript", "Tailwind CSS", "Vite"],
+			"github": "https://github.com/MSpiechowicz/sveltekit-blog",
+			"demo": "https://mspiechowicz.com"
+		},
+		{
+			"title": "AI Input Generator",
+			"description": "A brutalist-styled Svelte 5 application that transforms basic user requests into professional, comprehensive AI prompts. Select your project type, input your request, and get an enhanced prompt ready to use with any AI tool.",
+			"technologies": ["Svelte 5", "TypeScript", "Tailwind CSS", "Vite"],
+			"github": "https://github.com/MSpiechowicz/ai-input-generator",
+			"demo": "https://mspiechowicz.github.io/ai-input-generator/"
+		},
+		{
+			"title": "Svelte CV",
+			"description": "My personal CV built with SvelteKit, a minimalistic and efficient CV framework.",
+			"technologies": ["SvelteKit", "TypeScript", "Tailwind CSS", "Vite"],
+			"github": "https://github.com/MSpiechowicz/svelte-cv",
+			"demo": "https://mspiechowicz.github.io/svelte-cv/"
+		},
+		{
+			"title": "Business Card Style Website",
+			"description": "This is a basic business card website that you can use as a template for your personal website. It is built using React and Vite.",
+			"technologies": ["React", "TypeScript", "SCSS", "Vite"],
+			"github": "https://github.com/MSpiechowicz/business-card-style-website",
+			"demo": "https://business-card-style-website.vercel.app"
+		},
+		{
+			"title": "Anna Spiechowicz Website",
+			"description": "A bilingual (English and German) portfolio website for a Product Owner and Business Analyst, built as a static Astro site with hand-written CSS, inline SVG diagrams, and no client framework.",
+			"technologies": ["Astro", "TypeScript", "CSS"],
+			"github": "https://github.com/MSpiechowicz/annaspiechowicz.com",
+			"demo": "https://annaspiechowicz.com"
+		},
+		{
+			"title": "Maciej Spiechowicz Website",
+			"description": "An earlier version of my personal website, built with React 18 and Vite.",
+			"technologies": ["React", "TypeScript", "Tailwind CSS", "Vite"],
+			"github": "https://github.com/MSpiechowicz/maciejspiechowicz.com"
+		},
+		{
+			"title": "Personal Website Template",
+			"description": "A personal website HTML5 template inspired by the HTML5 UP Identity project.",
+			"technologies": ["HTML", "CSS", "JavaScript"],
+			"github": "https://github.com/MSpiechowicz/personal-website"
+		},
+		{
+			"title": "Useful Snippets",
+			"description": "A collection of useful snippets for various programming languages and tools.",
+			"technologies": ["Markdown", "JavaScript", "TypeScript", "HTML", "CSS"],
+			"github": "https://github.com/MSpiechowicz/useful-snippets"
+		},
+		{
+			"title": "Universal OCPP Bridge",
+			"description": "An in-progress Rust foundation for bridging OCPP chargers to external protocols.",
+			"technologies": ["Rust", "OCPP 1.6J", "OCPP 2.0.1", "MQTT"],
+			"github": "https://github.com/MSpiechowicz/universal-ocpp-bridge"
+		},
+		{
+			"title": "Track Things Home Assistant",
+			"description": "A Home Assistant integration for Track Things with calendar support, automation entry creation, and guided Assist conversations.",
+			"technologies": ["Home Assistant", "Python", "Track Things"],
+			"github": "https://github.com/MSpiechowicz/track-things-home-assistant"
+		},
+		{
+			"title": "Oh My Pi Anvil",
+			"description": "An Oh My Pi extension for specialist-assisted planning, implementation, verification, and review.",
+			"technologies": ["TypeScript", "Oh My Pi", "SQLite"],
+			"github": "https://github.com/MSpiechowicz/oh-my-pi-anvil"
+		},
+		{
+			"title": "Pi Config",
+			"description": "Personal pi.dev configuration with extensions, settings, skills, and themes.",
+			"technologies": ["pi.dev", "TypeScript", "Lua"],
+			"github": "https://github.com/MSpiechowicz/pi-config"
+		},
+		{
+			"title": "Oh My Pi Activity Mask",
+			"description": "An Oh My Pi activity-animation and presentation extension with masking dependent on host presentation-mask API support.",
+			"technologies": ["TypeScript", "Oh My Pi", "TUI"],
+			"github": "https://github.com/MSpiechowicz/oh-my-pi-activity-mask"
+		},
+		{
+			"title": "WezTerm Config",
+			"description": "Personal WezTerm terminal configuration written in Lua.",
+			"technologies": ["WezTerm", "Lua"],
+			"github": "https://github.com/MSpiechowicz/wezterm-config"
+		},
+		{
+			"title": "Useful Timer",
+			"description": "An animated desktop countdown app with multiple independent timers, customizable styles and sounds, and locally saved settings.",
+			"technologies": ["Rust", "egui/eframe", "Rodio"],
+			"github": "https://github.com/MSpiechowicz/useful-timer"
+		}
+	]
+}

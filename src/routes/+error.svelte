@@ -1,19 +1,42 @@
-<script>
+<script lang="ts">
+	import { resolve } from '$app/paths';
 	import { page } from '$app/state';
 
-	import Storm from '#lib/assets/storm.svg';
-
-	const currentPageStatus = $derived(page.status);
-	const currentPageError = $derived(page.error?.message);
+	import { t } from '#lib/components/desktop/text.js';
 </script>
 
-<div class="flex h-[100%] flex-col items-center justify-center gap-2">
-	<div class="relative flex justify-center align-middle">
-		<h1 class="text-6xl font-bold">{currentPageStatus}</h1>
-		<img
-			class="absolute -top-6 -left-16"
-			src={Storm}
-			alt="Storm" />
+<!-- A dialog in the same window chrome as the desktop windows (classes live in app.css). -->
+<div
+	class="win dlg front error"
+	role="alertdialog"
+	aria-label={t('desktop.error.title')}
+	style:--x="calc(50vw - 180px)"
+	style:--y="22vh"
+	style:--w0="360px"
+	style:z-index="500">
+	<div class="tb">
+		<b class="sp"></b>
+		<i></i>
+		<span>{t('desktop.error.title')}</span>
+		<i></i>
+		<b class="sp"></b>
 	</div>
-	<p class="text-2xl">{currentPageError}</p>
+	<div class="pane">
+		<div class="wc">
+			<h1>{page.status}</h1>
+			<p>{page.error?.message}</p>
+			<a
+				class="btn"
+				href={resolve('/')}>{t('desktop.error.back')}</a>
+		</div>
+	</div>
 </div>
+
+<style>
+	h1 {
+		margin: 0;
+		font-size: 3rem;
+		font-weight: 900;
+		line-height: 1;
+	}
+</style>

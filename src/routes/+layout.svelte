@@ -1,26 +1,56 @@
 <script lang="ts">
 	import type { Snippet } from 'svelte';
-	import type { UrlData } from '#lib/types.js';
+	import { afterNavigate } from '$app/navigation';
+	import { page } from '$app/state';
 
-	import Footer from '#lib/components/footer.svelte';
-	import Navigation from '#lib/components/navigation.svelte';
-	import PageTransition from '#lib/components/page-transition.svelte';
+	import DesktopShell from '#lib/components/desktop/desktop-shell.svelte';
+	import { Desktop, setDesktop } from '#lib/desktop/desktop.svelte.js';
+	import type { Article } from '#lib/desktop/types.js';
 
 	import '../app.css';
 
-	let { data, children }: { data: UrlData; children: Snippet } = $props();
+	let { data, children }: { data: App.PageData; children: Snippet } = $props();
+
+	function createDesktop(): Desktop {
+		return new Desktop({
+			pathname: page.url.pathname,
+			posts: data.posts,
+			projects: data.projects,
+		});
+	}
+
+	const desk = setDesktop(createDesktop());
+
+	const routeArticle = $derived.by((): Article | null => {
+		const { content, meta } = page.data;
+
+		return content && meta ? { content, meta } : null;
+	});
+
+	// The article window outlives its route: it stays open behind the Blog or About window.
+	const article = $derived(routeArticle ?? desk.lastArticle);
+
+	$effect(() => {
+		if (routeArticle) desk.lastArticle = routeArticle;
+	});
+
+	// Runs once on load and after every navigation: the window that owns the URL opens.
+	function syncRoute() {
+		if (page.error) {
+			// The URL is where the error page is, but no window opens for it. An unknown article
+			// path starts with a window state but has nothing to show.
+			desk.recordPath(page.url.pathname);
+			if (!article) desk.closeWindow('post');
+
+			return;
+		}
+
+		desk.syncRoute(page.url.pathname, routeArticle !== null);
+	}
+
+	afterNavigate(syncRoute);
 </script>
 
-<div
-	class="flex h-full w-full flex-col overflow-auto"
-	style:overflow-anchor={data?.url === '/blog' ? 'none' : undefined}>
-	<header class="relative mx-6 mt-4 sm:mx-12 xl:mx-20 2xl:mx-24">
-		<Navigation />
-	</header>
-	<main class="mx-8 mt-8 mb-12 grow sm:mx-12 md:mx-12 lg:mx-14">
-		<PageTransition url={data?.url}>
-			{@render children()}
-		</PageTransition>
-	</main>
-	<Footer />
-</div>
+<DesktopShell {article}>
+	{@render children()}
+</DesktopShell>

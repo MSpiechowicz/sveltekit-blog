@@ -34,21 +34,18 @@
 
 <button
 	type="button"
-	class={[
-		'absolute top-0 right-0 inline-flex size-11 cursor-pointer items-center justify-center rounded-bl-md bg-primary transition-colors hover:bg-primary/85 focus-visible:ring-2 focus-visible:ring-primary-foreground focus-visible:outline-none focus-visible:ring-inset',
-		status === 'failed' ? 'text-red-400' : 'text-primary-foreground',
-	]}
+	class="copy"
+	data-status={status}
 	aria-label={labels[status]}
 	title={labels[status]}
 	onclick={copy}>
 	<svg
-		class="size-4"
 		viewBox="0 0 24 24"
 		fill="none"
 		stroke="currentColor"
-		stroke-width="2"
-		stroke-linecap="round"
-		stroke-linejoin="round"
+		stroke-width="2.5"
+		stroke-linecap="square"
+		stroke-linejoin="miter"
 		aria-hidden="true">
 		{#if status === 'copied'}
 			<path d="M20 6 9 17l-5-5" />
@@ -58,13 +55,70 @@
 			<rect
 				x="9"
 				y="9"
-				width="13"
-				height="13"
-				rx="2" />
-			<path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
+				width="12"
+				height="12" />
+			<path d="M5 15H3V3h12v2" />
 		{/if}
 	</svg>
 	<span
-		class="sr-only"
+		class="sr"
 		aria-live="polite">{status === 'idle' ? '' : labels[status]}</span>
 </button>
+
+<style>
+	/* A small ink-bordered box in the top-right corner of the code block (which is position: relative). */
+	.copy {
+		position: absolute;
+		top: 0;
+		right: 0;
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		width: 32px;
+		height: 32px;
+		padding: 0;
+		border: 0;
+		border-bottom: 2px solid var(--k);
+		border-left: 2px solid var(--k);
+		background: var(--w);
+		color: var(--k);
+		cursor: pointer;
+	}
+
+	.copy:hover,
+	.copy:focus-visible {
+		background: var(--k);
+		color: var(--w);
+		outline: 0;
+	}
+
+	.copy:focus-visible {
+		box-shadow: inset 0 0 0 2px var(--w);
+	}
+
+	.copy[data-status='copied'] {
+		background: var(--sel);
+		color: var(--selfg);
+	}
+
+	.copy[data-status='failed'] {
+		border-left-style: dashed;
+		border-bottom-style: dashed;
+		background: var(--k);
+		color: var(--w);
+	}
+
+	svg {
+		width: 16px;
+		height: 16px;
+	}
+
+	.sr {
+		position: absolute;
+		width: 1px;
+		height: 1px;
+		overflow: hidden;
+		clip-path: inset(50%);
+		white-space: nowrap;
+	}
+</style>

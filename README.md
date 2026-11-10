@@ -1,19 +1,18 @@
-# Personal Blog
+# Personal Website and Blog
 
-Hi! This is my personal blog. In case you want to fork it, please make sure to change the content to fit your needs.
+A personal website styled as a classic desktop: windows, icons, a menu bar and a terminal for About, Blog, Projects and Links. The blog posts also have regular pages under `/blog`. If you fork it, change the content to fit your needs.
 
-## Dependencies
+## Stack
 
-Below you can find list of the dependencies that are used to build this blog:
+| Name      | URL                         |
+| --------- | --------------------------- |
+| Bun       | https://bun.sh              |
+| SvelteKit | https://svelte.dev/docs/kit |
+| Svelte 5  | https://svelte.dev          |
+| Vite      | https://vite.dev            |
+| mdsvex    | https://mdsvex.com          |
 
-| Name          | URL                         |
-| ------------- | --------------------------- |
-| Bun           | https://bun.sh              |
-| SvelteKit     | https://svelte.dev/docs/kit |
-| TailwindCSS   | https://tailwindcss.com     |
-| shadcn-svelte | https://shadcn-svelte.com   |
-| Vite          | https://vite.dev            |
-| mdsvex        | https://mdsvex.com          |
+Styling is plain CSS (`src/app.css` and component styles). There is no Tailwind or component library.
 
 ## Installation
 
@@ -35,7 +34,7 @@ Run `bun audit` after dependency updates.
 
 ### Current toolchain
 
-The project uses Svelte 5 runes and snippets, SvelteKit 3, Vite 8, Bits UI 2, and Tailwind CSS 4. SvelteKit is configured through the `sveltekit(...)` plugin in `vite.config.ts` (there is no `svelte.config.js`), and `#lib` imports resolve through the `imports` field in `package.json`. Tailwind runs through `@tailwindcss/vite`; theme tokens and utilities live in `src/app.css`, with no separate Tailwind or PostCSS configuration. Component styles that use `@apply` reference that stylesheet.
+The project uses Svelte 5 runes and snippets, SvelteKit 3 and Vite 8. SvelteKit is configured through the `sveltekit(...)` plugin in `vite.config.ts` (there is no `svelte.config.js`), and `#lib/*` imports resolve through the `imports` field in `package.json`.
 
 TypeScript is held at `~6.0.3`, the newest stable release supported by SvelteKit, svelte-check, and typescript-eslint. TypeScript 7 is not yet within their declared peer ranges. Other direct dependencies use the current stable releases available at migration time. Historical blog posts describe the stack at their original publication dates and are intentionally unchanged.
 
@@ -53,7 +52,19 @@ With Node.js 26, `VERCEL=1 bun run build` also verifies the installed Vercel ada
 
 ## Content
 
-The content of this blog is stored in the `src/lib/blog` directory. You can add new blog posts by creating a new `.svx` file in that directory.
+The content of this blog is stored in the `src/lib/blog` directory. You can add new blog posts by creating a new `.svx` file in that directory. See `AGENTS.md` for the required `social` frontmatter.
+
+### Projects window
+
+The Projects window reads `src/lib/data/projects.json`. Regenerate it from the CV data with:
+
+```bash
+bun run sync:projects <path to svelte-cv/src/lib/cv.json>
+```
+
+### Machine-readable endpoints
+
+The site serves `/rss.xml`, `/sitemap.xml`, `/robots.txt`, `/llms.txt` and `/llms-full.txt`.
 
 Article detail pages keep the title and prose in the same centered column, up to 800px wide, which narrows naturally on smaller screens.
 

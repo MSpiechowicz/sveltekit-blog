@@ -1,7 +1,8 @@
-import type { Post } from './types';
+import type { ListOrder } from '#lib/desktop/types.js';
 
-export type DateOrder = 'ASC' | 'DESC';
-export const POSTS_PER_PAGE = 5;
+type Listable = { title?: string; description?: string; date?: string } | undefined;
+
+export const BATCH_SIZE = 10;
 
 function dateValue(date: string | undefined): number | undefined {
 	if (!date || !/^\d{2}-\d{2}-\d{4}$/.test(date)) return undefined;
@@ -17,8 +18,25 @@ function dateValue(date: string | undefined): number | undefined {
 	return value.getTime();
 }
 
-export function selectPosts(posts: Post[], query: string, order: DateOrder): Post[] {
+function compareByDate(a: Listable, b: Listable, order: 'ASC' | 'DESC'): number {
+	const first = dateValue(a?.date);
+	const second = dateValue(b?.date);
+
+	// Undated or invalid metadata stays last in either direction; ties stay stable.
+	if (first === undefined) return second === undefined ? 0 : 1;
+	if (second === undefined) return -1;
+
+	return order === 'ASC' ? first - second : second - first;
+}
+
+function compareByName(a: Listable, b: Listable): number {
+	return (a?.title ?? '').localeCompare(b?.title ?? '');
+}
+
+/** Filters by title and description (case-insensitive substring), then orders the matches. */
+export function selectPosts<T extends Listable>(posts: T[], query: string, order: ListOrder): T[] {
 	const search = query.trim().toLowerCase();
+
 	return posts
 		.filter(
 			(post) =>
@@ -26,22 +44,15 @@ export function selectPosts(posts: Post[], query: string, order: DateOrder): Pos
 				(post?.title ?? '').toLowerCase().includes(search) ||
 				(post?.description ?? '').toLowerCase().includes(search),
 		)
-		.map((post) => ({ post, date: dateValue(post?.date) }))
-		.sort((a, b) => {
-			// Undated or invalid metadata stays last in either direction; ties stay stable.
-			if (a.date === undefined) return b.date === undefined ? 0 : 1;
-			if (b.date === undefined) return -1;
-			return order === 'ASC' ? a.date - b.date : b.date - a.date;
-		})
-		.map(({ post }) => post);
+		.sort((a, b) => (order === 'NAME' ? compareByName(a, b) : compareByDate(a, b, order)));
 }
 
-export function paginatePosts(posts: Post[], requestedPage: number) {
-	const pageCount = Math.max(1, Math.ceil(posts.length / POSTS_PER_PAGE));
-	const page = Math.max(1, Math.min(requestedPage, pageCount));
-	return {
-		page,
-		pageCount,
-		posts: posts.slice((page - 1) * POSTS_PER_PAGE, page * POSTS_PER_PAGE),
-	};
+/** The first `shown` rows of the list; `shown` is clamped to the list and never negative. */
+export function takeBatch<T>(list: T[], shown: number): T[] {
+	return list.slice(0, Math.max(0, shown));
+}
+
+/** How many rows to show after the next batch is requested: one more batch, never past the end. */
+export function nextShown(total: number, shown: number, size = BATCH_SIZE): number {
+	return Math.min(total, Math.max(0, shown) + size);
 }

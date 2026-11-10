@@ -1,5 +1,4 @@
 import type { Component } from 'svelte';
-import type { Path } from '$app/types';
 
 export type Categories = 'non-technical' | 'technical';
 
@@ -22,21 +21,3 @@ export type Data =
 			meta: Post;
 	  }
 	| undefined;
-
-export type PostsData = {
-	posts: Post[];
-};
-
-export type UrlData = {
-	url: string;
-};
-
-export type MenuItem = {
-	name: string;
-	path: Path;
-};
-
-export type FooterItem = {
-	href: string;
-	letter: string;
-};
