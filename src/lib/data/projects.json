@@ -57,6 +57,13 @@
 			"github": "https://github.com/MSpiechowicz/harness-useful-test-portal"
 		},
 		{
+			"title": "Network Flow",
+			"description": "Interactive, animated explanations of how the internet works: step through scenarios such as DNS, TCP, TLS, HTTP and HTTPS, CORS, and CDNs, with packets crossing an isometric network, a sequence diagram, a Wireshark-style packet table, and the header fields of each packet.",
+			"technologies": ["React", "TypeScript", "Motion", "Vite"],
+			"github": "https://github.com/MSpiechowicz/network-flow",
+			"demo": "https://mspiechowicz.github.io/network-flow"
+		},
+		{
 			"title": "Project Palette",
 			"description": "A project palette generator that allows you to create a palette of similar colors for your project. It is built with React and Vite.",
 			"technologies": ["React", "TypeScript", "Tailwind CSS", "Vite"],
