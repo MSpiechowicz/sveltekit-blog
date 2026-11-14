@@ -110,6 +110,36 @@ describe('social post selection and copy', () => {
 		expect(linkedin.endsWith(url)).toBe(true);
 	});
 
+	it('keeps paragraph breaks in folded LinkedIn copy and joins wrapped lines', () => {
+		const source = post('paragraphs', 'Search engine description.').replace(
+			'date:',
+			[
+				'social:',
+				'  mastodon: >-',
+				'    Short',
+				'    copy.',
+				'',
+				'    Still one line.',
+				'  x: >-',
+				'    Compact copy.',
+				'  linkedin: >-',
+				'    First paragraph,',
+				'    wrapped in the source.',
+				'',
+				'    Second paragraph.',
+				'date:',
+			].join('\n'),
+		);
+		const parsed = parsePost(source, 'paragraphs.svx');
+		expect(parsed.social.linkedin).toBe(
+			'First paragraph, wrapped in the source.\n\nSecond paragraph.',
+		);
+		expect(parsed.social.mastodon).toBe('Short copy. Still one line.');
+		expect(composeAnnouncement(parsed).linkedin).toBe(
+			`First paragraph, wrapped in the source.\n\nSecond paragraph.\n\n${parsed.url}`,
+		);
+	});
+
 	it('uses authored platform copy instead of the SEO description and requires complete social metadata', () => {
 		const source = post('authored', 'Search engine description.');
 		const social = {

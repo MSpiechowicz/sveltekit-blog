@@ -82,7 +82,7 @@ Automatic publishing and manual Actions recovery target **Mastodon only**. Every
 
 Announcements use article-specific `social.mastodon`, `social.x`, and `social.linkedin` frontmatter, each a non-empty YAML string without the article URL. The publisher appends the canonical URL from site configuration and preserves it when truncating to platform limits. Articles without a `social` mapping fall back to their SEO `description`; a partial or malformed mapping fails rather than silently ignoring missing copy.
 
-Write distinct, factual copy for each platform rather than reusing the description or adding randomly selected canned introductions. Mastodon is conversational; X is compact. LinkedIn starts with a polite, more formal greeting such as “Hello, …” and develops the topic in several substantive sentences with more context. Vary the angle and opening between articles; avoid a recurring “I created…” formula. `AGENTS.md` instructs authoring agents to write this copy alongside articles and review recent announcements for repetition. No LLM API, credentials, or nondeterministic rewriting runs in CI: preview and delivery use the same committed copy.
+Write distinct, factual copy for each platform rather than reusing the description or adding randomly selected canned introductions. Mastodon is conversational; X is compact. LinkedIn is a longer, personal first-person post in a few short paragraphs, opening with the reason or opinion behind the work rather than a greeting; blank lines between paragraphs in the folded `>-` value are kept as paragraph breaks. Vary the angle and opening between articles; avoid a recurring “I created…” formula. `AGENTS.md` instructs authoring agents to write this copy alongside articles and review recent announcements for repetition. No LLM API, credentials, or nondeterministic rewriting runs in CI: preview and delivery use the same committed copy.
 
 ### Account and repository setup
 
@@ -120,7 +120,7 @@ Open **Actions → Publish new blog posts → select a run → Summary**. Each s
 
 - **Mastodon copy**: the exact prepared announcement, not a delivery receipt. Automatic live runs send it to Mastodon; inspect results before posting manually to avoid duplicates.
 - **X drafts — copy and paste**: compact copy within X's weighted character limit.
-- **LinkedIn drafts — copy and paste**: a longer, greeting-led professional announcement.
+- **LinkedIn drafts — copy and paste**: a longer, personal post in short paragraphs.
 
 Copy X and LinkedIn drafts into their respective platforms and publish manually. No developer app setup or API access is needed. The sections appear for automatic new-post runs and manual previews/recovery, before readiness checks and Mastodon publishing, so drafts remain available if those fail. Runs with no selected posts show an empty-state message in each section. Check that the article is live before posting: drafts confirm neither deployment nor delivery. GitHub's notification email links to the run but does not contain the copy itself.
 
