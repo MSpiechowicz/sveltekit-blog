@@ -9,7 +9,15 @@ social:
   x: >-
     I replaced the whole interface of this site with a classic desktop: draggable windows, a terminal, nine themes and a new Projects window. Old article links still work and are still server-rendered.
   linkedin: >-
-    Hello, my personal site and blog have just been through the largest change since I started writing here again. The interface is now a classic desktop with a menu bar, draggable windows, desktop icons and a terminal, and About, Blog, Projects and Links each open in their own window. A new Projects window lists my personal and professional work, generated from the same data as my CV. Under the surface, every existing address still works and is server-rendered, and each page now carries canonical, Open Graph and structured-data metadata alongside a sitemap and llms.txt. The article describes what changed, what was removed from the stack and how the site behaves on a phone.
+    For a long time this site was a blog with a few pages around it. That was enough while I was only writing, but the projects I work on had no real home there, and I wanted the place to be a bit more fun to visit.
+
+    So I rebuilt it as a small desktop. About, Blog, Projects and Links open in their own windows that you can drag around, and there's a menu bar, a Trash, an animated wallpaper and a terminal that knows a few more commands than its help text admits.
+
+    The part I cared about most is the one nobody sees: not breaking anything. Every old address still opens the same article and is still rendered on the server, so a link shared a year ago keeps working. The new Projects window is generated from the same data as my CV, so both describe the same projects.
+
+    The stack got smaller along the way, too. Tailwind and the component libraries are gone, and the styling is plain CSS now.
+
+    In the post I go through what changed, what I removed and how it behaves on a phone, where every window simply opens full screen.
 categories:
   - technical
 ---
