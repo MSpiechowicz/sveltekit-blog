@@ -1,0 +1,100 @@
+---
+title: 'This blog is now a desktop'
+description: 'The whole site was rebuilt as a classic desktop with a menu bar, draggable windows, a terminal, nine themes and a new Projects window, while every old address keeps working.'
+date: '11-14-2026'
+slug: blog-desktop-redesign
+social:
+  mastodon: >-
+    The blog looks different now. The whole site is a small desktop: a menu bar, windows you can drag around, a Trash, a terminal and an animated wallpaper. There is also a new Projects window, and every old link still opens the same post. The terminal knows a few things the help text does not mention.
+  x: >-
+    I replaced the whole interface of this site with a classic desktop: draggable windows, a terminal, nine themes and a new Projects window. Old article links still work and are still server-rendered.
+  linkedin: >-
+    Hello, my personal site and blog have just been through the largest change since I started writing here again. The interface is now a classic desktop with a menu bar, draggable windows, desktop icons and a terminal, and About, Blog, Projects and Links each open in their own window. A new Projects window lists my personal and professional work, generated from the same data as my CV. Under the surface, every existing address still works and is server-rendered, and each page now carries canonical, Open Graph and structured-data metadata alongside a sitemap and llms.txt. The article describes what changed, what was removed from the stack and how the site behaves on a phone.
+categories:
+  - technical
+---
+
+Hello there!
+
+<br/>
+
+If you have visited before, you have probably noticed that things look a little different. The blog no longer has a sky, a house and a hamburger menu. It is a desktop now.
+
+<br/>
+
+This is the biggest change to the site since I started writing here again in 2024. The previous design served me well, but it was a blog with a few pages around it. I wanted a place that could also show the projects I work on, and I wanted it to be a bit more fun to visit.
+
+## A desktop instead of pages
+
+The whole interface was replaced. There is a menu bar at the top, icons on the desktop and an animated wallpaper behind them. About, Blog, Projects and Links each open in their own window, which you can drag, resize and stack on top of each other. There is also a Trash, and yes, you can drag icons onto it.
+
+<br/>
+
+The important part for me was not breaking anything. Every existing address still works and is still rendered on the server:
+
+- `/` opens the About window,
+- `/blog` opens the Blog window,
+- `/blog/<slug>` opens the article in its own window.
+
+<br/>
+
+So a link to an article that you shared a year ago still lands on that article, and search engines still get a complete page instead of an empty shell.
+
+## The Blog window
+
+The Blog window keeps the things the old list had and makes them a bit simpler. Search goes over all posts, you can sort by name or by date, and rows are loaded ten at a time as you scroll. Articles open in their own window and keep the copy button on code blocks that I added just before the redesign.
+
+## Projects
+
+The new Projects window is the main reason I started this. It lists personal and professional projects, from the Harness Useful family to older things like Track Things and Project Palette. A few of them are not finished yet or are still early, and the window says so.
+
+<br/>
+
+The list is not maintained by hand. It lives in `src/lib/data/projects.json`, and a small script regenerates it from the data of my CV, so both places describe the same projects:
+
+```bash
+bun run sync:projects <path to svelte-cv/src/lib/cv.json>
+```
+
+<br/>
+
+The most recent addition is [Network Flow](https://mspiechowicz.github.io/network-flow), a set of interactive, animated explanations of how the internet works: DNS, TCP, TLS, HTTP and HTTPS, CORS and CDNs, with packets crossing an isometric network.
+
+## Themes and the terminal
+
+The Special menu has nine themes, from the default Paper + Ink to Blueprint and Phosphor. The site remembers the one you pick. The first visit in a tab also plays a short boot screen.
+
+<br/>
+
+And there is a terminal. `help` lists the basics: `ls` lists posts, `cat 6` reads one, `open projects` opens a window. The help text also hints that there is more than it shows. I will not spoil all of it here, but `ls -la` is a good place to start, and you might want to try `vim` if you are comfortable getting out of it.
+
+## On a phone
+
+On screens up to 720px wide, windows open full screen and cannot be dragged or resized. Dragging tiny windows with a finger is not fun, and reading an article should not require it.
+
+## Less under the hood
+
+The redesign removed more than it added in terms of dependencies. Tailwind, shadcn, Bits UI and the other packages that only the old interface used are gone. Styling is now plain CSS in `app.css` and in the components, on top of Svelte 5, SvelteKit 3 and Vite.
+
+<br/>
+
+A few smaller changes came with it:
+
+- every page has canonical, Open Graph, X card and JSON-LD metadata,
+- the site now serves `/sitemap.xml`, `/robots.txt`, `/llms.txt` and `/llms-full.txt`, while `/rss.xml` stays as it was,
+- the social media drafts that I keep in each article are stripped from the compiled metadata, so they no longer end up in the client bundle,
+- the build now fails on a malformed or unknown frontmatter field instead of quietly publishing it.
+
+<br/>
+
+The whole site is still [open source](https://github.com/MSpiechowicz/sveltekit-blog), so if you want a desktop of your own, feel free to fork it and replace the content.
+
+## What next
+
+The content stays the same as before: articles about the things I build and use. The difference is that the projects now have a home next to them. If something looks broken in your browser, or you find a trick in the terminal that I did not mention, let me know.
+
+<br/>
+
+Greetings,
+
+Maciej
