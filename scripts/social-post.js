@@ -25,6 +25,18 @@ function normalizeText(value) {
 	return value.replace(/\s+/gu, ' ').trim();
 }
 
+/**
+ * Keeps paragraph breaks and normalizes whitespace inside each paragraph. In a folded (`>-`) YAML
+ * scalar, wrapped lines become spaces and only a blank line between paragraphs leaves a newline.
+ */
+function normalizeParagraphs(value) {
+	return value
+		.split(/\n/u)
+		.map(normalizeText)
+		.filter((paragraph) => paragraph.length > 0)
+		.join('\n\n');
+}
+
 function requireString(metadata, field, sourceName) {
 	if (typeof metadata[field] !== 'string' || normalizeText(metadata[field]).length === 0) {
 		throw new PublisherError(`${sourceName} is missing a non-empty ${field} frontmatter field.`);
@@ -96,6 +108,8 @@ export function parsePost(source, sourceName, { origin = readSiteOrigin() } = {}
 				requireString(metadata.social, provider, `${sourceName} social`),
 			]),
 		);
+		// LinkedIn copy is several paragraphs long; keep the breaks between them.
+		social.linkedin = normalizeParagraphs(metadata.social.linkedin);
 	}
 	const url = new URL(`/blog/${encodeURIComponent(slug)}`, validateHttpsUrl(origin, 'Site URL'))
 		.href;
