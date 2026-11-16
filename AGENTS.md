@@ -29,7 +29,7 @@ The default article voice is the author's own first person. When the author asks
 - Care about wording and rhythm: mix short lines with longer ones, let a one-sentence paragraph land, and prefer a concrete scene or detail over a list of features. A playful title and section headings are fine.
 - Keep it relaxed but not sloppy: no slang for its own sake, no emoji walls, no forced questions, no hype words.
 - Vibes never replace facts. Every feature, number and claim must still come from the project's source, README or the author, and qualifications stay in.
-- Keep the house formatting: `<br/>` between paragraphs, `##` section headings, links to the demo and repository, and a short sign-off.
+- Keep the house formatting: open the article body with "Hello there!" followed by `<br/>`, then go straight into the "you" scene; `<br/>` between paragraphs, `##` section headings, links to the demo and repository, and a short sign-off.
 - The SEO `description` stays plain and factual. Social copy still follows the frontmatter contract above; Mastodon and X may borrow the "you" framing, while LinkedIn stays in the author's first person.
 
 ## Publishing and verification

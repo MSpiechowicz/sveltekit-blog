@@ -20,6 +20,10 @@ categories:
   - technical
 ---
 
+Hello there!
+
+<br/>
+
 You know the message. Red text, a long line in the console, usually sent to you as a screenshot:
 
 ```text
