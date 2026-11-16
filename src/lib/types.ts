@@ -11,6 +11,8 @@ export type Post =
 			content?: string;
 			slug?: string;
 			date?: string;
+			/** MM-DD-YYYY of the last meaningful edit, when the article was revised. */
+			updated?: string;
 			categories?: Categories[];
 	  }
 	| undefined;

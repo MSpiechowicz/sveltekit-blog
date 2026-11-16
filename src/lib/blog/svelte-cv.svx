@@ -1,9 +1,11 @@
 
 ---
 title: Svelte CV
-description: 'Generate your CV with Svelte.'
+description: 'Svelte CV is a small app that generates your CV from a single cv.json file, with configurable sections, colours, icons and image positions.'
 date: '08-08-2025'
 slug: svelte-cv
+image: /images/og/svelte-cv.png
+imageAlt: 'Title card for the article “Svelte CV”'
 social:
   mastodon: >-
     Some CV tools moved behind paid plans; others just did not fit how I wanted to work. Svelte CV keeps the basic setup in cv.json, with room to adjust colors, icons and image positions. Section order follows the configuration.

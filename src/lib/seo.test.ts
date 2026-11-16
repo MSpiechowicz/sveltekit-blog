@@ -11,6 +11,7 @@ import {
 	buildRobotsTxt,
 	buildSitemapXml,
 	isoDate,
+	lastModified,
 	latestPostDate,
 	serializeJsonLd,
 } from './seo';
@@ -138,6 +139,26 @@ describe('structured data', () => {
 		expect(posting.image).toBe(`https://mspiechowicz.com${logo}`);
 		expect('datePublished' in posting).toBe(false);
 		expect('dateModified' in posting).toBe(false);
+	});
+});
+
+describe('lastModified', () => {
+	it('prefers a later revision date and ignores an earlier or invalid one', () => {
+		expect(lastModified({ date: '10-01-2026', updated: '11-05-2026' })).toBe('2026-11-05');
+		expect(lastModified({ date: '10-01-2026', updated: '09-01-2026' })).toBe('2026-10-01');
+		expect(lastModified({ date: '10-01-2026', updated: '99-99-9999' })).toBe('2026-10-01');
+		expect(lastModified({ date: '10-01-2026' })).toBe('2026-10-01');
+		expect(lastModified({})).toBeUndefined();
+	});
+
+	it('feeds dateModified, the sitemap and llms-full.txt', () => {
+		const revised = { ...posts[1], updated: '11-05-2026' };
+		const posting = graph(buildPostJsonLd(revised, logo), 'BlogPosting');
+
+		expect(posting.datePublished).toBe('2025-02-28');
+		expect(posting.dateModified).toBe('2026-11-05');
+		expect(buildSitemapXml([revised])).toContain('<lastmod>2026-11-05</lastmod>');
+		expect(buildLlmsFullTxt([revised], new Map())).toContain('Updated: 2026-11-05');
 	});
 });
 

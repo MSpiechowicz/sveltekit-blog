@@ -3,6 +3,8 @@ title: A New Chapter for Anna's Website
 description: 'My wife’s website has grown from a simple business card into a personal page about her work, approach, and experience.'
 date: '09-05-2026'
 slug: anna-website-update
+image: /images/og/anna-website-update.png
+imageAlt: 'Title card for the article “A New Chapter for Anna''s Website”'
 social:
   mastodon: >-
     A job title only tells part of the story. Anna's updated website makes room for how she works: listen, map, decide and share. My favorite detail is a diagram connecting user needs, business value, risk and constraints to a roadmap.

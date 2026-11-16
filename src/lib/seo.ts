@@ -63,10 +63,21 @@ export function isoDate(date: string | undefined): string | undefined {
 	return `${String(year).padStart(4, '0')}-${String(month).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
 }
 
-/** Latest valid post date as `YYYY-MM-DD`, or undefined when no post has one. */
+/** `YYYY-MM-DD` of the last change: the revision date when valid, otherwise the publish date. */
+export function lastModified(post: { date?: string; updated?: string }): string | undefined {
+	const published = isoDate(post.date);
+	const updated = isoDate(post.updated);
+
+	if (!published) return updated;
+	if (!updated) return published;
+
+	return updated > published ? updated : published;
+}
+
+/** Latest valid post change as `YYYY-MM-DD`, or undefined when no post has one. */
 export function latestPostDate(posts: PostSummary[]): string | undefined {
 	return posts
-		.map((post) => isoDate(post.date))
+		.map((post) => lastModified(post))
 		.filter((date): date is string => date !== undefined)
 		.sort()
 		.at(-1);
@@ -152,6 +163,7 @@ export function buildBlogJsonLd(posts: PostSummary[]): JsonLdDocument {
 				headline: post.title,
 				url: postUrl(post.slug),
 				datePublished: isoDate(post.date),
+				dateModified: lastModified(post),
 				description: post.description || undefined,
 			}),
 		),
@@ -168,6 +180,7 @@ export type PostJsonLdInput = {
 	title: string;
 	description?: string;
 	date?: string;
+	updated?: string;
 	image?: string;
 };
 
@@ -181,7 +194,7 @@ export function buildPostJsonLd(post: PostJsonLdInput, logo: string): JsonLdDocu
 		headline: post.title,
 		description: post.description || undefined,
 		datePublished: published,
-		dateModified: published,
+		dateModified: lastModified(post),
 		author: personReference(),
 		publisher: personReference(),
 		url,
@@ -212,7 +225,7 @@ export function buildSitemapXml(posts: PostSummary[]): string {
 	const entries = [
 		{ loc: absoluteUrl('/'), lastmod: latest },
 		{ loc: absoluteUrl('/blog'), lastmod: latest },
-		...posts.map((post) => ({ loc: postUrl(post.slug), lastmod: isoDate(post.date) })),
+		...posts.map((post) => ({ loc: postUrl(post.slug), lastmod: lastModified(post) })),
 	];
 
 	const urls = entries.map(({ loc, lastmod }) => {
@@ -293,7 +306,12 @@ export function buildLlmsTxt(posts: PostSummary[], projects: Project[]): string 
 export function buildLlmsFullTxt(posts: PostSummary[], bodies: Map<string, string>): string {
 	const sections = posts.map((post) => {
 		const published = isoDate(post.date);
-		const details = [`URL: ${postUrl(post.slug)}`, published ? `Date: ${published}` : undefined];
+		const modified = lastModified(post);
+		const details = [
+			`URL: ${postUrl(post.slug)}`,
+			published ? `Date: ${published}` : undefined,
+			modified && modified !== published ? `Updated: ${modified}` : undefined,
+		];
 
 		return [
 			`# ${singleLine(post.title)}`,

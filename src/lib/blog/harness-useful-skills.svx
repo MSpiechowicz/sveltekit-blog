@@ -1,8 +1,10 @@
 ---
 title: 'Harness Useful Skills: a workflow written as skills'
-description: 'Harness Useful Skills is a set of us-* skills for Oh My Pi and Claude Code that take a natural-language request through research, planning, implementation, review and project memory, without a separate workflow executor.'
+description: 'Harness Useful Skills takes a request through research, planning, implementation, review and memory in Oh My Pi and Claude Code, using only skills.'
 date: '10-09-2026'
 slug: harness-useful-skills
+image: /images/og/harness-useful-skills.png
+imageAlt: 'Title card for the article “Harness Useful Skills: a workflow written as skills”'
 social:
   mastodon: >-
     After writing a workflow engine for Oh My Pi, I tried the opposite approach. Harness Useful Skills has no executor: 17 us-* skills guide the agent through research, planning, implementation, reviews and memory. It runs in both OMP and Claude Code, with no install step beyond the marketplace.

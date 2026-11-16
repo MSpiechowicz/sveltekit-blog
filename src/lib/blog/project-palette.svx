@@ -4,6 +4,8 @@ title: Project Palette
 description: 'A modern, interactive color palette generator that creates beautiful color schemes and generates ready-to-use configuration code for popular CSS frameworks.'
 date: '09-16-2025'
 slug: project-palette
+image: /images/og/project-palette.png
+imageAlt: 'Title card for the article “Project Palette”'
 social:
   mastodon: >-
     I kept asking an LLM the same color-palette questions. Project Palette grew out of that repetition: an interactive place to generate color schemes and get configuration code for CSS frameworks.

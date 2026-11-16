@@ -5,6 +5,7 @@
 	import CodeCopyButton from '#lib/components/code-copy-button.svelte';
 	import { getDesktop } from '#lib/desktop/desktop.svelte.js';
 	import type { Article } from '#lib/desktop/types.js';
+	import { isoDate } from '#lib/seo.js';
 	import { formatDate } from '#lib/utils.js';
 
 	import AppWindow from './app-window.svelte';
@@ -19,6 +20,18 @@
 
 	const slug = $derived(article?.meta?.slug ?? desk.articleSlug ?? '');
 	const content = $derived(article?.content);
+
+	const published = $derived(isoDate(article?.meta?.date));
+	const updated = $derived.by(() => {
+		const value = isoDate(article?.meta?.updated);
+
+		return value && published && value > published ? value : undefined;
+	});
+
+	// Neighbours in the newest-first list, so every article links on to the rest of the blog.
+	const index = $derived(desk.posts.findIndex((post) => post.slug === slug));
+	const newer = $derived(index > 0 ? desk.posts[index - 1] : undefined);
+	const older = $derived(index !== -1 ? desk.posts[index + 1] : undefined);
 
 	// A different article starts at the top.
 	$effect(() => {
@@ -60,9 +73,19 @@
 	h="88%"
 	bind:scroller>
 	{#if article}
-		<div class="doc">
+		<article class="doc">
 			<h1>{article.meta.title}</h1>
-			<div class="date">{formatDate(article.meta.date, 'long')}</div>
+			<div class="date">
+				{#if published}
+					<time datetime={published}>{formatDate(article.meta.date, 'long')}</time>
+				{:else}
+					{formatDate(article.meta.date, 'long')}
+				{/if}
+				{#if updated}
+					· {t('desktop.article.updated')}
+					<time datetime={updated}>{formatDate(article.meta.updated, 'long')}</time>
+				{/if}
+			</div>
 			<div class="rule"></div>
 
 			<div
@@ -73,11 +96,35 @@
 				{/if}
 			</div>
 
+			{#if newer || older}
+				<nav
+					class="more"
+					aria-label={t('desktop.article.more')}>
+					{#if newer}
+						<a
+							rel="prev"
+							href={resolve('/blog/[slug]', { slug: newer.slug })}>
+							<span>{t('desktop.article.newer')}</span>
+							{newer.title}
+						</a>
+					{/if}
+					{#if older}
+						<a
+							class="older"
+							rel="next"
+							href={resolve('/blog/[slug]', { slug: older.slug })}>
+							<span>{t('desktop.article.older')}</span>
+							{older.title}
+						</a>
+					{/if}
+				</nav>
+			{/if}
+
 			<a
 				class="btn"
 				href={resolve('/blog')}
 				onclick={goBack}>{t('desktop.article.back')}</a>
-		</div>
+		</article>
 	{/if}
 </AppWindow>
 
@@ -102,6 +149,54 @@
 	.date {
 		margin-bottom: 6px;
 		font-size: 13px;
+	}
+
+	.more {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		gap: 12px;
+		margin: 2em 0 1.2em;
+		padding-top: 12px;
+		border-top: 2px solid var(--k);
+	}
+
+	.more a {
+		display: block;
+		padding: 8px 10px;
+		border: 2px solid var(--k);
+		font-weight: 700;
+		line-height: 1.3;
+		overflow-wrap: anywhere;
+	}
+
+	.more a.older {
+		grid-column: 2;
+		text-align: right;
+	}
+
+	.more a:hover,
+	.more a:focus-visible {
+		background: var(--sel);
+		color: var(--selfg);
+		outline: 0;
+	}
+
+	.more span {
+		display: block;
+		margin-bottom: 2px;
+		font-size: 12px;
+		font-weight: 500;
+		text-transform: uppercase;
+	}
+
+	@media (max-width: 720px) {
+		.more {
+			grid-template-columns: 1fr;
+		}
+
+		.more a.older {
+			grid-column: 1;
+		}
 	}
 
 	.body {

@@ -1,9 +1,11 @@
 
 ---
 title: New Business Cards are here!
-description: 'Update for the Business Card Website project.'
+description: 'Two new designs for the open-source Business Card Website project, added at the end of 2024 and ready to use from the repository.'
 date: '12-31-2024'
 slug: new-business-cards
+image: /images/og/new-business-cards.png
+imageAlt: 'Title card for the article “New Business Cards are here!”'
 social:
   mastodon: >-
     Two more versions made it into the Business Card Website project before the year ended. A small follow-up to the original layout, with ideas picked up while browsing other sites.

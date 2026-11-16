@@ -4,6 +4,8 @@ title: Estimate Electric Car Range
 description: 'Estimate the range of your electric car based on the battery capacity and the driving conditions.'
 date: '07-06-2025'
 slug: estimate-electric-car-range
+image: /images/og/estimate-electric-car-range.png
+imageAlt: 'Title card for the article “Estimate Electric Car Range”'
 social:
   mastodon: >-
     Looking up electric-car range left me bouncing between cluttered sites and calculators that did too much or too little. My response is a small Svelte app that estimates range from battery capacity and driving conditions.

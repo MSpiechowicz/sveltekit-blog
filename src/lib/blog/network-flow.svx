@@ -3,6 +3,8 @@ title: 'Network Flow, or how you stop explaining CORS'
 description: 'Why a CORS error is not a frontend bug, shown step by step in Network Flow, an animated walkthrough of CORS, DNS, TCP, TLS, HTTP and CDNs.'
 date: '11-16-2026'
 slug: network-flow
+image: /images/og/network-flow.png
+imageAlt: 'Title card for the article “Network Flow, or how you stop explaining CORS”'
 social:
   mastodon: >-
     You have explained CORS more times than you can count. The request goes out, the server answers 200, and the browser still refuses to show it to the page. Network Flow animates that moment packet by packet, along with DNS, TCP, TLS, CDNs and more. Next time, you send a link instead of a long message.

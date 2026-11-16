@@ -28,6 +28,8 @@ export type PostSummary = {
 	description: string;
 	/** MM-DD-YYYY, exactly as written in the frontmatter. */
 	date: string;
+	/** MM-DD-YYYY of the last revision, when the frontmatter declares one. */
+	updated?: string;
 };
 
 export type Project = {

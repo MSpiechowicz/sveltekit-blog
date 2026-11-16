@@ -1,6 +1,6 @@
 ---
 title: 'Harness Useful, two weeks later: from four tools to six'
-description: 'What changed in the Harness Useful family since October: Harness Code and Harness Knowledge joined, Harness Memory gained per-project save controls and two-way sync, and Harness Skills added release assessments and Pi support.'
+description: 'Two weeks of Harness Useful: Harness Code and Harness Knowledge joined, Memory gained sync and save controls, and Skills added release assessments.'
 date: '11-09-2026'
 slug: harness-useful-two-weeks-later
 image: /images/harness-useful.png

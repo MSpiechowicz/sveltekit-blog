@@ -1,8 +1,10 @@
 ---
 title: 'This blog is now a desktop'
-description: 'The whole site was rebuilt as a classic desktop with a menu bar, draggable windows, a terminal, nine themes and a new Projects window, while every old address keeps working.'
+description: 'This blog was rebuilt as a classic desktop with draggable windows, a terminal, nine themes and a Projects window, and every old link still works.'
 date: '11-14-2026'
 slug: blog-desktop-redesign
+image: /images/og/blog-desktop-redesign.png
+imageAlt: 'Title card for the article “This blog is now a desktop”'
 social:
   mastodon: >-
     The blog looks different now. The whole site is a small desktop: a menu bar, windows you can drag around, a Trash, a terminal and an animated wallpaper. There is also a new Projects window, and every old link still opens the same post. The terminal knows a few things the help text does not mention.

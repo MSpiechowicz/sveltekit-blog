@@ -1,6 +1,6 @@
 ---
 title: 'Harness Dashboard: token usage across every coding agent'
-description: 'Harness Dashboard is a local desktop app that reads the session logs of Claude Code, Codex, Gemini CLI, Copilot CLI, OpenCode, omp, pi, Zed, Cline, Roo Code, Kilo Code and Cursor, and charts where your tokens and money go.'
+description: 'Harness Dashboard is a local desktop app that reads session logs from Claude Code, Codex, Cursor and other agents and charts tokens and cost.'
 date: '10-16-2026'
 slug: harness-dashboard
 image: /images/harness-dashboard-overview.png

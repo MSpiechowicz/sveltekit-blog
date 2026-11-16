@@ -1,8 +1,10 @@
 ---
 title: Hello World!
-description: 'Journey begins once again. This time with a different approach.'
+description: 'Why I deleted my first blog in 2022 and started writing again in 2024: small posts, no pressure, and having fun first.'
 date: '04-14-2024'
 slug: hello-world
+image: /images/og/hello-world.png
+imageAlt: 'Title card for the article “Hello World!”'
 social:
   mastodon: >-
     My first blog fizzled out while I was trying too hard to make every post special. This time the plan is smaller: write about what interests me, share it without pressure, and enjoy doing it.
