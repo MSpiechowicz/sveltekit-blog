@@ -23,7 +23,7 @@ Write prose only in these values. Do not include the canonical article URL, a pl
 ## Search and sharing metadata
 
 - `description` is the search snippet and the summary AI answers quote. Keep it 70–160 characters (a test enforces this), plain and factual, with the main topic near the start.
-- Every article has an `image` and `imageAlt`. When there is no screenshot worth sharing, generate a title card with `scripts/og-cards.js` (see the comment at its top) and use `image: /images/og/<slug>.png` with `imageAlt: 'Title card for the article “<title>”'`.
+- Every article has an `image` and `imageAlt`. When there is no screenshot worth sharing, generate a title card with `bun run og:cards` (`scripts/og-cards.js`) and use `image: /images/og/<slug>.png` with `imageAlt: 'Title card for the article “<title>”'`.
 - When an article is meaningfully revised after publishing, add `updated: 'MM-DD-YYYY'`. It feeds `dateModified`, `article:modified_time`, the sitemap and `llms-full.txt`. Do not bump it for typo fixes.
 - Prefer at least one heading phrased the way a reader would search or ask, and a one-sentence plain definition of the main concept early in the article, so search and answer engines can quote it.
 

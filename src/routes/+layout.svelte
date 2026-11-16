@@ -7,6 +7,16 @@
 	import { Desktop, setDesktop } from '#lib/desktop/desktop.svelte.js';
 	import type { Article } from '#lib/desktop/types.js';
 
+	// Self-hosted fonts, the same weights the Google Fonts link used to load.
+	import '@fontsource/fira-sans/500.css';
+	import '@fontsource/fira-sans/600.css';
+	import '@fontsource/fira-sans/700.css';
+	import '@fontsource/fira-sans/900.css';
+	import '@fontsource/jetbrains-mono/500.css';
+	import '@fontsource/jetbrains-mono/700.css';
+	import '@fontsource/noto-serif/400.css';
+	import '@fontsource/noto-serif/400-italic.css';
+	import '@fontsource/noto-serif/700.css';
 	import '../app.css';
 
 	let { data, children }: { data: App.PageData; children: Snippet } = $props();

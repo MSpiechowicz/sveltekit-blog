@@ -4,9 +4,8 @@
  * `image`, for Open Graph and X cards. Add the printed `image` and `imageAlt` lines to each
  * article's frontmatter afterwards.
  *
- * Playwright is not a dependency of this site. Point PLAYWRIGHT at any installed copy:
- *   PLAYWRIGHT=/path/to/node_modules/playwright/index.mjs node scripts/og-cards.js
- * (`@playwright/test/index.mjs` works too). Fonts are loaded from Google Fonts while rendering.
+ * Run with `bun run og:cards`. The first run on a machine may need the browser:
+ * `bunx playwright install chromium`. Fonts are loaded from Google Fonts while rendering.
  */
 import { readFileSync, readdirSync, writeFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
@@ -14,7 +13,7 @@ import { join } from 'node:path';
 import { parse } from 'yaml';
 
 const repo = fileURLToPath(new URL('../', import.meta.url));
-const { chromium } = await import(process.env.PLAYWRIGHT || 'playwright');
+const { chromium } = await import('playwright');
 
 const esc = (s) => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
 
