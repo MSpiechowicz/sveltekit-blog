@@ -4,6 +4,8 @@ title: Track Things Redesign
 description: 'Track Things got a full redesign - a new landing page, a refreshed app, and a much clearer story.'
 date: '09-04-2026'
 slug: track-things-redesign
+image: /images/og/track-things-redesign.png
+imageAlt: 'Title card for the article “Track Things Redesign”'
 social:
   mastodon: >-
     Using your own app is a good way to find the bits that bother you. Track Things now has a reworked landing page, navigation and forms, plus an 84-second walkthrough you can watch without signing up.

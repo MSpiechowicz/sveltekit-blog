@@ -1,9 +1,11 @@
 
 ---
 title: The Flow of Time
-description: 'Each moment is unique and unrepeatable. Do not waste it.'
+description: 'The Flow of Time is a small Svelte web app that shows how much time you may have left, based on life expectancy and today''s date.'
 date: '06-27-2025'
 slug: flow-of-time
+image: /images/og/flow-of-time.png
+imageAlt: 'Title card for the article “The Flow of Time”'
 social:
   mastodon: >-
     Another meeting on the calendar, another bit of time gone. The Flow of Time is a small visualization of time remaining based on life expectancy and the current date. Not a prediction, just a different way to look at a finite resource.

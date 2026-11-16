@@ -1,6 +1,6 @@
 import type { PostSummary } from '#lib/desktop/types.js';
 
-type Metadata = Partial<Record<'slug' | 'title' | 'description' | 'date', unknown>>;
+type Metadata = Partial<Record<'slug' | 'title' | 'description' | 'date' | 'updated', unknown>>;
 
 const modules = import.meta.glob<Metadata | undefined>('/src/lib/blog/*.svx', {
 	eager: true,
@@ -42,6 +42,7 @@ export function getPostSummaries(): PostSummary[] {
 			title: text(metadata?.title),
 			description: text(metadata?.description),
 			date: text(metadata?.date),
+			...(text(metadata?.updated) ? { updated: text(metadata?.updated) } : {}),
 		}))
 		.map((summary) => ({ summary, time: dateValue(summary.date) }))
 		.sort((a, b) => {

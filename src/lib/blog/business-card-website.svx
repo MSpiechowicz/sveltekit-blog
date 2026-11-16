@@ -1,9 +1,11 @@
 
 ---
 title: Business Card Website
-description: 'A simple business card website built with React.'
+description: 'A simple React business card website that a non-technical person can update through an env file, with the card version picked by one variable.'
 date: '12-27-2024'
 slug: business-card-website
+image: /images/og/business-card-website.png
+imageAlt: 'Title card for the article “Business Card Website”'
 social:
   mastodon: >-
     My wife's website needed a refresh, not a complicated setup. This small React business-card site keeps its content configuration in an env file, so updates do not mean digging through components.

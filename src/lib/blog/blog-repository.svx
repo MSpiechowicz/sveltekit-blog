@@ -1,8 +1,10 @@
 ---
 title: Blog Repository
-description: 'Public repository of my blog is now available on GitHub.'
+description: 'The source code of this SvelteKit blog is now public on GitHub, open to forks, feedback and ideas for making the content easier to replace.'
 date: '05-02-2024'
 slug: blog-repository
+image: /images/og/blog-repository.png
+imageAlt: 'Title card for the article “Blog Repository”'
 social:
   mastodon: >-
     Curious about the code behind this blog? The repository is public on GitHub. There is still tidying to do, and I have ideas for making the site easier to adapt. Have a look, fork it, or tell me what you would change.

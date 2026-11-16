@@ -1,8 +1,10 @@
 ---
 title: 'Oh My Pi Anvil: Verification Beyond the Agent Handoff'
-description: 'A look at how my Oh My Pi Anvil extension coordinates specialist agents, persists run evidence, and ties checks and reviews to the workspace revision they evaluated.'
+description: 'How my Oh My Pi Anvil extension coordinates specialist agents, keeps run evidence, and ties checks and reviews to the revision they evaluated.'
 date: '09-24-2026'
 slug: oh-my-pi-anvil
+image: /images/og/oh-my-pi-anvil.png
+imageAlt: 'Title card for the article “Oh My Pi Anvil: Verification Beyond the Agent Handoff”'
 social:
   mastodon: >-
     An agent saying “done” is not the same as checking the revision it left behind. In Oh My Pi Anvil, I put the handoffs and correction loop in a persistent workflow: checks, security and review must refer to the current workspace revision. Here is how the pieces fit, and where that evidence has limits.

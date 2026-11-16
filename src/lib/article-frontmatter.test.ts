@@ -94,6 +94,12 @@ describe('parseArticleFrontmatter', () => {
 		expect(parseArticleFrontmatter(FIELDS).date).toBe('04-14-2024');
 	});
 
+	it('accepts an optional revision date written like the publish date', () => {
+		expect(parseArticleFrontmatter(`${FIELDS}\nupdated: '05-02-2024'`).updated).toBe('05-02-2024');
+		expect(() => parseArticleFrontmatter(`${FIELDS}\nupdated: '2024-05-02'`)).toThrow(/updated/);
+		expect(() => parseArticleFrontmatter(`${FIELDS}\nupdated: ''`)).toThrow(/updated/);
+	});
+
 	it('rejects a misspelt or unknown field so drafts cannot ship under another name', () => {
 		const misnamed = ['Social', 'socials', 'SOCIAL', 'x', 'drafts'];
 

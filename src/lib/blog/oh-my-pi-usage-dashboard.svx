@@ -1,6 +1,6 @@
 ---
 title: Harness Usage Dashboard
-description: 'I built a usage dashboard for the Oh My Pi coding harness: live token charts, persistent session history, and provider allowances in a tmux sidebar, without leaving the terminal.'
+description: 'A usage dashboard for the Oh My Pi coding harness: live token charts, session history and provider allowances in a tmux sidebar.'
 date: '09-15-2026'
 slug: oh-my-pi-usage-dashboard
 image: /images/oh-my-pi-usage-dashboard.png

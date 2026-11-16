@@ -28,4 +28,14 @@ describe('compiled article metadata', () => {
 			expect(metadata.date, path).toMatch(/^\d{2}-\d{2}-\d{4}$/);
 		}
 	});
+
+	// Search engines cut longer descriptions short, and very short ones say too little to rank.
+	it('keeps every description between 70 and 160 characters', () => {
+		for (const [path, metadata] of articles) {
+			const length = String(metadata.description).length;
+
+			expect(length, `${path} description is ${length} characters`).toBeGreaterThanOrEqual(70);
+			expect(length, `${path} description is ${length} characters`).toBeLessThanOrEqual(160);
+		}
+	});
 });

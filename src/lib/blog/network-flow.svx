@@ -1,0 +1,138 @@
+---
+title: 'Network Flow, or how you stop explaining CORS'
+description: 'Why a CORS error is not a frontend bug, shown step by step in Network Flow, an animated walkthrough of CORS, DNS, TCP, TLS, HTTP and CDNs.'
+date: '11-16-2026'
+slug: network-flow
+image: /images/og/network-flow.png
+imageAlt: 'Title card for the article “Network Flow, or how you stop explaining CORS”'
+social:
+  mastodon: >-
+    You have explained CORS more times than you can count. The request goes out, the server answers 200, and the browser still refuses to show it to the page. Network Flow animates that moment packet by packet, along with DNS, TCP, TLS, CDNs and more. Next time, you send a link instead of a long message.
+  x: >-
+    The request left. The server said 200. The browser still blocked it. Network Flow animates CORS, DNS, TCP, TLS and more, step by step, so next time you can send a link instead of explaining it again.
+  linkedin: >-
+    CORS is the topic I've explained more often than any other. The conversation usually starts with a red error in the console and a question about what's wrong with the frontend, and it ends with me walking through the same few arrows one more time.
+
+    The part that's hard to believe until you see it: the request does reach the server. The server runs its code and answers 200. Then the browser looks for one response header, doesn't find it, and won't hand the response to the page. In my opinion that's exactly why it keeps getting filed as a frontend bug. The error shows up in the frontend, but the fix lives where the response is made.
+
+    So I put it into Network Flow, a small static app that plays it step by step: packets crossing an isometric network, a sequence diagram, a Wireshark-style packet table and the headers of every packet. My favourite step is the last one, where curl asks the same endpoint and happily reads the response the browser blocked.
+
+    It covers more than CORS too, from DNS and TCP to TLS, CDNs and email. The post is a short tour of it, and a link I can finally send instead of drawing the arrows again.
+categories:
+  - technical
+---
+
+Hello there!
+
+<br/>
+
+You know the message. Red text, a long line in the console, usually sent to you as a screenshot:
+
+```text
+Access to fetch at 'https://api.example.net/v1/account/limits' from origin
+'https://example.com' has been blocked by CORS policy: No
+'Access-Control-Allow-Origin' header is present on the requested resource.
+```
+
+<br/>
+
+And you know what comes next. Someone asks what is wrong with the frontend. You take a breath, and you explain it again. Origins. Headers. Preflights. Why the fix is not in the component that called `fetch()`.
+
+<br/>
+
+The first time, it is fine. The fifth time, you notice you are using the same words. Somewhere around the tenth, you realise the problem is no longer CORS. The problem is that you are a human copy-paste of the same explanation, and that is a problem you can actually solve.
+
+<br/>
+
+So you stop explaining it and start showing it, once, properly, in a way you can hand over and walk away from. That is what [Network Flow](https://mspiechowicz.github.io/network-flow/#/cors/1) is.
+
+## Why a CORS error is not a frontend bug
+
+CORS (Cross-Origin Resource Sharing) is a rule the browser enforces: a page may read a response from another origin only if that response says it is allowed to, with the `Access-Control-Allow-Origin` header.
+
+<br/>
+
+Here is the thing that makes CORS feel like a frontend problem: the error shows up in the browser, in the page, in the frontend developer's console. Of course it looks like their bug.
+
+<br/>
+
+But open the third step of the CORS walkthrough, _Missing header: sent, answered, blocked_, and watch what actually happens. The request leaves the browser. It crosses the router and the internet. The API server receives it, runs its code and answers `200`. The response travels all the way back.
+
+<br/>
+
+Nothing on the wire is wrong.
+
+<br/>
+
+Then the browser looks at the response, does not find `Access-Control-Allow-Origin`, and refuses to let the page read it. `fetch()` rejects with a network error, and the page sees neither the status nor the body. The server did its job. It just never said that `https://example.com` was allowed to read the answer.
+
+<br/>
+
+That is the whole point, and it is much easier to see than to say: CORS limits what a page may read, not what a client may ask. The fix lives where the response is made.
+
+## Eleven steps, one connection
+
+The CORS scenario walks through eleven steps, grouped into simple requests, preflight, credentials, and caching and limits:
+
+- a simple `GET`, where the browser quietly adds an `Origin` header,
+- the server opting in with `Access-Control-Allow-Origin`,
+- the missing header from above,
+- a `PUT` with `Authorization` that triggers an `OPTIONS` preflight, answered with `204` and the allowed methods,
+- credentials, where a wildcard `*` origin gets rejected, and the fix with an exact origin and `Vary`,
+- `Max-Age`, where a later `PUT` skips the preflight because the answer is cached for 600 seconds,
+- and the ending I like most: `curl` asks the same endpoint as step three, sends no `Origin`, and reads the exact response the browser blocked.
+
+<br/>
+
+That last step tends to settle the argument. Same server, same answer, different client. The browser is the one enforcing the rule.
+
+## Four ways to look at the same moment
+
+You can press play and let it run, or click through step by step. Every step shows the same moment in a few different ways:
+
+- **Network**: packets moving across a small isometric network, from your browser through the home router and the internet to the API server,
+- **Sequence**: the same exchange as a sequence diagram, if arrows between columns are more your thing,
+- **Packets**: a Wireshark-style table of everything on the wire,
+- **Headers**: click any packet and you get its headers, layer by layer.
+
+<br/>
+
+Switching between the network and sequence views keeps the time, the step and the selected packet, so you never lose your place.
+
+<br/>
+
+And the address bar holds the whole state. `#/cors/3` is step three. That is the feature I wanted most: the next time someone sends you that red screenshot, you send back a link instead of a paragraph.
+
+## Not only CORS
+
+Once the engine existed, the other protocols I kept half-explaining came along with it. There is a journey of a single URL from the address bar to the painted page, plus walkthroughs for TCP, UDP, IP, DHCP, DNS, HTTP and HTTPS, TLS, CDNs and email over SMTP, POP3 and IMAP.
+
+<br/>
+
+Pick one in the sidebar and step through it. Press `?` for keyboard shortcuts, `V` to switch views, and space to play or pause.
+
+## The small print, the good kind
+
+Everything runs in your browser from static files. There is no backend, no account and no analytics, and after the first load the app makes no network requests at all. The addresses, names and ports in the scenarios are documentation values, so nothing points at a real host except the DNS root and `.com` servers that the DNS steps name.
+
+<br/>
+
+The scenarios are also checked by a validator that runs with the tests and looks at more than the shape of the data: addresses, TCP sequence numbers and IP fragments have to add up. If your system asks for reduced motion, packets jump between devices instead of flying, and the ambient animation stops.
+
+<br/>
+
+The code is on [GitHub](https://github.com/MSpiechowicz/network-flow), and the app is live on [GitHub Pages](https://mspiechowicz.github.io/network-flow/#/cors/1).
+
+## Next time
+
+That is the real win here. Not a nicer diagram, but one less conversation you have to repeat word for word. If you keep explaining the same thing over and over, it is probably worth building it once.
+
+<br/>
+
+So, the next time CORS lands on your desk as a frontend bug, you do not need the whiteboard. Send the link, let them press play, and wait for step three.
+
+<br/>
+
+Greetings,
+
+Maciej

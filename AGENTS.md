@@ -20,6 +20,25 @@ Write prose only in these values. Do not include the canonical article URL, a pl
 - Use a factual human voice, not promotional superlatives, forced engagement questions or padded summaries. First-person observations are appropriate when supported by the article. Historical articles describe the state at the time of writing, not an independently verified current product state.
 - Review and update all three fields when article edits change the facts or emphasis. Keep one intentional announcement per platform; multiple runtime variants are not needed.
 
+## Search and sharing metadata
+
+- `description` is the search snippet and the summary AI answers quote. Keep it 70–160 characters (a test enforces this), plain and factual, with the main topic near the start.
+- Every article has an `image` and `imageAlt`. When there is no screenshot worth sharing, generate a title card with `bun run og:cards` (`scripts/og-cards.js`) and use `image: /images/og/<slug>.png` with `imageAlt: 'Title card for the article “<title>”'`.
+- When an article is meaningfully revised after publishing, add `updated: 'MM-DD-YYYY'`. It feeds `dateModified`, `article:modified_time`, the sitemap and `llms-full.txt`. Do not bump it for typo fixes.
+- Prefer at least one heading phrased the way a reader would search or ask, and a one-sentence plain definition of the main concept early in the article, so search and answer engines can quote it.
+
+## Second-person ("you") article voice
+
+The default article voice is the author's own first person. When the author asks for a post "from the perspective of you", "more vibes", "less professional" or similar, use this voice instead. `src/lib/blog/network-flow.svx` is the reference example.
+
+- Address the reader as "you" and put them inside the situation the project solves: the error they keep seeing, the message they keep writing, the moment they recognise. Keep the author's "I" rare.
+- Lead with the problem and why it is annoying, not with the project. Introduce the project only once the reader feels the problem, and say plainly which problem it removes.
+- Care about wording and rhythm: mix short lines with longer ones, let a one-sentence paragraph land, and prefer a concrete scene or detail over a list of features. A playful title and section headings are fine.
+- Keep it relaxed but not sloppy: no slang for its own sake, no emoji walls, no forced questions, no hype words.
+- Vibes never replace facts. Every feature, number and claim must still come from the project's source, README or the author, and qualifications stay in.
+- Keep the house formatting: open the article body with "Hello there!" followed by `<br/>`, then go straight into the "you" scene; `<br/>` between paragraphs, `##` section headings, links to the demo and repository, and a short sign-off.
+- The SEO `description` stays plain and factual. Social copy still follows the frontmatter contract above; Mastodon and X may borrow the "you" framing, while LinkedIn stays in the author's first person.
+
 ## Publishing and verification
 
 The agent authors this copy during article work and commits it as content. No runtime LLM, generated template rotation or random canned openings are required.

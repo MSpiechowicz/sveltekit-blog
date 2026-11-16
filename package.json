@@ -11,14 +11,20 @@
 		"test": "vitest",
 		"test:social": "vitest run scripts/social-post.test.js",
 		"sync:projects": "node scripts/sync-projects.js",
+		"og:cards": "node scripts/og-cards.js",
 		"lint": "prettier --check . && eslint .",
 		"format": "prettier --write ."
 	},
 	"devDependencies": {
+		"@eslint/js": "^10.0.1",
+		"@fontsource/fira-sans": "^5.3.0",
+		"@fontsource/jetbrains-mono": "^5.3.0",
+		"@fontsource/noto-serif": "^5.3.0",
 		"@sveltejs/adapter-auto": "^8.0.0",
 		"@sveltejs/adapter-vercel": "^7.0.2",
 		"@sveltejs/kit": "^3.1.1",
 		"@sveltejs/vite-plugin-svelte": "^7.3.1",
+		"@types/node": "^26.6.6",
 		"@typescript-eslint/eslint-plugin": "^8.72.1",
 		"@typescript-eslint/parser": "^8.72.1",
 		"eslint": "^10.14.0",
@@ -26,6 +32,7 @@
 		"eslint-plugin-svelte": "^3.23.1",
 		"globals": "^17.13.0",
 		"mdsvex": "^0.12.8",
+		"playwright": "1.65.0",
 		"prettier": "^3.9.10",
 		"prettier-plugin-svelte": "^4.1.1",
 		"svelte": "^5.57.3",
@@ -33,9 +40,7 @@
 		"tslib": "^2.9.1",
 		"typescript": "~6.0.3",
 		"vite": "^8.3.5",
-		"vitest": "^5.0.5",
-		"@eslint/js": "^10.0.1",
-		"@types/node": "^26.6.6"
+		"vitest": "^5.0.5"
 	},
 	"type": "module",
 	"dependencies": {

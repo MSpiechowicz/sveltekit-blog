@@ -3,6 +3,8 @@ title: Bringing This Blog Up to Date with Svelte 5
 description: 'How I modernized this SvelteKit blog with Svelte 5 runes, snippets, updated UI components, and Tailwind CSS 4 while keeping its file-based publishing workflow.'
 date: '09-22-2026'
 slug: svelte-5-migration
+image: /images/og/svelte-5-migration.png
+imageAlt: 'Title card for the article “Bringing This Blog Up to Date with Svelte 5”'
 social:
   mastodon: >-
     Updating this blog was not just a dependency bump. It already used Svelte 5, but much of the component code still followed older conventions. Here is what changed in the reactivity, mobile menu, UI components and Tailwind setup, without replacing the file-based writing workflow.

@@ -15,6 +15,8 @@
 		imageAlt: string;
 		/** `YYYY-MM-DD`; only for articles. */
 		publishedTime?: string;
+		/** `YYYY-MM-DD`; only for articles that were revised after publishing. */
+		modifiedTime?: string;
 		robots?: string;
 		jsonLd: JsonLdDocument;
 	};
@@ -28,6 +30,7 @@
 		image,
 		imageAlt,
 		publishedTime,
+		modifiedTime,
 		robots,
 		jsonLd,
 	}: Props = $props();
@@ -83,6 +86,11 @@
 			<meta
 				property="article:published_time"
 				content={publishedTime} />
+		{/if}
+		{#if modifiedTime && modifiedTime !== publishedTime}
+			<meta
+				property="article:modified_time"
+				content={modifiedTime} />
 		{/if}
 		<meta
 			property="article:author"

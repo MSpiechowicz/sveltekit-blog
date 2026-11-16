@@ -1,8 +1,10 @@
 ---
 title: Favorite Code Editor
-description: The code editor can change a lot in a programmer's life. For good or for bad.
+description: 'Sixteen years of code editors: why I tried Vim several times, left IntelliJ IDEA for Visual Studio Code, and why Zed''s speed caught my eye.'
 date: '05-10-2024'
 slug: favorite-code-editor
+image: /images/og/favorite-code-editor.png
+imageAlt: 'Title card for the article “Favorite Code Editor”'
 social:
   mastodon: >-
     Vim keeps tempting me, IntelliJ served me for years, and VS Code is where I still feel at home. Some personal notes on editor trade-offs, learning curves and why I am keeping an eye on Zed.

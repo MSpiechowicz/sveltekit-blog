@@ -3,6 +3,8 @@ title: Track Things for Home Assistant
 description: 'My open-source Home Assistant integration brings Track Things records, automations, and guided Assist conversations into your home.'
 date: '09-10-2026'
 slug: track-things-home-assistant
+image: /images/og/track-things-home-assistant.png
+imageAlt: 'Title card for the article “Track Things for Home Assistant”'
 social:
   mastodon: >-
     A Track Things entry can now start in Home Assistant's Assist: answer the prompts, review the draft, then confirm before saving. The standard guided agent needs no AI subscription. Text conversations are tested; live voice-device testing is still ahead.

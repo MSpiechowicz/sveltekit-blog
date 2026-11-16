@@ -1,8 +1,10 @@
 ---
 title: 'Harness Usage Dashboard: now in Claude Code too'
-description: 'The usage dashboard I wrote for Oh My Pi has a new name and a second host: a native Claude Code plugin with a token chart, local session history, and rate-limit windows in a Pane.'
+description: 'The usage dashboard I wrote for Oh My Pi is now a Claude Code plugin too, with a token chart, local session history and rate-limit windows.'
 date: '10-05-2026'
 slug: harness-usage-dashboard-claude-code
+image: /images/og/harness-usage-dashboard-claude-code.png
+imageAlt: 'Title card for the article “Harness Usage Dashboard: now in Claude Code too”'
 social:
   mastodon: >-
     My Oh My Pi usage dashboard has a new name, Harness Usage Dashboard, and a second host. In Claude Code it is now built on the new mods: a read-only Pane with the token chart, local session history and rate-limit windows, no tmux or shell wrapper needed. Successful live accounting is still unverified, and the post explains why.

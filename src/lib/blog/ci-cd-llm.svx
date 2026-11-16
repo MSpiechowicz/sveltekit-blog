@@ -1,9 +1,11 @@
 
 ---
 title: CI/CD with LLM
-description: 'CI/CD with LLM that can be used to deploy your website.'
+description: 'Building new Business Card versions with Claude 3.5 Sonnet in Cursor, plus Vercel environment variables and a GitHub Actions release workflow.'
 date: '01-08-2025'
 slug: ci-cd-llm
+image: /images/og/ci-cd-llm.png
+imageAlt: 'Title card for the article “CI/CD with LLM”'
 social:
   mastodon: >-
     The small website project turned into a deployment experiment: Vercel environment variables, GitHub Actions and semantic release. I also tried Claude 3.5 Sonnet in Cursor after using Copilot. Notes on what helped and where the setup needed more attention.

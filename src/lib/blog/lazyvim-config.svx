@@ -1,8 +1,10 @@
 ---
 title: LazyVim Configuration
-description: 'Sometimes you just want things to work, instead of spending hours on configuring your editor. This is why I created a simple configuration for NeoVim, which is easy to install and use.'
+description: 'A simple LazyVim configuration for Neovim that is easy to install and use, for when you want your editor to just work instead of tuning it for hours.'
 date: '05-17-2024'
 slug: lazyvim-config
+image: /images/og/lazyvim-config.png
+imageAlt: 'Title card for the article “LazyVim Configuration”'
 social:
   mastodon: >-
     Back in Neovim, this time bringing some familiar VS Code comforts with me. My LazyVim configuration includes frontend tooling, formatting, Git, Copilot and Copilot Chat. The setup is public if you want to compare notes.

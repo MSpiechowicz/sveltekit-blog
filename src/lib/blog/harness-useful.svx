@@ -1,6 +1,6 @@
 ---
 title: 'Harness Useful: a home for four open-source agent tools'
-description: 'harness-useful.com brings Harness Desktop, Harness Skills, Harness Memory and Harness Dashboard together: four local, open-source tools for Oh My Pi, PI, OpenCode, Claude Code and Codex that work alone or as one family.'
+description: 'harness-useful.com brings together four local, open-source agent tools: Harness Desktop, Skills, Memory and Dashboard, alone or as one family.'
 date: '10-27-2026'
 slug: harness-useful
 image: /images/harness-useful.png

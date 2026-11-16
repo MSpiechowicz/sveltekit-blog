@@ -1,9 +1,11 @@
 
 ---
 title: Useful Snippets
-description: 'A collection of useful snippets that I use in my daily work.'
+description: 'A GitHub collection of bash snippets I use daily: word counts for JSON and PDF files, killing a process by TCP port, and cleaning local branches.'
 date: '12-09-2024'
 slug: useful-snippets
+image: /images/og/useful-snippets.png
+imageAlt: 'Title card for the article “Useful Snippets”'
 social:
   mastodon: >-
     A few Bash helpers from my daily work: count words in JSON or PDF files, find a process by its TCP port and stop it, or clean up local Git branches while keeping the main ones. Collected in one repository so they are easier to reuse.

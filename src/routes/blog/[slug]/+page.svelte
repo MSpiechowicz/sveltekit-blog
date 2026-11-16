@@ -1,7 +1,7 @@
 <script lang="ts">
 	import logo from '#lib/assets/logo.png';
 	import SeoHead from '#lib/components/seo-head.svelte';
-	import { SITE_NAME, buildPostJsonLd, isoDate, postUrl } from '#lib/seo.js';
+	import { SITE_NAME, buildPostJsonLd, isoDate, lastModified, postUrl } from '#lib/seo.js';
 	import type { Data } from '#lib/types.js';
 
 	let { data }: { data?: Data } = $props();
@@ -22,5 +22,6 @@
 	{image}
 	{imageAlt}
 	publishedTime={isoDate(meta?.date)}
+	modifiedTime={lastModified(meta ?? {})}
 	robots="max-image-preview:large"
 	jsonLd={buildPostJsonLd({ ...meta, slug, title }, logo)} />

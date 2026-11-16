@@ -1,9 +1,11 @@
 
 ---
 title: Track Things
-description: 'Track Things with easy to understand reports.'
+description: 'Track Things lets you track expenses, time or anything else and generate easy-to-read reports with an LLM. Built with SvelteKit and TypeScript.'
 date: '06-25-2025'
 slug: track-things
+image: /images/og/track-things.png
+imageAlt: 'Title card for the article “Track Things”'
 social:
   mastodon: >-
     Recording expenses or time is one thing; turning the data into something readable is another. Track Things is my attempt to connect the two, using Gemini to generate reports from the things you track.

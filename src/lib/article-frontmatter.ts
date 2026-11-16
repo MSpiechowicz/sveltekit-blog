@@ -14,6 +14,7 @@ const KNOWN_FIELDS = new Set([
 	'title',
 	'description',
 	'date',
+	'updated',
 	'slug',
 	'image',
 	'imageAlt',
@@ -145,6 +146,14 @@ export function parseArticleFrontmatter(frontmatter: string): Record<string, unk
 		throw new Error('Article frontmatter field "date" must be written as MM-DD-YYYY.');
 	}
 
+	if ('updated' in fields) {
+		const updated = fields.updated;
+
+		if (typeof updated !== 'string' || !DATE_FORMAT.test(updated)) {
+			throw new Error('Article frontmatter field "updated" must be written as MM-DD-YYYY.');
+		}
+	}
+
 	if (!SLUG_FORMAT.test(fields.slug as string)) {
 		throw new Error(
 			'Article frontmatter field "slug" must be lowercase words separated by hyphens.',
@@ -167,7 +176,7 @@ export function parseArticleFrontmatter(frontmatter: string): Record<string, unk
 		categories.forEach((category) => assertNoDraftText('categories', category));
 	}
 
-	for (const name of [...REQUIRED_TEXT_FIELDS, 'image', 'imageAlt']) {
+	for (const name of [...REQUIRED_TEXT_FIELDS, 'updated', 'image', 'imageAlt']) {
 		assertNoDraftText(name, fields[name]);
 	}
 

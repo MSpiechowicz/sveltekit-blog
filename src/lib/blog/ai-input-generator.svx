@@ -4,6 +4,8 @@ title: AI Input Generator
 description: 'A simple web application that allows you to generate input for AI models.'
 date: '07-25-2025'
 slug: ai-input-generator
+image: /images/og/ai-input-generator.png
+imageAlt: 'Title card for the article “AI Input Generator”'
 social:
   mastodon: >-
     Sometimes the awkward part is putting the request into words. AI Input Generator takes a topic and your own goals or context, then turns them into a prompt. A small tool for a task I wanted to make simpler.
