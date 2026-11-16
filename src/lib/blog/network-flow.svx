@@ -1,6 +1,6 @@
 ---
 title: 'Network Flow, or how you stop explaining CORS'
-description: 'Network Flow is a small static app with interactive, animated walkthroughs of CORS, DNS, TCP, TLS, HTTP and HTTPS, CDNs and more, built because CORS kept being mistaken for a frontend bug.'
+description: 'Why a CORS error is not a frontend bug, shown step by step in Network Flow, an animated walkthrough of CORS, DNS, TCP, TLS, HTTP and CDNs.'
 date: '11-16-2026'
 slug: network-flow
 social:
@@ -44,7 +44,11 @@ The first time, it is fine. The fifth time, you notice you are using the same wo
 
 So you stop explaining it and start showing it, once, properly, in a way you can hand over and walk away from. That is what [Network Flow](https://mspiechowicz.github.io/network-flow/#/cors/1) is.
 
-## The part nobody believes
+## Why a CORS error is not a frontend bug
+
+CORS (Cross-Origin Resource Sharing) is a rule the browser enforces: a page may read a response from another origin only if that response says it is allowed to, with the `Access-Control-Allow-Origin` header.
+
+<br/>
 
 Here is the thing that makes CORS feel like a frontend problem: the error shows up in the browser, in the page, in the frontend developer's console. Of course it looks like their bug.
 
