@@ -57,6 +57,12 @@
 			"github": "https://github.com/MSpiechowicz/harness-useful-test-portal"
 		},
 		{
+			"title": "Platter",
+			"description": "A local desktop app for Linux, Windows and macOS that shows what fills your disk and cleans it up safely: capacity, file types and a layered view of the disk, cleanup rules that label folders safe, review or keep, and an optional on-device AI advisor that never deletes anything itself.",
+			"technologies": ["Rust", "Tauri", "Svelte", "TypeScript"],
+			"github": "https://github.com/MSpiechowicz/platter"
+		},
+		{
 			"title": "Network Flow",
 			"description": "Interactive, animated explanations of how the internet works: step through scenarios such as DNS, TCP, TLS, HTTP and HTTPS, CORS, and CDNs, with packets crossing an isometric network, a sequence diagram, a Wireshark-style packet table, and the header fields of each packet.",
 			"technologies": ["React", "TypeScript", "Motion", "Vite"],
